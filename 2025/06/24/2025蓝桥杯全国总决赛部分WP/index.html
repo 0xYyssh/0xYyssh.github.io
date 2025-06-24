@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2025蓝桥杯全国总决赛部分WP | 0xYyssh'Blog</title><meta name="author" content="0xYyssh"><meta name="copyright" content="0xYyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025蓝桥杯全国总决赛部分WP">
+<meta property="og:url" content="http://example.com/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/index.html">
+<meta property="og:site_name" content="0xYyssh&#39;Blog">
+<meta property="og:description" content="蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/coverImages/default_bg8.jpg">
+<meta property="article:published_time" content="2025-06-24T09:53:00.000Z">
+<meta property="article:modified_time" content="2025-06-24T10:02:56.674Z">
+<meta property="article:author" content="0xYyssh">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/coverImages/default_bg8.jpg"><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="http://example.com/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2025蓝桥杯全国总决赛部分WP',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/static/css/atom-one-dark.css"><meta name="baidu-site-verification" content="codeva-WUyHHrqn47" /><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/images/top.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/sword.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-user"></i><span> 狐朋狗友</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/coverImages/default_bg8.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">0xYyssh'Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">2025蓝桥杯全国总决赛部分WP</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-user"></i><span> 狐朋狗友</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2025蓝桥杯全国总决赛部分WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-24T09:53:00.000Z" title="发表于 2025-06-24 17:53:00">2025-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-24T10:02:56.674Z" title="更新于 2025-06-24 18:02:56">2025-06-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="2025蓝桥杯全国总决赛部分WP"><a href="#2025蓝桥杯全国总决赛部分WP" class="headerlink" title="2025蓝桥杯全国总决赛部分WP"></a>2025蓝桥杯全国总决赛部分WP</h1><h2 id="xxtea"><a href="#xxtea" class="headerlink" title="xxtea"></a>xxtea</h2><p>下载附件打开是cyberchef的一个加密步骤（当时半决也有一个差不多的题）</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623181326912.png" alt="image-20250623181326912"></p>
+<p>按F12拿到输出</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623181612105.png" alt="image-20250623181612105"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">00000000 9e 45 02 82 ea 25 d2 62 0d 06 e7 b4 5f dc 62 bd |.E...%.b...._.b.|</span><br><span class="line">00000010 39 68 47 26 54 50 9e 26 4c 86 06 2e 2b af 3b 8b |9hG&amp;TP.&amp;L...+.;.|</span><br><span class="line">00000020 7c e4 99 0d ad 12 e2 7e 46 c9 00 29 a6 ea 1f b0 ||......~F..)....|</span><br><span class="line">00000030 ae c1 da 30 f3 98 94 82 33 fd 99 d3 d3 b9 a0 12 |...0....3.......|</span><br><span class="line">00000040 d9 de a5 d2 0e 95 f3 a5 bb f2 f9 91 b2 a3 c2 94 |................|</span><br><span class="line">00000050 b1 1c b7 eb 87 65 d7 0e 0c 6b d5 65 4d e1 43 1e |.....e...k.eM.C.|</span><br><span class="line">00000060 be b4 34 71 b5 53 d4 ea 62 4e b9 80 f3 6f f0 5c |..4q.S..bN...o.\|</span><br><span class="line">00000070 59 75 58 52 9e a4 ec e2 35 b7 d8 68 27 ee c0 94 |YuXR....5..h&#x27;...|</span><br></pre></td></tr></table></figure>
+
+<p>用cyberchef（本地）反解密就可以了</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623181954669.png" alt="image-20250623181954669"></p>
+<blockquote>
+<p>flag{4eb88a16-be48-4de2-ab2a-ed09a09ed386}</p>
+</blockquote>
+<h2 id="server-logs"><a href="#server-logs" class="headerlink" title="server_logs"></a>server_logs</h2><p>题目是让我们提交：</p>
+<ul>
+<li>攻击者的登录靶机所用的账号</li>
+<li>攻击者的ip</li>
+<li>攻击者留下的后面服务</li>
+<li>靶机泄露敏感信息时的DNS域名（只写关键部分）</li>
+</ul>
+<p>flag格式是<code>flag&#123;账号_ip_服务_DNS域名&#125;</code></p>
+<p>（蓝桥杯连一个应急环境都给不了，直接给附件…….）附件给了三个文件夹，&#x2F;var&#x2F;logdnsmasq.log下可以看到有加密信息</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623182701257.png" alt="image-20250623182701257"></p>
+<p>base64解密一下</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623182821275.png" alt="image-20250623182821275"></p>
+<p>拿到账号：attacker，DNS域名固定部分：data.leak.ev，攻击者ip:192.168.42.77</p>
+<p>etc&#x2F;systemd&#x2F;system下就有一个hidden_backdoor.service（文件名提示不用多说了）</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623183130954.png" alt="image-20250623183130954"></p>
+<p>查看文件内容，可以看到是一个nc反弹shell</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623183120828.png" alt="image-20250623183120828"></p>
+<p>拼接flag</p>
+<blockquote>
+<p>flag{attacker_192.168.42.77_hidden_backdoor_data.leak.ev}</p>
+</blockquote>
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><p>题目环境打开：</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623183900131.png" alt="image-20250623183900131"></p>
+<p>使用提示的账号密码登录环境，查看用户的个人笔记发现提示信息</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623183955561.png" alt="image-20250623183955561"></p>
+<p>告诉我们密码提示是用户名+4位数字</p>
+<p>那直接上bp爆破，第一次爆破没有结果</p>
+<p>猜测使用0进行左填充</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623184519805.png" alt="image-20250623184519805"></p>
+<p>根据回显长度筛选成功拿到密码</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623184554071.png" alt="image-20250623184554071"></p>
+<p>登录admin即可拿到flag</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623184612170.png" alt="image-20250623184612170"></p>
+<blockquote>
+<p>flag{8486fe92-2be4-4150-a481-74688803c872}</p>
+</blockquote>
+<h2 id="Fastcoll"><a href="#Fastcoll" class="headerlink" title="Fastcoll"></a>Fastcoll</h2><p>使用下发的工具制造出符合规则的md5碰撞文件即可</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623185318495.png" alt="image-20250623185318495"></p>
+<p>先使用fastcoll的-h选项查看如何使用</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623185417459.png" alt="image-20250623185417459"></p>
+<ul>
+<li>-h [ –help ] <ul>
+<li>显示帮助信息。</li>
+</ul>
+</li>
+<li>-q [ –quiet ]  <ul>
+<li>安静模式，减少输出信息（即不显示详细日志）。</li>
+</ul>
+</li>
+<li>-i [ –ihv ] arg<ul>
+<li>使用指定的初始向量（Initial Hash Value，简称 IHV）。默认为 MD5 的标准初始值。<br>  （此项用于高级攻击，如不同IHV起点的碰撞，普通用户通常不使用。）</li>
+</ul>
+</li>
+<li>-p [ –prefixfile ] arg <ul>
+<li>​    指定一个前缀文件（prefixfile），程序将从这个文件开始构造碰撞。<br>  ​    同时，prefixfile 的内容会被拷贝到输出文件的开头。</li>
+</ul>
+</li>
+<li>-o [ –out ] arg <ul>
+<li>指定两个输出文件的文件名。必须放在最后，并且要指定<strong>两个文件名</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>直接构造符合规则的两个md5碰撞文件即可</p>
+<p><code>fastcoll_v1.0.0.5.exe -p 1.txt -o msg1.bin msg2.bin</code></p>
+<p>base64编码一下</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623185943149.png" alt="image-20250623185943149"></p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623185953249.png" alt="image-20250623185953249"></p>
+<p>验证成功之后，即可拿到flag</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623190048610.png" alt="image-20250623190048610"></p>
+<blockquote>
+<p>flag{ccef1105-4048-4f10-8c69-edf68d93a1ec}</p>
+</blockquote>
+<h2 id="flowzip2"><a href="#flowzip2" class="headerlink" title="flowzip2"></a>flowzip2</h2><p>附件是一个pcapng流量包</p>
+<p>binwalk分析一波</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623190858656.png" alt="image-20250623190858656"></p>
+<p>发现有一堆zip压缩包，而且还有提示”\d{3}”</p>
+<p>使用binwalk -e提取出来，尝试解压发现有密码</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623191023768.png" alt="image-20250623191023768"></p>
+<p>根据前面的提示”\d{3}”，猜测是三个数字组合（正则的表达式）</p>
+<p>先用ARCHPR爆破一下</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623191253401.png" alt="image-20250623191253401"></p>
+<p>成功拿到密码，猜测正确</p>
+<p>写一个爆破解压脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">unzip_file</span>(<span class="params">zip_file_path, output_dir, password</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;调用7z解压单个zip包到指定目录&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 构造7z命令</span></span><br><span class="line">    cmd = [</span><br><span class="line">        <span class="string">&quot;D:/7-Zip/7z.exe&quot;</span>, <span class="string">&quot;x&quot;</span>, zip_file_path,  <span class="comment"># x 表示解压,这里的7z是我的7z命令行路径</span></span><br><span class="line">        <span class="string">f&quot;-p<span class="subst">&#123;password&#125;</span>&quot;</span>,  <span class="comment"># 设置密码</span></span><br><span class="line">        <span class="string">f&quot;-o<span class="subst">&#123;output_dir&#125;</span>&quot;</span>,  <span class="comment"># 设置解压路径</span></span><br><span class="line">        <span class="string">&quot;-y&quot;</span>  <span class="comment"># 自动回答所有提示（如覆盖文件）</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = subprocess.run(cmd, check=<span class="literal">True</span>,capture_output=<span class="literal">True</span>,text=<span class="literal">True</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;解压成功:<span class="subst">&#123;result.stdout&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;解压失败：<span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">unzip_folder</span>(<span class="params">folder_path</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    调用7z解压整个文件夹下的所有zip包到指定目录</span></span><br><span class="line"><span class="string">    密码采用字典爆破</span></span><br><span class="line"><span class="string">    解压路径为folder_path</span></span><br><span class="line"><span class="string">    解压文件夹为zip包名</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(folder_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(<span class="string">&quot;.zip&quot;</span>):</span><br><span class="line">                zip_file_path = os.path.join(root, file)</span><br><span class="line">                <span class="keyword">for</span> password <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">                    <span class="comment"># 密码填充为4位,用0左填充</span></span><br><span class="line">                    password = <span class="built_in">str</span>(password).zfill(<span class="number">3</span>)</span><br><span class="line">                    <span class="comment"># file.split(&quot;.&quot;)[0]获取分隔符后的第一个字符串</span></span><br><span class="line">                    unzip_file(zip_file_path, os.path.join(root, file.split(<span class="string">&quot;.&quot;</span>)[<span class="number">0</span>]), password.strip())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># unzip_file(&quot;D:/python_learn/testZIP/1A960.zip&quot;, &quot;D:/python_learn/testZIP/1A960&quot;, &quot;221&quot;)</span></span><br><span class="line">unzip_folder(<span class="string">&quot;D:\\zuoye\\杂项\\蓝桥杯\\flowzip2_fe9d6d2cf5a6fe83f1d7f0fe3c60fa25\\_flowzip2.pcapng.extracted&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>再用dnGrep查找flag{即可</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250624172929529.png" alt="image-20250624172929529"></p>
+<p>成功找到flag在579F0下的dcsxr.txt</p>
+<blockquote>
+<p>flag{5f5491b6-fddf-4be8-ab44-5a18831cc45b}</p>
+</blockquote>
+<h2 id="rand-pyc-obf"><a href="#rand-pyc-obf" class="headerlink" title="rand_pyc_obf"></a>rand_pyc_obf</h2><p>题目都提示我们是pyc文件，那我们直接使用pyinstxtractor进行打包得到pyc文件</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623193038990.png" alt="image-20250623193038990"></p>
+<p>然后使用uncompyle6进行反编译，成功拿到python源码</p>
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623193254079.png" alt="image-20250623193254079"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, random, base64</span><br><span class="line">Ii = <span class="built_in">input</span>(<span class="string">&quot;Please input the flag: &quot;</span>).strip()</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> (Ii.startswith(<span class="string">&quot;flag&#123;&quot;</span>) <span class="keyword">and</span> Ii.endswith(<span class="string">&quot;&#125;&quot;</span>) <span class="keyword">and</span> <span class="built_in">len</span>(Ii) == <span class="number">42</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Length incorrect&quot;</span>)</span><br><span class="line">    sys.exit(-<span class="number">999</span>)</span><br><span class="line">oo0O000ooO = base64.b64encode(Ii.encode()).decode() + <span class="string">&quot;_easyctf&quot;</span></span><br><span class="line">ii = []</span><br><span class="line"><span class="keyword">for</span> iiI <span class="keyword">in</span> oo0O000ooO:</span><br><span class="line">    random.seed(<span class="built_in">ord</span>(iiI))</span><br><span class="line">    ii.append(random.randint(<span class="number">1000000</span>, <span class="number">9999999</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    iii111 = [</span><br><span class="line">     <span class="number">4417023</span>, <span class="number">5690625</span>, <span class="number">9639225</span>, <span class="number">1327718</span>, <span class="number">4417023</span>, <span class="number">5085550</span>, <span class="number">5752075</span>,</span><br><span class="line">     <span class="number">9556690</span>, <span class="number">5240080</span>, <span class="number">6431679</span>, <span class="number">3428007</span>, <span class="number">3189766</span>, <span class="number">3438336</span>, <span class="number">5757818</span>,</span><br><span class="line">     <span class="number">3189766</span>, <span class="number">5690625</span>, <span class="number">4148389</span>, <span class="number">2254831</span>, <span class="number">6292433</span>, <span class="number">2122126</span>, <span class="number">5240080</span>,</span><br><span class="line">     <span class="number">6431679</span>, <span class="number">9488271</span>, <span class="number">2464675</span>, <span class="number">7216908</span>, <span class="number">5757818</span>, <span class="number">3189766</span>, <span class="number">5690625</span>,</span><br><span class="line">     <span class="number">3438336</span>, <span class="number">6431679</span>, <span class="number">2360475</span>, <span class="number">6002055</span>, <span class="number">5240080</span>, <span class="number">9040261</span>, <span class="number">8655414</span>,</span><br><span class="line">     <span class="number">9347278</span>, <span class="number">3438336</span>, <span class="number">2254831</span>, <span class="number">2122126</span>, <span class="number">5135281</span>, <span class="number">2360475</span>, <span class="number">9347278</span>,</span><br><span class="line">     <span class="number">4417023</span>, <span class="number">1327718</span>, <span class="number">3438336</span>, <span class="number">3448715</span>, <span class="number">9488271</span>, <span class="number">5501611</span>, <span class="number">5240080</span>,</span><br><span class="line">     <span class="number">5757818</span>, <span class="number">9488271</span>, <span class="number">5501611</span>, <span class="number">5240080</span>, <span class="number">9347278</span>, <span class="number">4148389</span>, <span class="number">1714134</span>,</span><br><span class="line">     <span class="number">9923116</span>, <span class="number">4267438</span>, <span class="number">4263793</span>, <span class="number">5752075</span>, <span class="number">2464675</span>, <span class="number">7777627</span>, <span class="number">6002055</span>,</span><br><span class="line">     <span class="number">3485900</span>]</span><br><span class="line">    Iio0 = []</span><br><span class="line">    <span class="keyword">for</span> iiI <span class="keyword">in</span> oo0O000ooO:</span><br><span class="line">        random.seed(<span class="built_in">ord</span>(iiI))</span><br><span class="line">        Iio0.append(random.randint(<span class="number">1000000</span>, <span class="number">9999999</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> Iio0 != iii111:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Wrong flag&quot;</span>)</span><br><span class="line">            sys.exit(-<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Correct!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个脚本验证 flag 的方式是：</p>
+<ol>
+<li>检查格式是否是：<code>flag&#123;...&#125;</code>，总长度必须为 42 字符。</li>
+<li>将 flag 进行 base64 编码，并拼接字符串 <code>_easyctf</code>，变成一个新字符串。</li>
+<li>用这个新字符串的每个字符做随机种子，调用 <code>random.seed(ord(c))</code>，然后生成 <code>random.randint(1000000, 9999999)</code>，得到一个整数列表。</li>
+<li>这个整数列表与预定义的 <code>iii111</code> 比较，完全相同则验证通过。</li>
+</ol>
+<p>一个字符唯一对应一个整数。我们可以<strong>暴力穷举所有可能字符（ASCII 32~126）</strong>，找出每一个 <code>randint</code> 对应哪个字符。</p>
+<p>从而还原出整个 <code>oo0O000ooO</code>，然后去除结尾 <code>_easyctf</code>，base64 解码得到原始 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标随机数序列</span></span><br><span class="line">target = [</span><br><span class="line">    <span class="number">4417023</span>, <span class="number">5690625</span>, <span class="number">9639225</span>, <span class="number">1327718</span>, <span class="number">4417023</span>, <span class="number">5085550</span>, <span class="number">5752075</span>,</span><br><span class="line">    <span class="number">9556690</span>, <span class="number">5240080</span>, <span class="number">6431679</span>, <span class="number">3428007</span>, <span class="number">3189766</span>, <span class="number">3438336</span>, <span class="number">5757818</span>,</span><br><span class="line">    <span class="number">3189766</span>, <span class="number">5690625</span>, <span class="number">4148389</span>, <span class="number">2254831</span>, <span class="number">6292433</span>, <span class="number">2122126</span>, <span class="number">5240080</span>,</span><br><span class="line">    <span class="number">6431679</span>, <span class="number">9488271</span>, <span class="number">2464675</span>, <span class="number">7216908</span>, <span class="number">5757818</span>, <span class="number">3189766</span>, <span class="number">5690625</span>,</span><br><span class="line">    <span class="number">3438336</span>, <span class="number">6431679</span>, <span class="number">2360475</span>, <span class="number">6002055</span>, <span class="number">5240080</span>, <span class="number">9040261</span>, <span class="number">8655414</span>,</span><br><span class="line">    <span class="number">9347278</span>, <span class="number">3438336</span>, <span class="number">2254831</span>, <span class="number">2122126</span>, <span class="number">5135281</span>, <span class="number">2360475</span>, <span class="number">9347278</span>,</span><br><span class="line">    <span class="number">4417023</span>, <span class="number">1327718</span>, <span class="number">3438336</span>, <span class="number">3448715</span>, <span class="number">9488271</span>, <span class="number">5501611</span>, <span class="number">5240080</span>,</span><br><span class="line">    <span class="number">5757818</span>, <span class="number">9488271</span>, <span class="number">5501611</span>, <span class="number">5240080</span>, <span class="number">9347278</span>, <span class="number">4148389</span>, <span class="number">1714134</span>,</span><br><span class="line">    <span class="number">9923116</span>, <span class="number">4267438</span>, <span class="number">4263793</span>, <span class="number">5752075</span>, <span class="number">2464675</span>, <span class="number">7777627</span>, <span class="number">6002055</span>,</span><br><span class="line">    <span class="number">3485900</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立：randint → 字符 的反查字典</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">build_reverse_map</span>():</span><br><span class="line">    rev = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>, <span class="number">127</span>):  <span class="comment"># 所有可打印ASCII</span></span><br><span class="line">        random.seed(c)</span><br><span class="line">        val = random.randint(<span class="number">1000000</span>, <span class="number">9999999</span>)</span><br><span class="line">        rev[val] = <span class="built_in">chr</span>(c)</span><br><span class="line">    <span class="keyword">return</span> rev</span><br><span class="line"></span><br><span class="line">reverse_map = build_reverse_map()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原出 base64(flag) + &#x27;_easyctf&#x27;</span></span><br><span class="line">recovered = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> target:</span><br><span class="line">    <span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> reverse_map:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[!] 未知值: <span class="subst">&#123;val&#125;</span>&quot;</span>)</span><br><span class="line">        exit(<span class="number">1</span>)</span><br><span class="line">    recovered += reverse_map[val]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] Recovered string (base64 + _easyctf):&quot;</span>, recovered)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去掉 _easyctf</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> recovered.endswith(<span class="string">&quot;_easyctf&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[!] 末尾不正确&quot;</span>)</span><br><span class="line">    exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">b64_part = recovered[:-<span class="number">8</span>]</span><br><span class="line">flag = base64.b64decode(b64_part).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[🎯] Flag =&quot;</span>, flag)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/images/image-20250623193427990.png" alt="image-20250623193427990"></p>
+<blockquote>
+<p>flag{30de99f4-50d2-9f8f-2868-dcfa9d81483c}</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">0xYyssh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/">http://example.com/2025/06/24/2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">0xYyssh'Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/coverImages/default_bg8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/06/02/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2WP/" title="知攻善防WP"><img class="cover" src="/coverImages/default_bg3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">知攻善防WP</div></div><div class="info-2"><div class="info-item-1">个人对知攻善防出的应急响应靶场做的一些WP,不喜勿喷</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/sword.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">0xYyssh</div><div class="author-info-description">我要成为Web高手</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0xYyssh"><i class="fab fa-github"></i><span>sponsor me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2025%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%85%A8%E5%9B%BD%E6%80%BB%E5%86%B3%E8%B5%9B%E9%83%A8%E5%88%86WP"><span class="toc-number">1.</span> <span class="toc-text">2025蓝桥杯全国总决赛部分WP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#xxtea"><span class="toc-number">1.1.</span> <span class="toc-text">xxtea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server-logs"><span class="toc-number">1.2.</span> <span class="toc-text">server_logs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fastcoll"><span class="toc-number">1.4.</span> <span class="toc-text">Fastcoll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flowzip2"><span class="toc-number">1.5.</span> <span class="toc-text">flowzip2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rand-pyc-obf"><span class="toc-number">1.6.</span> <span class="toc-text">rand_pyc_obf</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 0xYyssh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script><script src="/js/sakura.js"></script><script src="/js/foot.js" async></script><script src="/js/title.js" async></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="YOU,LOVE,ME" data-fontsize="8px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
