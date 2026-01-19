@@ -1,0 +1,36 @@
+/* 调整主内容区域和侧边栏宽度比例 */
+@media (min-width: 900px) {
+
+  /* 主内容区域从74%改为80% */
+  .layout>div:first-child {
+    width: 74% !important;
+  }
+
+  /* 侧边栏从26%改为20% */
+  #aside-content {
+    width: 26% !important;
+  }
+}
+
+/* 调整卡片占比 */
+@media (min-width: 1200px) {
+  .layout {
+    max-width: 1400px !important;
+    /* 从1200px增加到1400px */
+  }
+}
+
+/* 如果需要针对超大屏幕进一步优化 */
+@media (min-width: 2000px) {
+  .layout {
+    max-width: 88% !important;
+    /* 可选：放宽最大宽度限制 */
+  }
+}
+
+/* 取消超大屏幕的三列布局，始终保持两列 */
+@media (min-width: 2000px) {
+  #recent-posts .recent-post-item {
+    width: calc(100% / 2 - 8px) !important;
+  }
+}

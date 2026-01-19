@@ -1,0 +1,1057 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CTFshow_misc_WP | yyssh's blog</title><meta name="author" content="yyssh"><meta name="copyright" content="yyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本人是在web入门篇写到128题左右开始也刷Misc的题目了，因为现在CTF挑战中，Web与Misc大量的牵扯了进来，Misc又由于本身的解密性，从而增加了一个Web题目的趣味性，也更加的符合实战场景，就我目前的水平而言，Web刷的题都是简单的php代码审计，也想换一个放松心情（\~找虐\~）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFshow_misc_WP">
+<meta property="og:url" content="https://0xyyssh.github.io/posts/57b6e4e.html">
+<meta property="og:site_name" content="yyssh&#39;s blog">
+<meta property="og:description" content="本人是在web入门篇写到128题左右开始也刷Misc的题目了，因为现在CTF挑战中，Web与Misc大量的牵扯了进来，Misc又由于本身的解密性，从而增加了一个Web题目的趣味性，也更加的符合实战场景，就我目前的水平而言，Web刷的题都是简单的php代码审计，也想换一个放松心情（\~找虐\~）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0xyyssh.github.io/coverimages/default_bg9.jpg">
+<meta property="article:published_time" content="2025-05-19T04:17:51.000Z">
+<meta property="article:modified_time" content="2026-01-18T17:13:21.054Z">
+<meta property="article:author" content="yyssh">
+<meta property="article:tag" content="misc">
+<meta property="article:tag" content="WP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0xyyssh.github.io/coverimages/default_bg9.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CTFshow_misc_WP",
+  "url": "https://0xyyssh.github.io/posts/57b6e4e.html",
+  "image": "https://0xyyssh.github.io/coverimages/default_bg9.jpg",
+  "datePublished": "2025-05-19T04:17:51.000Z",
+  "dateModified": "2026-01-18T17:13:21.054Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "yyssh",
+      "url": "https://0xyyssh.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="https://0xyyssh.github.io/posts/57b6e4e.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CTFshow_misc_WP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/index_layout.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/swiper.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="loading_img"></div></div></div><script>window.paceOptions = {
+  restartOnPushState: false
+}
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  //- pace进度条结束后再关闭loading
+  Pace.on('done', preloader.endLoading)
+
+  btf.addGlobalFn('pjaxSend', () => {
+      Pace.restart()
+      if (false){
+          preloader.initLoading()
+      }
+  }, 'pace_restart')
+})()</script><div class="bg-animation" id="web_bg" style="background-color: #FCFCF7;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/coverimages/default_bg9.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yyssh's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">CTFshow_misc_WP</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CTFshow_misc_WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T04:17:51.000Z" title="发表于 2025-05-19 12:17:51">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T17:13:21.054Z" title="更新于 2026-01-19 01:13:21">2026-01-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ctfshow/">ctfshow</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="CTFshow-MiscWp"><a href="#CTFshow-MiscWp" class="headerlink" title="CTFshow_MiscWp"></a>CTFshow_MiscWp</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本人是在web入门篇写到128题左右开始也刷Misc的题目了，因为现在CTF挑战中，Web与Misc大量的牵扯了进来，Misc又由于本身的解密性，从而增加了一个Web题目的趣味性，也更加的符合实战场景，就我目前的水平而言，Web刷的题都是简单的php代码审计，也想换一个放松心情（~找虐~）</p>
+<h2 id="不要固定思维，多找找意想不到的地方"><a href="#不要固定思维，多找找意想不到的地方" class="headerlink" title="不要固定思维，多找找意想不到的地方"></a>不要固定思维，多找找意想不到的地方</h2><h2 id="Misc入门"><a href="#Misc入门" class="headerlink" title="Misc入门"></a>Misc入门</h2><h3 id="Misc-01"><a href="#Misc-01" class="headerlink" title="Misc-01"></a>Misc-01</h3><p>解压即有，拿个图片文字工具(qq截图就有)把flag提取出来</p>
+<h3 id="Misc-02"><a href="#Misc-02" class="headerlink" title="Misc-02"></a>Misc-02</h3><p>打开txt文件看一眼，有图片头png，改文件后缀.png，然后和第一关一样</p>
+<h3 id="Misc-03"><a href="#Misc-03" class="headerlink" title="Misc-03"></a>Misc-03</h3><p>一种稀奇古怪的图片格式，网络上还没有在线转换器，下一个honeyview&#x2F;bpgview查看器查看就可以得到图片</p>
+<h3 id="Misc-04"><a href="#Misc-04" class="headerlink" title="Misc-04"></a>Misc-04</h3><p>这不得不说honeyview工具的强大了，这几个txt文件用honeyview工具打开就可以得到图片，再用工具查看，可以得到图片格式分别为png、jpeg(正常打开txt文件可以知道这张图还用Ps改了)、bmp、gif、tiff、webp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;4314e2b15ad9a960e7d9d8fc2ff902da&#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="常见图片头和压缩包格式"><a href="#常见图片头和压缩包格式" class="headerlink" title="常见图片头和压缩包格式"></a>常见图片头和压缩包格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">JPEG (jpg) 文件头：FF D8 FF  文件尾：FF D9</span><br><span class="line"></span><br><span class="line">PNG (png)，文件头：89 50 4E 47 0D 0A 1A 0A </span><br><span class="line"></span><br><span class="line">Windows Bitmap (bmp)， 文件头：424D 文件尾：</span><br><span class="line"></span><br><span class="line">GIF (gif)，文件头：47494638</span><br><span class="line"></span><br><span class="line">XML (xml)，文件头：3C3F786D6C</span><br><span class="line"></span><br><span class="line">HTML (html)，文件头：68746D6C3E</span><br><span class="line"></span><br><span class="line">MS Word/Excel (xls.or.doc)，文件头：D0CF11E0</span><br><span class="line"></span><br><span class="line">MS Access (mdb)，文件头：5374616E64617264204A</span><br><span class="line"></span><br><span class="line">Adobe Acrobat (pdf)，文件头：255044462D312E</span><br><span class="line"></span><br><span class="line">Windows Password (pwl)，文件头：E3828596</span><br><span class="line"></span><br><span class="line">ZIP Archive (zip)，文件头：504B0304</span><br><span class="line"></span><br><span class="line">RAR Archive (rar)，文件头：52617221</span><br><span class="line"></span><br><span class="line">Wave (wav)，文件头：57415645</span><br><span class="line"></span><br><span class="line">AVI (avi)，文件头：41564920</span><br><span class="line"></span><br><span class="line">TIFF (tif)， 文件头：49492A00 文件尾：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> ZIP 压缩文件</span><br><span class="line">文件头：50 4B 03 04（PK\x03\x04）</span><br><span class="line"></span><br><span class="line">文件尾：50 4B 05 06（中央目录结束标记）</span><br><span class="line"></span><br><span class="line">文本标记：PK（常见于ZIP结构）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RAR 压缩文件</span><br><span class="line">文件头：52 61 72 21 1A 07 00（Rar!\x1A\x07\x00）</span><br><span class="line"></span><br><span class="line">文件尾：52 61 72 21 1A 07 1C（RAR 5.0结束标记）</span><br><span class="line"></span><br><span class="line">文本标记：RAR（压缩标识）</span><br><span class="line"></span><br><span class="line">7z 压缩文件</span><br><span class="line">文件头：37 7A BC AF 27 1C（7z¼¯&#x27;）</span><br><span class="line"></span><br><span class="line">文件尾：无固定文件尾（以流结束标记 00 结尾）</span><br><span class="line"></span><br><span class="line">文本标记：7z（格式标识）</span><br><span class="line"></span><br><span class="line">BZ2 压缩文件</span><br><span class="line">文件头：42 5A 68（BZh）</span><br><span class="line"></span><br><span class="line">文本标记：BZ（标识压缩方法，如 BZh1）</span><br><span class="line"></span><br><span class="line">GZIP 压缩文件</span><br><span class="line">文件头：1F 8B 08</span><br><span class="line"></span><br><span class="line">文本标记：.gz（常用于文件名）</span><br><span class="line"></span><br><span class="line">PDF 文档</span><br><span class="line">文件头：25 50 44 46（%PDF）</span><br><span class="line"></span><br><span class="line">文件尾：25 25 45 4F 46（%%EOF）</span><br><span class="line"></span><br><span class="line">文本标记：/Page 或 /Type（文档结构标识）</span><br><span class="line"></span><br><span class="line">MP3 音频</span><br><span class="line">文件头（ID3标签）：49 44 33（ID3）</span><br><span class="line"></span><br><span class="line">音频帧头：FF FB（MPEG-1 Layer III）</span><br><span class="line"></span><br><span class="line">文本标记：歌曲元数据（如标题、艺术家）。</span><br><span class="line"></span><br><span class="line">MP4 视频</span><br><span class="line">文件头：66 74 79 70 69 73 6F 6D（ftypisom）</span><br><span class="line"></span><br><span class="line">文本标记：moov（视频元数据块）或 avc1（H.264编码标识）。</span><br><span class="line"></span><br><span class="line">AVI 视频</span><br><span class="line">文件头：52 49 46 46 ... 41 56 49 20（RIFF...AVI ）</span><br><span class="line"></span><br><span class="line">文本标记：vids（视频流标识）或 auds（音频流标识）。</span><br></pre></td></tr></table></figure>
+
+<h3 id="Misc-05-06-07-09-15"><a href="#Misc-05-06-07-09-15" class="headerlink" title="Misc-05&#x2F;06&#x2F;07&#x2F;09&#x2F;15"></a>Misc-05&#x2F;06&#x2F;07&#x2F;09&#x2F;15</h3><p>文件内容包含flag，记事本打开，<code>ctrl+f</code>查找<code>ctfshow</code></p>
+<h3 id="Misc-08"><a href="#Misc-08" class="headerlink" title="Misc-08"></a>Misc-08</h3><p>问题提示在图片文件中图片文件中，可以猜想应该是多个图片杂糅，尝试用binwalk分离图片回显</p>
+<p><img src="/posts/57b6e4e/images/Misc_08binwalk.png" alt="image-20250103170113633"></p>
+<p>可以看到回显有两个<code>PNG image</code>说明之前的猜测是正确的</p>
+<p>解法一：</p>
+<ul>
+<li>直接使用foremost分离出两个图片，其中一个图片包含flag</li>
+</ul>
+<p>解法二：</p>
+<ul>
+<li>使用010删去第一个图片，png的文件头是89 50 4E 47 0D 0A 1A 0A</li>
+</ul>
+<p>解法三：</p>
+<ul>
+<li>使用命令跳过第一个图片的字节数3892</li>
+</ul>
+<p><img src="/posts/57b6e4e/images/Misc_08_010.png" alt="image-20250104131441316"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=misc8.png of=flag.png bs=1 skip=3892</span><br></pre></td></tr></table></figure>
+
+<p>得到flag图片</p>
+<h4 id="dd命令基本语法"><a href="#dd命令基本语法" class="headerlink" title="dd命令基本语法"></a>dd命令基本语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=&lt;input_file&gt; of=&lt;output_file&gt; [options]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>if</code>：输入文件（input file）</li>
+<li><code>of</code>：输出文件（output file）</li>
+</ul>
+<p><strong>【options】</strong></p>
+<ul>
+<li><strong>bs&#x3D;<block_size></strong></li>
+</ul>
+<p>设置块大小。<code>dd</code> 会按块读取输入文件，块大小是每次读写操作的数据量。单位可以是字节（<code>B</code>），千字节（<code>K</code>），兆字节（<code>M</code>）等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/sda of=/backup/disk.img bs=4M</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>count&#x3D;<block_count></strong></li>
+</ul>
+<p><code>dd</code> 会读取输入文件中的块，直到读取到指定数量的块为止。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/sda of=/backup/disk.img bs=1M count=100</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>skip&#x3D;<skip_count></strong></li>
+</ul>
+<p>跳过输入文件中的指定块数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/sda of=/backup/disk.img bs=1M skip=10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>seek&#x3D;<seek_count></strong></li>
+</ul>
+<p>在输出文件中跳过指定数量的块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=input.img of=output.img bs=1M seek=50</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>conv&#x3D;&lt;conversion&gt;</strong></li>
+</ul>
+<p>用于指定转换方式。<code>dd</code> 支持多个转换选项，可以同时使用多个转换方式，多个转换用逗号分隔。</p>
+<p>常用的转换选项包括：</p>
+<ul>
+<li><strong><code>noerror</code></strong>：忽略读取错误。</li>
+<li><strong><code>sync</code></strong>：填充读取到的空白区域，保证输入输出大小一致。</li>
+<li><strong><code>notrunc</code></strong>：不截断输出文件。</li>
+<li><strong><code>ucase</code></strong>：将小写字母转换为大写字母。</li>
+<li><strong><code>lcase</code></strong>：将大写字母转换为小写字母。</li>
+<li><strong><code>swab</code></strong>：交换字节顺序。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=input.txt of=output.txt conv=ucase</span><br></pre></td></tr></table></figure>
+
+<p>该命令将 <code>input.txt</code> 中的所有小写字母转换为大写字母，写入 <code>output.txt</code>。</p>
+<h3 id="Misc-10"><a href="#Misc-10" class="headerlink" title="Misc-10"></a>Misc-10</h3><p>binwalk分离图片，10E5打开就是，不要惯性思维，每个分离文件都要打开看看</p>
+<h3 id="Misc-11"><a href="#Misc-11" class="headerlink" title="Misc-11"></a>Misc-11</h3><p>这题考察png图片的数据块显示，根据题目提示，这道题应该还有第二个图片，但是用<code>binwalk</code>和<code>foremost</code>都分离不出来图片，用010打开发现，有两个IDAT模块（图片一般默认显示第一个IDAT模块），可以直接使用010删除第一个IDAT模块，但是只会显示图片上半身，建议直接使用<code>tweakpng</code>直接删除第一个IDAT模块</p>
+<p>经过我的测试发现，代表IDAT图片模块的是6个16进制数据</p>
+<p>从下图框住地方开始删除</p>
+<p><img src="/posts/57b6e4e/images/Misc_11DeleteIDAT.png" alt="image-20250111170633271"></p>
+<p>保留至第一个IDAT模块的6位，即可得到完整图片</p>
+<p><img src="/posts/57b6e4e/images/Misc_11_ReserveIDAT.png" alt="image-20250111171004230"></p>
+<h3 id="Misc-12"><a href="#Misc-12" class="headerlink" title="Misc-12"></a>Misc-12</h3><p>010打开图片之后发现一堆IDAT模块，binwalk和foremost分离都没用</p>
+<p>方法一：</p>
+<ul>
+<li>直接使用<code>tweakpng</code>一个一个删除IDAT模块，删除到第八个就得到flag了</li>
+</ul>
+<p>方法二：</p>
+<ul>
+<li>使用tweakpng把所有的IDAT模块合并，再使用binwalk解析图片</li>
+</ul>
+<p><img src="/posts/57b6e4e/images/Misc_12BinwalkAnalysis.png" alt="image-20250111180136661"></p>
+<p>可以看到有两个模块，一个是从41开始，一个是从3149开始，利用<code>tweakpng-&gt;spilt IDAT</code>分隔出<code>3149-41=3108</code>,现在查看图片可以看到有两个IDAT模块，但是依然没有正确显示flag，那么删去第一个模块得到flag图片</p>
+<h3 id="Misc-13"><a href="#Misc-13" class="headerlink" title="Misc-13"></a>Misc-13</h3><p>010转换ascii编码查看，通过查找发现四段可疑字符</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ct¹fshªoKw&#123;!aeS6¥eT34fxa%4Ý8ïf«528b1º7E4|2Td~7:2äeñ6úfõ4129T8ñ328é0l&#125;</span><br><span class="line">ct¹fshªoKw&#123;!1eS3¥eT24exd%4Ý8ïf«518b7ºeE4|2T6~7:däeñ1úcõ412aT8ñ329éal&#125;</span><br><span class="line">ct¹fshªoKw&#123;!aeS6¥eT34exa%4Ý8ïf«518b7ºeE4|2Td~7:däeñ6úfõ412fT8ñ329éal&#125;</span><br><span class="line">ct¹fshªoKw&#123;!aeS6¥eT446xc%4Ý8ïf«739b7ºeEb|2Td~1:däeñ6úeõ412fT8ñ329éal&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写一段python脚本隔位提取字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Misc13Print</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">    PrintStr=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    count=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> i == <span class="string">&#x27;&#123;&#x27;</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">            PrintStr += i</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> PrintStr</span><br><span class="line"></span><br><span class="line">str1=<span class="string">&#x27;ct¹fshªoKw&#123;!aeS6¥eT34fxa%4Ý8ïf«528b1º7E4|2Td~7:2äeñ6úfõ4129T8ñ328é0l&#125;&#x27;</span></span><br><span class="line">str2=Misc13Print(str1)</span><br><span class="line">str3=<span class="string">&#x27;ct¹fshªoKw&#123;!1eS3¥eT24exd%4Ý8ïf«518b7ºeE4|2T6~7:däeñ1úcõ412aT8ñ329éal&#125;&#x27;</span></span><br><span class="line">str4=Misc13Print(str3)</span><br><span class="line">str5=<span class="string">&#x27;ct¹fshªoKw&#123;!aeS6¥eT34exa%4Ý8ïf«518b7ºeE4|2Td~7:däeñ6úfõ412fT8ñ329éal&#125;&#x27;</span></span><br><span class="line">str6=Misc13Print(str5)</span><br><span class="line">str7=<span class="string">&#x27;ct¹fshªoKw&#123;!aeS6¥eT446xc%4Ý8ïf«739b7ºeEb|2Td~1:däeñ6úeõ412fT8ñ329éal&#125;&#x27;</span></span><br><span class="line">str8=Misc13Print(str7)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(str2+<span class="string">&#x27;\n&#x27;</span>+str4+<span class="string">&#x27;\n&#x27;</span>+str6+<span class="string">&#x27;\n&#x27;</span>+str8)</span><br></pre></td></tr></table></figure>
+
+<p>得到四个可疑flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;ae6e3fa48f528b1742d72e6f41298380&#125;</span><br><span class="line">ctfshow&#123;1e3e2ed48f518b7e4267de1c412a839a&#125;</span><br><span class="line">ctfshow&#123;ae6e3ea48f518b7e42d7de6f412f839a&#125;</span><br><span class="line">ctfshow&#123;ae6e46c48f739b7eb2d1de6e412f839a&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三个是正确的</p>
+<h3 id="Misc-14"><a href="#Misc-14" class="headerlink" title="Misc-14"></a>Misc-14</h3><p>首先用binwalk分析一波</p>
+<p><img src="/posts/57b6e4e/images/Misc_13BinwalkAnalysis.png" alt="image-20250113170136428"></p>
+<p>可以看到有两个<code>Tiff</code>图片，一个<code>JFIF</code>模块，<code>JFIF</code>模块的功能类似于png图片的IDAT模块</p>
+<p>方法1：</p>
+<ul>
+<li>直接使用010删除前2103个数据,得到flag图片</li>
+</ul>
+<p>方法2：</p>
+<ul>
+<li>使用dd命令跳过</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=misc14.jpg of=flag.jpg bs=1 skip=2103</span><br></pre></td></tr></table></figure>
+
+<p>方法3：</p>
+<ul>
+<li>直接使用binwalk命令将图片分离出来</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -D &quot;jpeg&quot; misc14.jpg --run-as=root</span><br></pre></td></tr></table></figure>
+
+<p>这里说一下binwalk<code>-e</code>和<code>-D</code>选项的区别</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能描述</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-e</code></td>
+<td>自动提取所有被识别的嵌入式文件，如压缩文件、文件系统等。</td>
+<td>如果你想提取所有嵌入的文件和数据，可以使用 <code>-e</code>。</td>
+</tr>
+<tr>
+<td><code>-D</code></td>
+<td>指定要提取的特定数据类型，如 <code>gzip</code>、<code>jpeg</code>、<code>tar</code> 等。</td>
+<td>如果你只关心某种特定类型的数据（如只提取压缩文件），可以使用 <code>-D</code>。</td>
+</tr>
+</tbody></table>
+<h3 id="Misc-16"><a href="#Misc-16" class="headerlink" title="Misc-16"></a>Misc-16</h3><p>用binwalk分离图片得到的数据D5C打开就是flag，binwalk还分离出了一个LZMA模块，可以得到一个压缩包，但是压缩包已经损坏</p>
+<h3 id="Misc-17"><a href="#Misc-17" class="headerlink" title="Misc-17"></a>Misc-17</h3><p>先用010打开图片看一下，发现有多个IDAT模块，用<code>tweakpng</code>合并一下IDAT模块，然后直接使用binwalk分析一下，发现有两个多余模块，一个zlib压缩，一个bizp2压缩</p>
+<ul>
+<li>用kali的binwalk分离的话，如果没有下zsteg，只会得到两个zlib压缩文件，拿不到flag，需要单独下载zsteg，如果kali版本较高则会自带zsteg，binwalk会分离出D6E,010查看发现是png文件头，添加后缀png，拿到flag</li>
+<li>如果使用的是随波逐流软件里自带的binwalk(本人最开始是这种情况，所以也特别说明一下)会得到一个D6E.bz2,使用解压软件解压一下就可以得到D6E，后续操作和kali的一样了</li>
+</ul>
+<h3 id="Misc-18"><a href="#Misc-18" class="headerlink" title="Misc-18"></a>Misc-18</h3><p>不要被做题思维所固定，提示信息确实保存在XMP元素里面，用随波逐流分析工具都能分析出来，然后拼凑（本人最开始就是这个方法），但是直接<strong>文件查看属性</strong>，详细信息里面也有这些，所以不要固定思维</p>
+<h3 id="Misc-19"><a href="#Misc-19" class="headerlink" title="Misc-19"></a>Misc-19</h3><p>题目提示在文档名称</p>
+<p>方法一：</p>
+<ul>
+<li>可以直接使用在线工具exit文档查看器查看<a target="_blank" rel="noopener" href="https://exif.tuchong.com/">https://exif.tuchong.com/</a></li>
+</ul>
+<p>方法二：</p>
+<ul>
+<li>直接使用strings命令查看图片中的可打印信息</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings misc19.tif | grep &quot;ctfshow&quot;</span><br></pre></td></tr></table></figure>
+
+<p>方法三：</p>
+<ul>
+<li>使用本地工具随波逐流将文档信息过滤出来，或者直接使用010手动筛选（不建议）</li>
+</ul>
+<h3 id="Misc-20"><a href="#Misc-20" class="headerlink" title="Misc-20"></a>Misc-20</h3><p>用上一题的工具可以查找到评论所在，然后谐音，考普通话吧</p>
+<h3 id="Misc-21"><a href="#Misc-21" class="headerlink" title="Misc-21"></a>Misc-21</h3><p>依旧是用上一题的工具可以得到序列号，把序列号尝试提交发现错误，用序列号转ascii得到，<code>hex(X&amp;Ys)</code>，猜测用x、y的分辨率和坐标得到flag，由于x、y的分辨率和坐标都是十进制，分别将X分辨率，Y分辨率，X定位，Y定位进行hex转换得到e8a221498d5c073b4084eb51b1a1686d，拿到flag</p>
+<h3 id="Misc-22"><a href="#Misc-22" class="headerlink" title="Misc-22"></a>Misc-22</h3><p>题目说flag在图片里，猜测有两个图片</p>
+<p>方法一：</p>
+<ul>
+<li>直接使用exiftool 、Magicexif、XnView、随波逐流一把梭出来缩略图查看，拿到flag</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -ThumbnailImage -b misc22.png &gt; flag.png </span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<ul>
+<li>用010查看图片发现有两个jpg图片头（FF D8 FF）,删除一个图片，第二个图片就是缩略图</li>
+</ul>
+<h3 id="Misc-23"><a href="#Misc-23" class="headerlink" title="Misc-23"></a>Misc-23</h3><p>题目提示flag在图片时间里面，直接用exiftool查看图片信息<br><img src="/posts/57b6e4e/images/Misc_23_ExifTool.png" alt="image-20250119120219107"></p>
+<p>拿到提示<code>UnixTimestamp,DECtoHEX</code>,很明显了时间转时间戳，时间戳转16进制最后拿到flag</p>
+<p>ctfshow{3425649ea0e31938808c0de51b70ce6a}</p>
+<h3 id="Misc-24"><a href="#Misc-24" class="headerlink" title="Misc-24"></a>Misc-24</h3><p>题目提示flag在图片上面，看一下图片的宽高，900*150，再看一下图片大小</p>
+<p>用计算公式算一下，发现高被修改了</p>
+<h4 id="图片宽高计算公式-只对未被压缩的图片格式适用，bmp-："><a href="#图片宽高计算公式-只对未被压缩的图片格式适用，bmp-：" class="headerlink" title="图片宽高计算公式(只对未被压缩的图片格式适用，bmp)："></a>图片宽高计算公式(只对未被压缩的图片格式适用，bmp)：</h4><p><strong><code>ImageSize/BytesPerPixel=Width*Height</code></strong></p>
+<ul>
+<li><strong>ImageSize</strong>：图像文件的总大小，通常是字节（Byte）为单位。</li>
+<li><strong>BytesPerPixel</strong>：每个像素所占用的字节数，这取决于图像的色深（bitCount）。比如，24位色深的图像通常每个像素占用3个字节（8位红、8位绿、8位蓝），而32位色深的图像每个像素占用4个字节（包括透明度Alpha通道）。</li>
+<li><strong>Width</strong>：图像的宽度，单位通常是像素。</li>
+<li><strong>Height</strong>：图像的高度，单位通常是像素。</li>
+</ul>
+<p>用exiftool看图片大小和位深，用公式算高：675000&#x2F;3&#x2F;900&#x3D;250</p>
+<p>用010修改图片高度</p>
+<p><img src="/posts/57b6e4e/images/Misc_24_010.png" alt="image-20250120115512649"></p>
+<p>拿到flag图片</p>
+<h3 id="Misc-25-26"><a href="#Misc-25-26" class="headerlink" title="Misc-25&#x2F;26"></a>Misc-25&#x2F;26</h3><p>题目提示flag在图片下，那基本就是宽高被修改了</p>
+<h4 id="png图片的结构讲解以及宽高验证"><a href="#png图片的结构讲解以及宽高验证" class="headerlink" title="png图片的结构讲解以及宽高验证"></a>png图片的结构讲解以及宽高验证</h4><h5 id="PNG文件的结构："><a href="#PNG文件的结构：" class="headerlink" title="PNG文件的结构："></a><strong>PNG文件的结构</strong>：</h5><p>PNG文件不仅仅包含图像数据本身，还包括多个结构化的块（Chunk）。这些块包含：</p>
+<ul>
+<li><strong>文件头</strong>（包含签名信息）。</li>
+<li><strong>图像数据块</strong>（IDAT块，包含压缩后的图像数据）。</li>
+<li><strong>颜色信息块</strong>（IHDR块，包含图像的基本信息，如宽度、高度、位深、颜色类型等）。</li>
+<li><strong>元数据块</strong>（如tEXt块，包含文本信息）。</li>
+<li><strong>校验码</strong>（CRC块）。</li>
+</ul>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、开头的0~7八个字节为png的文件头：89 50 4E 47 0D 0A 1A 0A （固定格式）</span><br><span class="line"></span><br><span class="line">2、8~11四个字节：00 00 00 0D 表示头部数据块的长度为13（固定格式）</span><br><span class="line"></span><br><span class="line">3、12~15四个字节：49 48 44 52 表示文件头数据块的标示（固定格式）</span><br><span class="line"></span><br><span class="line">4、16~19四个字节：00 00 03 84表示图片的宽（不固定）</span><br><span class="line"></span><br><span class="line">5、20~23四个字节：00 00 00 96表示图片的高（不固定）</span><br><span class="line"></span><br><span class="line">6、24~28五个字节：08 02 00 00 00表示Bit depth（图像深度）、ColorType（颜色类型）、 Compression method（压缩方法）、 Filter method（滤波器方法）、Interlace method（隔行扫描方法）这五个字节不固定，均为可变数据</span><br><span class="line"></span><br><span class="line">7、29~32四个字节：76 EC 1E 40为图片的crc校验值由从第12个字节到第28个字节的十七位字节进行crc计算得到</span><br></pre></td></tr></table></figure>
+
+<h5 id="png图片的CRC校验："><a href="#png图片的CRC校验：" class="headerlink" title="png图片的CRC校验："></a><strong>png图片的CRC校验</strong>：</h5><p><strong>每个PNG块都有一个CRC校验码</strong>，用来验证数据的完整性。CRC校验码是一个基于数据内容的散列值。每个块（如IDAT、IHDR等）都会附带一个CRC值，保证块的内容没有被篡改。这也是PNG文件大小的一部分，因为每个块的大小包括了CRC校验码。</p>
+<p>对于PNG文件，文件大小不仅与图像的分辨率和色深（BytesPerPixel）相关，还与图像的内容、压缩效果、块结构和CRC校验码等因素密切相关。因此，单纯使用 <code>ImageSize = Width × Height × BytesPerPixel</code> 来估算PNG图像的大小是不准确的，尤其是对于已经压缩的PNG图像。</p>
+<p>原理懂了，下面开始做题</p>
+<p>方法一：</p>
+<ul>
+<li>直接用脚本爆出png图片真实的宽高，然后用010修改</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">crcbp = <span class="built_in">open</span>(<span class="string">&quot;misc25.png&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()    <span class="comment">#打开图片</span></span><br><span class="line">crc32frombp = <span class="built_in">int</span>(crcbp[<span class="number">29</span>:<span class="number">33</span>].<span class="built_in">hex</span>(),<span class="number">16</span>)     <span class="comment">#读取图片中的CRC校验值</span></span><br><span class="line"><span class="built_in">print</span>(crc32frombp)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4000</span>):                        <span class="comment">#宽度1-4000进行枚举</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4000</span>):                    <span class="comment">#高度1-4000进行枚举</span></span><br><span class="line">        data = crcbp[<span class="number">12</span>:<span class="number">16</span>] + \</span><br><span class="line">            struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i)+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, j)+crcbp[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">        crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        <span class="comment"># print(crc32)</span></span><br><span class="line">        <span class="keyword">if</span>(crc32 == crc32frombp):            <span class="comment">#计算当图片大小为i:j时的CRC校验值，与图片中的CRC比较，当相同，则图片大小已经确定</span></span><br><span class="line">            <span class="built_in">print</span>(i, j)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;hex:&#x27;</span>, <span class="built_in">hex</span>(i), <span class="built_in">hex</span>(j))</span><br><span class="line">            exit(<span class="number">0</span>)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p><img src="/posts/57b6e4e/images/Misc_25_010.png" alt="image-20250120122346746"></p>
+<p>方法二：</p>
+<ul>
+<li>随波逐流工具一把梭</li>
+</ul>
+<h3 id="Misc-27"><a href="#Misc-27" class="headerlink" title="Misc-27"></a>Misc-27</h3><p>题目提示flag在图片下面</p>
+<p>jpg图片没有可还原性，高度随便改，超了就是黑边，最好改大一点，拿到flag</p>
+<p><img src="/posts/57b6e4e/images/Misc_27_010.png" alt="image-20250120124019338"></p>
+<h3 id="Misc-28"><a href="#Misc-28" class="headerlink" title="Misc-28"></a>Misc-28</h3><p>题目依然提示flag在图片下，只不过换了一种图片格式</p>
+<p>gif图片虽然有crc校验，但是无法校验宽高，只能校验特定扩展块的数据</p>
+<p>修改gif图片的宽高，要修改两个变量值：<br><img src="/posts/57b6e4e/images/Misc_28_010_Logical.png" alt="image-20250121104100947"></p>
+<p><img src="C:\Users\肥猪\AppData\Roaming\Typora\typora-user-images\Misc_28_010_Image.png" alt="image-20250121104216024"></p>
+<ul>
+<li><strong>修改 <code>LogicalScreenDescriptor</code> 宽高</strong>：影响整个图像的显示区域。</li>
+<li><strong>修改 <code>ImageDescriptor</code> 宽高</strong>：只影响某一帧的显示方式。</li>
+</ul>
+<p>高度随便改，超了就是黑边，最好改大一点，拿到flag图片</p>
+<h3 id="Misc-29"><a href="#Misc-29" class="headerlink" title="Misc_29"></a>Misc_29</h3><p>和上一题一样，依然是修改高度，图片格式依然是gif，但是他有十帧，用winhex把高度全部替换</p>
+<p><img src="/posts/57b6e4e/images/Misc_29_winhex.png" alt="image-20250121111113622"></p>
+<p>然后用分帧查看stegsolve，第八帧就是我们要的flag图片</p>
+<h3 id="Misc-30"><a href="#Misc-30" class="headerlink" title="Misc_30"></a>Misc_30</h3><p>和24题一样，但是题目直接告诉了我们宽度是950，我们也可以用24题的公式算，假设宽是正确的，得到高度是158，修改之后图片错误，假设高是正确的，得到宽度950，直接用010修改宽度950拿到flag图片</p>
+<h3 id="Misc-31"><a href="#Misc-31" class="headerlink" title="Misc_31"></a>Misc_31</h3><p>依然是24题一样，计算公式，高度正确直接算出宽度&#x3D;487200&#x2F;3&#x2F;150&#x3D;1082</p>
+<p>修改宽度1082拿到flag图片</p>
+<h3 id="Misc-32-33"><a href="#Misc-32-33" class="headerlink" title="Misc_32&#x2F;33"></a>Misc_32&#x2F;33</h3><p>和25题一样，用png的crc校验爆破出png图片真实的宽高，也可以用工具随波逐流</p>
+<h3 id="Misc-34"><a href="#Misc-34" class="headerlink" title="Misc_34"></a>Misc_34</h3><p>由于CRC校验码也被改了，但是题目给了提示，宽度大于900，所以写一个爆破脚本，把大于900的图片筛出来，然后肉眼看，哪张图片是正常的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">filename=<span class="string">&#x27;misc34.png&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">901</span>,<span class="number">1501</span>):</span><br><span class="line">        NewName=<span class="built_in">str</span>(i)+<span class="string">&#x27;.png&#x27;</span></span><br><span class="line">        NewData=data[:<span class="number">16</span>]+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+data[<span class="number">20</span>:]</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(NewName, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> Nf:</span><br><span class="line">            Nf.write(NewData)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>文件资源管理器改成大图标查看，一眼白的就是flag图片，网上有些脚本还将CRC校验码也改了过来，其实不用，CRC校验码的作用就是校验图片是否被篡改，对图片本身没有影响</p>
+<h3 id="Misc-35"><a href="#Misc-35" class="headerlink" title="Misc_35"></a>Misc_35</h3><p>题目提示是宽度有问题，修改了之后发现还是不行，把高度再改一下得到flag图片</p>
+<h3 id="Misc-36"><a href="#Misc-36" class="headerlink" title="Misc_36"></a>Misc_36</h3><h4 id="常见图片格式的宽高存储方式"><a href="#常见图片格式的宽高存储方式" class="headerlink" title="常见图片格式的宽高存储方式"></a><strong>常见图片格式的宽高存储方式</strong></h4><table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">存储位置</th>
+<th align="left">字节长度</th>
+<th align="left">字节序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>GIF</strong></td>
+<td align="left">逻辑屏幕描述块</td>
+<td align="left">2字节</td>
+<td align="left"><strong>小端序</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>PNG</strong></td>
+<td align="left">IHDR块</td>
+<td align="left">4字节</td>
+<td align="left"><strong>大端序</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>JPEG</strong></td>
+<td align="left">SOF0标记（Start of Frame）</td>
+<td align="left">2字节</td>
+<td align="left"><strong>大端序</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>BMP</strong></td>
+<td align="left">文件头（偏移 18&#x2F;22）</td>
+<td align="left">4字节</td>
+<td align="left"><strong>小端序</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>WebP</strong></td>
+<td align="left">VP8X扩展块（扩展格式）</td>
+<td align="left">3字节</td>
+<td align="left"><strong>小端序</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>TIFF</strong></td>
+<td align="left">IFD（图像文件目录）</td>
+<td align="left">4字节</td>
+<td align="left"><strong>取决于文件头</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>ICO&#x2F;CUR</strong></td>
+<td align="left">图标目录条目</td>
+<td align="left">1字节²</td>
+<td align="left"><strong>无字节序</strong></td>
+</tr>
+</tbody></table>
+<p>先了解了常见的字节序格式，才能理解编写的脚本，这道题和34题是一样的，只不过图片格式换成了gif，gif是小端序所以脚本有所修改，再把高度修改成300，则可以得到flag图片。因为高度是不变的，所以修改原图高度为300，再进行脚本爆破</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">filename = <span class="string">&quot;misc36.gif&quot;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">920</span>,<span class="number">951</span>):</span><br><span class="line">        name = <span class="built_in">str</span>(i) + <span class="string">&quot;.gif&quot;</span></span><br><span class="line">        f1 = <span class="built_in">open</span>(name,<span class="string">&quot;wb&quot;</span>)</span><br><span class="line">        new = data[:<span class="number">38</span>]+struct.pack(<span class="string">&#x27;&lt;h&#x27;</span>,i)+data[<span class="number">40</span>:]	<span class="comment">#这里改成小端序</span></span><br><span class="line">        f1.write(new)</span><br><span class="line">        f1.close()</span><br></pre></td></tr></table></figure>
+
+<p>进行肉眼筛选，拿到flag图片</p>
+<h3 id="Misc-37"><a href="#Misc-37" class="headerlink" title="Misc_37"></a>Misc_37</h3><p>打开图片看一眼，发现有几帧会是flag一部分，直接用工具分解帧（随波逐流一把梭），或者使用在线网站<a target="_blank" rel="noopener" href="https://tu.sioe.cn/gj/fenjie/">https://tu.sioe.cn/gj/fenjie/</a>，或者使用gif图片编辑工具<code>UleadGIFAnimato</code></p>
+<ul>
+<li>WP里看到的其他方法，gif图片每一个图片只有几帧，我们可以把flag那几帧时间延长，这样就拿到了flag长时间图片</li>
+<li>010+修改时间 首先用010查看，发现有45个图，点看第一个图片持续时间DelayTime为10，将其和下面的变量TransparentColorIndex（图片透明度）的值一起搜索发现有40结果，将其中时间修改后可以确定包含第一个flag的图片，而总的图为45，所以基本确定剩余5个图包含flag，用上述同样的方法将包含flag的图时间改大就能获得最终flag。</li>
+</ul>
+<h3 id="Misc-38"><a href="#Misc-38" class="headerlink" title="Misc_38"></a>Misc_38</h3><p>用010打开发现<code>acTL、fcTL、fdAT</code>模块</p>
+<p>PNG（Portable Network Graphics）格式是一种广泛使用的无损压缩图像格式，虽然它最常用于静态图像，但也支持简单的动画。为了支持动画，PNG使用了几个特定的块（chunks），其中 <code>acTL</code>、<code>fcTL</code> 和 <code>fdAT</code> 是与动画相关的块。</p>
+<h4 id="png图片的动画结构"><a href="#png图片的动画结构" class="headerlink" title="png图片的动画结构"></a>png图片的动画结构</h4><ol>
+<li><code>acTL</code> (Animation Control Chunk)</li>
+</ol>
+<ul>
+<li><strong>作用</strong>：<code>acTL</code> 是一个控制PNG动画的块，它是整个动画的控制器。</li>
+<li><strong>用途</strong>：它的主要作用是指示图像是否为动画图像，并且包含了动画帧的数量和是否循环播放。</li>
+<li>字段<ul>
+<li><strong>num_plays</strong>：动画播放的次数。如果值为0，则表示动画无限循环播放；如果大于0，则表示动画播放指定次数。</li>
+<li><strong>num_frames</strong>：动画包含的总帧数。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><code>fcTL</code> (Frame Control Chunk)</li>
+</ol>
+<ul>
+<li><p><strong>作用</strong>：<code>fcTL</code> 定义了每一帧动画的详细信息。</p>
+</li>
+<li><p><strong>用途</strong>：它控制每一帧的显示时间、位置和大小等参数。每个 <code>fcTL</code> 块对应PNG动画中的一帧。</p>
+</li>
+<li><p>字段</p>
+<ul>
+<li><p><strong>sequence_number</strong>：帧的序号。</p>
+</li>
+<li><p><strong>width, height</strong>：当前帧的宽度和高度。</p>
+</li>
+<li><p><strong>x_offset, y_offset</strong>：当前帧相对于画布的显示位置（即图像左上角的偏移量）。</p>
+</li>
+<li><p><strong>delay_num, delay_den</strong>：帧之间的延迟时间。</p>
+<p>  <code>Delay Time=delay_num/delay_den(seconds)</code></p>
+</li>
+<li><p><strong>dispose_op</strong>：帧结束时的清理操作（例如，保留当前帧或用透明背景覆盖）。</p>
+</li>
+<li><p><strong>blend_op</strong>：当前帧与前一帧的合成方式。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><code>fdAT</code> (Frame Data Chunk)</li>
+</ol>
+<ul>
+<li><strong>作用</strong>：<code>fdAT</code> 存储每一帧的实际图像数据。</li>
+<li><strong>用途</strong>：每个 <code>fdAT</code> 块包含了对应帧的压缩图像数据。<code>fdAT</code> 块通常紧跟在 <code>fcTL</code> 块后面，用于存储该帧的像素数据（类似于 <code>IDAT</code> 块用于静态图像）。</li>
+<li><strong>字段</strong>：与普通的 <code>IDAT</code> 块类似，<code>fdAT</code> 包含经过压缩的图像数据。</li>
+</ul>
+<p>下面开始解题</p>
+<p>方法一：</p>
+<ul>
+<li>直接使用png动画查看软件查看，Honeyview一把梭</li>
+</ul>
+<p>方法二：</p>
+<ul>
+<li>利用010把delay_num改大，增加每帧的延迟时间，然后拼接拿到flag图片</li>
+</ul>
+<h3 id="Misc-39"><a href="#Misc-39" class="headerlink" title="Misc_39"></a>Misc_39</h3><p>根据题目提示，flag就像水，忽快忽慢。可以联想到gif的每帧图片的间隔时间不同（其实我也不知道这是怎么联想的，，，，）</p>
+<p>利用工具imagemagick的命令把间隔时间提取出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">identify -format &quot;%T &quot; misc39.gif &gt; 39.txt</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong><code>identify</code></strong>: 这是 ImageMagick 中的一个命令，用于获取图像的详细信息。</li>
+<li><strong><code>-format &quot;%T &quot;</code></strong>:<ul>
+<li><code>-format</code> 选项允许你指定输出的格式。</li>
+<li><code>&quot;%T&quot;</code> 是一个格式说明符，表示输出图像的延迟时间（以百分之一秒为单位）。对于 GIF 图像，延迟时间通常用于控制每一帧的显示时间。</li>
+<li>也可以往<code>%T</code>后加空格分隔</li>
+</ul>
+</li>
+<li>其他常用格式说明符：<ul>
+<li><code>%w</code>: 图像宽度</li>
+<li><code>%h</code>: 图像高度</li>
+<li><code>%n</code>: 帧数（对于多帧图像如 GIF）</li>
+<li><code>%g</code>: 图像的几何信息（宽度x高度）</li>
+</ul>
+</li>
+</ol>
+<p>下面是python脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str1=<span class="string">&#x27;3737363636373737373736373636373736363737363737373636373737373637363636373736373737373737373637373737373737363737363737363736373637373636373636373737363636363737363636373637373636373637373636373736373736363737363637373736363736373737363637363737363736373737363637373637373636363736363737363737373737363636373637373636373637363737363637363637373637373636373737363636373736363736363637373736363736373736373736363737363637373737363636363736373737363637373736363736373737363636373637373636363737373736363636373637373636363636373736373636363737363736373637373736363737373737373637&#x27;</span>	<span class="comment">#这是提取到的时间间隔</span></span><br><span class="line">str2=str1.replace(<span class="string">&#x27;37&#x27;</span>,<span class="string">&#x27;1&#x27;</span>).replace(<span class="string">&#x27;36&#x27;</span>,<span class="string">&#x27;0&#x27;</span>)	<span class="comment">#猜测是二进制数据</span></span><br><span class="line">system=<span class="built_in">len</span>(str2)/<span class="number">41</span>	<span class="comment">#ctfshow的flag是41位，则就是7个二进制组成一个字母</span></span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">41</span>):</span><br><span class="line">    flag+=<span class="built_in">chr</span>(<span class="built_in">int</span>(str2[i*<span class="number">7</span>:<span class="number">7</span>*(i+<span class="number">1</span>)],<span class="number">2</span>))	<span class="comment">#每7个二进制转字符串</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Misc-40"><a href="#Misc-40" class="headerlink" title="Misc_40"></a>Misc_40</h3><p>这题和上一题其实是一样的，但是需要工具<code>APNG Disassembler</code>提取每帧图片延迟时间，拿到一堆文本图片其实就是<code>Delay Time=delay_num/delay_den(seconds)</code>，发现后面的delay_den是不变的，所以只提取前面的delay_num</p>
+<p>跟39题一样猜测是ascii码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">content=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">69</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">f&#x27;apngframe<span class="subst">&#123;i:02d&#125;</span>.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content+=f.read()</span><br><span class="line">        content=content.replace(<span class="string">&#x27;delay=&#x27;</span>,<span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;/1000&#x27;</span>,<span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">SplitContent=content.split()</span><br><span class="line"><span class="built_in">print</span>(SplitContent)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> SplitContent:</span><br><span class="line">    flag+=<span class="built_in">chr</span>(<span class="built_in">int</span>(j))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>前面有一些字母是干扰项，但是不影响脚本拿到flag</p>
+<h3 id="Misc-41-愚人节特别篇"><a href="#Misc-41-愚人节特别篇" class="headerlink" title="Misc_41(愚人节特别篇)"></a>Misc_41(愚人节特别篇)</h3><p>有点抽象的，前面说了是fool，后面提示笨蛋（fool）在飞（改变形状），010搜索F001（fool），观察形状就是flag</p>
+<h3 id="Misc-42"><a href="#Misc-42" class="headerlink" title="Misc_42"></a>Misc_42</h3><p>根据提示基本确定了跟39，40题一样的ascii码转换，010打开发现chunk块的长度明显有问题</p>
+<p>先用<code>pngcheck</code>工具把块的长度提取出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -v misc42.png | grep &#x27;IDAT&#x27; | awk &#x27;&#123;print $7&#125;&#x27; | paste -sd &#x27; &#x27; &gt;42.txt</span><br></pre></td></tr></table></figure>
+
+<p> <strong><code>awk &#39;&#123;print \$7&#125;&#39;</code></strong></p>
+<ul>
+<li><strong><code>awk</code></strong> 是一个强大的文本处理工具，通常用于根据特定的模式分割行，并进行进一步操作。</li>
+<li><strong><code>&#39;&#123;print \$7&#125;&#39;</code></strong> 表示从匹配的行中提取第 7 列（字段）。</li>
+</ul>
+<p> <strong><code>paste -sd &#39; &#39;</code></strong></p>
+<ul>
+<li><strong><code>paste</code></strong> 命令用于将多行文本合并成一行，默认按制表符分隔。</li>
+<li><strong><code>-s</code></strong> 选项表示将所有输入行串联成一行。</li>
+<li><strong><code>-d &#39; &#39;</code></strong> 选项指定使用空格作为分隔符。</li>
+</ul>
+<p>拿到每个chunk的长度，还是和39，40差不多的脚本，尽量学会自己写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;42.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    content=data.split()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> content:</span><br><span class="line">    flag+=<span class="built_in">chr</span>(<span class="built_in">int</span>(i))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Misc-43"><a href="#Misc-43" class="headerlink" title="Misc_43"></a>Misc_43</h3><p>题目提示错误中隐藏正确的道路，用<code>tweakpng</code>发现所有的IDAT块的crc校验码都是错的，也就是说这个错的crc校验码很有可能是我们的flag，16进制转ascii拿到flag</p>
+<h3 id="Misc-44"><a href="#Misc-44" class="headerlink" title="Misc_44"></a>Misc_44</h3><p>题目依然提示我们flag在错误中寻找，但是错误的有太多了，总量也太多了，但是IDAT模块的chunk数是344，344&#x2F;41&#x3D;8.3…..，我们尝试一下二进制，因为前面有很多对的干扰，c的二进制是<code>01100011</code>,成功比对，下面给脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;44.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;CRC OK&#x27;</span> <span class="keyword">in</span> line:</span><br><span class="line">            flag+=<span class="string">&#x27;1&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;CRC FAILED&#x27;</span> <span class="keyword">in</span> line:</span><br><span class="line">            flag+=<span class="string">&#x27;0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line">flag=flag[<span class="number">17</span>:]</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line">TrueFlag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">41</span>):</span><br><span class="line">    TrueFlag+=<span class="built_in">chr</span>(<span class="built_in">int</span>(flag[<span class="number">8</span>*i:<span class="number">8</span>*(i+<span class="number">1</span>)],<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(TrueFlag)</span><br></pre></td></tr></table></figure>
+
+<p>这里先用<code>pngdebugger</code>获取所有的crc校验码信息导入文本文件中，方便做题</p>
+<h3 id="Misc-45"><a href="#Misc-45" class="headerlink" title="Misc_45"></a>Misc_45</h3><p>题目提示换一个思维<strong>格式</strong>，因为bmp和png的像素点读取方式不一样（不懂，看wp的），转换成bmp格式然后binwalk分离拿到flag图片</p>
+<h3 id="Misc-46"><a href="#Misc-46" class="headerlink" title="Misc_46"></a>Misc_46</h3><p>题目提示扶乩，这个可能有的师傅有些陌生，换个名字大家就知道了，笔仙。笔仙的玩法就是两人互相拽着手握着一个笔，然后笔就动。</p>
+<p>这个自然就想到笔画图，坐标就是gif图片给的偏移量</p>
+<p>先用imageMagick得到图的偏移量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick identify misc46.gif &gt;46.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/posts/57b6e4e/images/Misc_46_magick.png" alt="image-20250205202814478"></p>
+<p>用命令提取出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 46.txt | awk &#x27;&#123;print $4&#125;&#x27; &gt;466.txt</span><br></pre></td></tr></table></figure>
+
+<p>写个脚本只要偏移量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;466.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    content=data.replace(<span class="string">&#x27;900x150&#x27;</span>,<span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;+&#x27;</span>,<span class="string">&#x27; &#x27;</span>).split()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">count=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> content:</span><br><span class="line">    count+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;4667.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">if</span> count%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">            f.write(i+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span> :</span><br><span class="line">            f.write(i+<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>下面就两种解决办法了</p>
+<ul>
+<li><p>方法一：</p>
+<ul>
+<li><p>直接使用工具<code>gnuplot</code>读取坐标画图</p>
+</li>
+<li><pre><code class="language-shell">  plot &#39;4667.txt&#39;
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 方法二：</span><br><span class="line"></span><br><span class="line">	+ 使用python脚本画图</span><br><span class="line"></span><br><span class="line">	+ ```python</span><br><span class="line">		from PIL import Image  # 用于图像操作</span><br><span class="line">		img = Image.new(&#x27;RGB&#x27;, (900, 150), (255, 255, 255))  # 创建900x150的白色背景图</span><br><span class="line">		content=[]</span><br><span class="line">		with open(&#x27;4667.txt&#x27;,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">		    for line in f:</span><br><span class="line">		        x=int(line.split()[0])</span><br><span class="line">		        y=int(line.split()[1])</span><br><span class="line">		        spot=(x,y)</span><br><span class="line">		        content.append(spot)</span><br><span class="line">		</span><br><span class="line">		for i in content:  # 遍历所有坐标</span><br><span class="line">		    new = Image.new(&#x27;RGB&#x27;, (1, 1), (0, 0, 0))  # 创建1x1的黑色像素点</span><br><span class="line">		    img.paste(new, i)  # 将黑点粘贴到坐标i处</span><br><span class="line">		</span><br><span class="line">		img.show()</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>  python脚本得到的图是flag图，gnuplot得到的图需要进行上下反转</p>
+</li>
+</ul>
+<h3 id="Misc-47"><a href="#Misc-47" class="headerlink" title="Misc_47"></a>Misc_47</h3><p>这题和上题基本一样，就是图片格式改成了apng，做题思路依然是取x,y的偏移量画图</p>
+<h4 id="apng的fctl结构"><a href="#apng的fctl结构" class="headerlink" title="apng的fctl结构"></a><strong>apng的fctl结构</strong></h4><ol>
+<li><strong>Length（4字节）</strong>：固定为4字节，表示块的总长度（不包括CRC）。</li>
+<li><strong>Sequence number（4字节）</strong>：帧的序列号，是一个4字节的无符号整数，表示当前帧的编号（从0开始）。</li>
+<li><strong>Width（4字节）</strong>：帧的宽度，单位为像素。</li>
+<li><strong>Height（4字节）</strong>：帧的高度，单位为像素。</li>
+<li><strong>x_offset（2字节）</strong>：该帧在图像中的水平偏移位置，单位为像素。用来确定当前帧相对于原始图像的水平位置。</li>
+<li><strong>y_offset（2字节）</strong>：该帧在图像中的垂直偏移位置，单位为像素。用来确定当前帧相对于原始图像的垂直位置。</li>
+<li><strong>Delay (time)（2字节）</strong>：帧的显示时间，单位为1&#x2F;100秒，表示此帧显示的时长。</li>
+<li><strong>Disposal method（1字节）</strong>：指示如何处理前一帧的内容。常见的值包括：<ul>
+<li>0：不做任何操作。</li>
+<li>1：清除之前帧的区域。</li>
+<li>2：保留之前帧的区域。</li>
+<li>3：恢复到背景颜色。</li>
+</ul>
+</li>
+<li><strong>Blend method（1字节）</strong>：指示该帧如何与背景或前一帧合成。常见的值包括：<ul>
+<li>0：不合成。</li>
+<li>1：合成当前帧与前一帧。</li>
+</ul>
+</li>
+<li><strong>CRC（4字节）</strong>：对 <code>fctl</code> 块数据（不包括块长度字段）进行CRC-32校验的结果。</li>
+</ol>
+<p>总的来说就是fctl的长度不变，这样就方便我们取到x,y的偏移量</p>
+<p><img src="/posts/57b6e4e/images/Misc_47_010.png" alt="image-20250208220320705"></p>
+<p>把图片文件以十六进制导出(删除所有换行和空格)，用010可以知道<code>fctl</code>的十六进制是<code>6663544C</code>,前面的fctl的结构告诉我们这个块的长度是固定的，所以写一个脚本拿到x、y偏移量并画图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image  <span class="comment"># 用于图像操作</span></span><br><span class="line">img = Image.new(<span class="string">&#x27;RGB&#x27;</span>, (<span class="number">900</span>, <span class="number">150</span>), (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))  <span class="comment"># 创建900x150的白色背景图</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;misc47&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:	<span class="comment">#misc47是图片导出来的16进制文件</span></span><br><span class="line">    data = f.read()</span><br><span class="line">    content=data.split(<span class="string">&#x27;6663544C&#x27;</span>)	<span class="comment">#用fctl分割图片内容</span></span><br><span class="line"></span><br><span class="line">count=<span class="number">0</span></span><br><span class="line">pp=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> content:</span><br><span class="line">    <span class="keyword">if</span> count==<span class="number">0</span>:	<span class="comment">#第一个块不是fctl所以跳过</span></span><br><span class="line">        count+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    x=i[<span class="number">24</span>:<span class="number">32</span>]	<span class="comment">#固定的x、y偏移量的位置</span></span><br><span class="line">    y=i[<span class="number">32</span>:<span class="number">40</span>]</span><br><span class="line">    <span class="built_in">print</span>(x,y)</span><br><span class="line">    spot=(<span class="built_in">int</span>(x,<span class="number">16</span>),<span class="built_in">int</span>(y,<span class="number">16</span>))</span><br><span class="line">    pp.append(spot)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pp)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> pp:</span><br><span class="line">    new=Image.new(<span class="string">&#x27;RGB&#x27;</span>, (<span class="number">1</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="comment"># 创建1x1的黑色像素点</span></span><br><span class="line">    img.paste(new, i)  <span class="comment"># 将黑点粘贴到坐标i处</span></span><br><span class="line"></span><br><span class="line">img.show()</span><br></pre></td></tr></table></figure>
+
+<p>这个题依然可以用上一道题的<code>gnuplot</code>工具画图做，但是还要十六进制转10进制，所以还是推荐脚本一把梭</p>
+<h3 id="Misc-48"><a href="#Misc-48" class="headerlink" title="Misc_48"></a>Misc_48</h3><p>题目提示是D(Di)Q(Qi)T(Ti)模块,找到DQT模块里面有提示<code>count FF&amp;minus 1</code>意思是统计FF的数量然后减1</p>
+<p>我这里手动统计的，也可以写脚本</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 12 11 0 7 10 13 13 9 0 9 13 0 13 6 0 10 9 2 1 0 1 10 8 11 5 12 7 2 2 3 10</span><br></pre></td></tr></table></figure>
+
+<p>然后转换为十六进制就可以拿到flag了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">str1=<span class="string">&#x27;0 12 11 0 7 10 13 13 9 0 9 13 0 13 6 0 10 9 2 1 0 1 10 8 11 5 12 7 2 2 3 10&#x27;</span></span><br><span class="line">data=str1.split()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    flag+=<span class="built_in">str</span>(<span class="built_in">hex</span>(<span class="built_in">int</span>(i)))</span><br><span class="line"></span><br><span class="line">flag=flag.replace(<span class="string">&#x27;0x&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>也可以直接用脚本一把梭</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;misc48&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:	<span class="comment">#文件是导出的十六进制，用空格替换了换行</span></span><br><span class="line">    data = f.read().split()</span><br><span class="line"></span><br><span class="line">counts = []</span><br><span class="line">current = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> item == <span class="string">&#x27;FF&#x27;</span>:</span><br><span class="line">        current += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> current:  <span class="comment"># 遇到非FF且已有计数时</span></span><br><span class="line">        counts.append(current - <span class="number">1</span>)</span><br><span class="line">        current = <span class="number">0</span></span><br><span class="line"><span class="comment"># 处理文件末尾可能的FF序列</span></span><br><span class="line"><span class="keyword">if</span> current:</span><br><span class="line">    counts.append(current - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接取前32个有效计数（如果不足则全取）</span></span><br><span class="line">hex_flag = <span class="string">&#x27;&#x27;</span>.join(<span class="string">f&quot;<span class="subst">&#123;n:x&#125;</span>&quot;</span> <span class="keyword">for</span> n <span class="keyword">in</span> counts[:<span class="number">32</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(hex_flag)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Misc-49"><a href="#Misc-49" class="headerlink" title="Misc_49"></a>Misc_49</h3><p>这题不懂，纯脑洞，（看Wp的）做法是FFE后面的字符就是拿到32个就行了</p>
+<p>下面给脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;misc49&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:	<span class="comment">#这个文件导出的十六进制把换行替换成了空格的</span></span><br><span class="line">    data=f.read()</span><br><span class="line">    content=data.split(<span class="string">&#x27;FF E&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> content:</span><br><span class="line">    <span class="keyword">if</span> i==<span class="string">&#x27;FF D8 &#x27;</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    flag+=i[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag[:<span class="number">32</span>].lower())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Misc-50"><a href="#Misc-50" class="headerlink" title="Misc_50"></a>Misc_50</h3><p>StegSlove一把梭,找到3张有flag的图片就行</p>
+<h3 id="Misc-53"><a href="#Misc-53" class="headerlink" title="Misc_53"></a>Misc_53</h3><p>题目提示开始愉快的LSB部分</p>
+<ul>
+<li>方法一：</li>
+</ul>
+<p>先用StegSlove查看一下，发现<code>Gray bits Blue plane 0 Green plane 0 Red plane 0</code>左上角有东西</p>
+<p><img src="/posts/57b6e4e/images/Misc_53_StegSlove_Gray.png" alt="image-20250211165215244"></p>
+<p><img src="/posts/57b6e4e/images/Misc_53_StegSlove_Blue0.png" alt="image-20250211165335254"></p>
+<p><img src="/posts/57b6e4e/images/Misc_53_StegSlove_Green0.png" alt="image-20250211165425102"></p>
+<p><img src="/posts/57b6e4e/images/Misc_53_StegSlove_Red0.png" alt="image-20250211165517235"></p>
+<p>然后<code>Analyse</code>的<code>Data extract</code>把三色调到相应的plane，就可以得到flag</p>
+<ul>
+<li>方法二：</li>
+</ul>
+<p>使用工具一把梭，随波逐流，zsteg</p>
+<h3 id="Misc-54"><a href="#Misc-54" class="headerlink" title="Misc_54"></a>Misc_54</h3><p>题目提示：还是愉快的LSB部分</p>
+<p>那我们依然用StegSlove看，发现Gray Bit左边有LSB隐写，找其他颜色，发现B0、G0、A0左侧都有LSB隐写</p>
+<p>那我们依然用<code>Analyse</code>的<code>Data extract</code>调到对应的选项拿到flag</p>
+<h3 id="Misc-55"><a href="#Misc-55" class="headerlink" title="Misc_55"></a>Misc_55</h3><p>题目提示：还是愉快的LSB部分</p>
+<p>方法一：</p>
+<ul>
+<li>那我们依然用StegSlove看，发现图片是上下反转的，用工具（随波逐流）或者在线网站先把图片拨正，然后依然查看每个等级的RGBA，发现R0、G0、B0左侧有纵向隐写痕迹，得到PK开头的文件，也就是zip文件，解压拿到flag</li>
+</ul>
+<p>方法二：</p>
+<ul>
+<li><p>用zsteg所有的隐写方法查看</p>
+</li>
+<li><pre><code class="language-shell">  zsteg -a misc55UpDownInversion.png
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ ![image-20250211192726731](posts/57b6e4e/images/Misc_55_Zsteg.png)</span><br><span class="line"></span><br><span class="line">用这个方法把压缩文件提取出来</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">zsteg -e b1,rgb,lsb,yx misc55UpDownInversion.png &gt; flag.zip</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>解压拿到flag</p>
+<h3 id="Misc-56"><a href="#Misc-56" class="headerlink" title="Misc_56"></a>Misc_56</h3><p>题目提示：<strong>怎么老是愉快的LSB部分。</strong></p>
+<p>LSB部分依然用StegSlove查看，发现R1 2 4、G1 2 4左上侧有隐写痕迹，依然来到<code>Analyse</code>的<code>Data Extract</code>选择对应的选项拿到flag</p>
+<h2 id="zsteg的用法"><a href="#zsteg的用法" class="headerlink" title="zsteg的用法"></a>zsteg的用法</h2><p><code>zsteg</code> 是一个用于分析和提取图像文件（尤其是 PNG 文件）中隐写数据的工具。它主要用于图像隐写分析，可以帮助从 PNG 图像文件中提取嵌入的数据。<code>zsteg</code> 支持不同的隐写术算法，常用于数字取证和数据恢复。</p>
+<h3 id="zsteg-常见选项及用法"><a href="#zsteg-常见选项及用法" class="headerlink" title="zsteg 常见选项及用法"></a><code>zsteg</code> 常见选项及用法</h3><p>以下是 <code>zsteg</code> 中常用的一些选项和说明：</p>
+<h4 id="v-verbose"><a href="#v-verbose" class="headerlink" title="-v, --verbose"></a><code>-v, --verbose</code></h4><p>启用详细输出模式，显示更多的分析信息。通常在你想要看到更多的内部过程时使用这个选项。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -v filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="E-extract"><a href="#E-extract" class="headerlink" title="-E, --extract"></a><code>-E, --extract</code></h4><p>提取图像中的隐藏信息。<code>-E</code> 选项用于从图像中提取可能嵌入的隐写数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -E filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="e-method"><a href="#e-method" class="headerlink" title="-e, --method"></a><code>-e, --method</code></h4><p>指定分析隐写数据的算法或方法。你可以选择使用不同的隐写分析方法来测试图像。常见的方法有：</p>
+<ul>
+<li><code>-e b1</code>：分析最不重要位（LSB，Least Significant Bit）。这是隐写数据最常见的存储方式。</li>
+<li><code>-e b2</code>：分析第二个最不重要位（Second LSB）。</li>
+<li><code>-e b3</code>：分析第三个最不重要位，依此类推。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -e b1 filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="o-output"><a href="#o-output" class="headerlink" title="-o, --output"></a><code>-o, --output</code></h4><p>指定输出格式，可以选择输出为 <code>json</code> 格式或者 <code>txt</code> 格式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -o json filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="l-list"><a href="#l-list" class="headerlink" title="-l, --list"></a><code>-l, --list</code></h4><p>列出所有支持的隐写分析方法。使用此选项可以查看哪些分析方法可以用于图像文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -l</span><br></pre></td></tr></table></figure>
+
+<h4 id="a-all"><a href="#a-all" class="headerlink" title="-a, --all"></a><code>-a, --all</code></h4><p>使用所有隐写算法分析图像文件。这可以帮助你快速地检查是否有任何隐藏数据，而不需要逐个测试每个方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -a filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="i-interactive"><a href="#i-interactive" class="headerlink" title="-i, --interactive"></a><code>-i, --interactive</code></h4><p>交互式模式，允许用户与 <code>zsteg</code> 交互，并根据不同情况选择不同的分析方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -i filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="p-png"><a href="#p-png" class="headerlink" title="-p, --png"></a><code>-p, --png</code></h4><p>强制将图像文件当作 PNG 文件处理。即使文件的扩展名不是 <code>.png</code>，也会强制以 PNG 格式分析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -p filename.jpeg</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-color"><a href="#C-color" class="headerlink" title="-C, --color"></a><code>-C, --color</code></h4><p>启用颜色输出，这将使输出更加生动和易于理解。适合在终端中查看时使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -C filename.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="f-force"><a href="#f-force" class="headerlink" title="-f, --force"></a><code>-f, --force</code></h4><p>强制 <code>zsteg</code> 分析即使文件并不是 PNG 格式。通常情况下，<code>zsteg</code> 仅支持 PNG 文件，但使用 <code>-f</code> 可以强制进行其他格式的分析（如 BMP 或其他位图文件）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -f filename.bmp</span><br></pre></td></tr></table></figure>
+
+<h4 id="password"><a href="#password" class="headerlink" title="--password"></a><code>--password</code></h4><p>如果你知道图像文件中可能存在加密的隐写数据并且需要密码来提取它，可以使用此选项。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg --password &#x27;yourpassword&#x27; filename.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例用法"><a href="#实例用法" class="headerlink" title="实例用法"></a>实例用法</h3><h4 id="示例-1：分析-PNG-文件并提取隐藏数据"><a href="#示例-1：分析-PNG-文件并提取隐藏数据" class="headerlink" title="示例 1：分析 PNG 文件并提取隐藏数据"></a>示例 1：分析 PNG 文件并提取隐藏数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -E example.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-2：使用最不重要位（LSB）分析图像"><a href="#示例-2：使用最不重要位（LSB）分析图像" class="headerlink" title="示例 2：使用最不重要位（LSB）分析图像"></a>示例 2：使用最不重要位（LSB）分析图像</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -e b1 example.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-3：列出所有支持的隐写分析方法"><a href="#示例-3：列出所有支持的隐写分析方法" class="headerlink" title="示例 3：列出所有支持的隐写分析方法"></a>示例 3：列出所有支持的隐写分析方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -l</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-4：以交互模式分析图像"><a href="#示例-4：以交互模式分析图像" class="headerlink" title="示例 4：以交互模式分析图像"></a>示例 4：以交互模式分析图像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -i example.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="一般用法"><a href="#一般用法" class="headerlink" title="一般用法"></a>一般用法</h4><p>使用之前得到的隐写信息将其提取出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -E <span class="string">&#x27;outputMessage&#x27;</span> example.png &gt; output</span><br></pre></td></tr></table></figure>
+
+<p>然后再用binwalk分离</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwlak -e output --run-as=root</span><br></pre></td></tr></table></figure>
+
+<h2 id="ExifTool的用法"><a href="#ExifTool的用法" class="headerlink" title="ExifTool的用法"></a>ExifTool的用法</h2><p><strong>ExifTool</strong> 是一个强大的命令行工具，用于读取、编写和编辑图像、音频、视频文件的元数据（Exif、IPTC、XMP 等）。它支持多种文件格式，广泛应用于数字图像处理、摄影和文件管理等领域。</p>
+<h3 id="ExifTool-的基本用法"><a href="#ExifTool-的基本用法" class="headerlink" title="ExifTool 的基本用法"></a>ExifTool 的基本用法</h3><ol>
+<li><p><strong>查看文件的元数据</strong><br> 使用 ExifTool 可以查看图像或其他文件的详细元数据。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool filename.jpg</span><br></pre></td></tr></table></figure>
+
+<p> 这将显示 <code>filename.jpg</code> 文件中的所有元数据（例如，拍摄时间、相机型号、GPS 信息等）。</p>
+</li>
+<li><p><strong>查看某些特定的元数据字段</strong><br> 如果你只想查看某些特定的元数据字段（例如，拍摄日期和相机型号），可以指定要查看的标签。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -DateTimeOriginal -Model filename.jpg</span><br></pre></td></tr></table></figure>
+
+<p> 这将仅显示文件的拍摄时间和相机型号。</p>
+</li>
+<li><p><strong>编辑元数据</strong><br> ExifTool 还允许你修改图像文件的元数据。例如，修改文件的日期时间信息：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -DateTimeOriginal=&quot;2025:01:19 10:00:00&quot; filename.jpg</span><br></pre></td></tr></table></figure>
+
+<p> 这将把 <code>filename.jpg</code> 文件的拍摄时间设置为 “2025:01:19 10:00:00”。</p>
+</li>
+<li><p><strong>批量修改多个文件</strong><br> 你可以一次性对多个文件进行操作。比如，修改所有 <code>.jpg</code> 文件的日期时间：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -DateTimeOriginal=<span class="string">&quot;2025:01:19 10:00:00&quot;</span> *.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除文件的元数据</strong><br> 如果你希望从图像文件中删除所有元数据，可以使用以下命令：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -all= filename.jpg</span><br></pre></td></tr></table></figure>
+
+<p> 这将删除 <code>filename.jpg</code> 文件中的所有元数据。</p>
+</li>
+<li><p><strong>导出元数据到文本文件</strong><br> 如果你希望将文件的元数据保存到文本文件中，可以使用 <code>-w</code> 选项：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -w txt filename.jpg</span><br></pre></td></tr></table></figure>
+
+<p> 这将把 <code>filename.jpg</code> 的元数据保存到一个名为 <code>filename.txt</code> 的文本文件中。</p>
+</li>
+<li><p><strong>批量删除目录中所有文件的元数据</strong><br> 如果你想删除目录中所有图片的元数据，可以使用 <code>-r</code> 选项递归处理目录：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -r -all= /path/to/directory</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>获取图像的 GPS 信息</strong><br> 查看图片的 GPS 坐标信息：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -GPSLatitude -GPSLongitude filename.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>转换图片的元数据格式</strong><br> ExifTool 支持从图片文件中提取并输出为其他格式。例如，导出为 JSON 格式：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool -json filename.jpg</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="常见选项和标签"><a href="#常见选项和标签" class="headerlink" title="常见选项和标签"></a>常见选项和标签</h4><ul>
+<li><code>-Model</code>：显示或修改相机型号。</li>
+<li><code>-DateTimeOriginal</code>：显示或修改拍摄时间。</li>
+<li><code>-ExposureTime</code>：显示曝光时间。</li>
+<li><code>-GPSLatitude</code>、<code>-GPSLongitude</code>：显示 GPS 坐标。</li>
+<li><code>-FileName</code>：显示或修改文件名。</li>
+<li><code>-Title</code>：显示或修改文件的标题。</li>
+</ul>
+<h2 id="pngcheck的用法"><a href="#pngcheck的用法" class="headerlink" title="pngcheck的用法"></a>pngcheck的用法</h2><p><strong><code>pngcheck</code></strong> 是一个用来检查和验证 PNG 文件的工具，能够显示 PNG 文件的元数据、每个 chunk（数据块）及其详细信息，并可以检测文件是否损坏。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a><strong>基本用法</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck [选项] 文件.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用选项说明"><a href="#常用选项说明" class="headerlink" title="常用选项说明"></a><strong>常用选项说明</strong></h3><ul>
+<li><p><code>-v</code> 或 <code>--verbose</code></p>
+<ul>
+<li><p>显示详细的 chunk 信息和 PNG 文件内部的结构。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -v image.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这将会显示该 PNG 文件的所有 chunk 的详细信息，包括每个 chunk 的类型和大小。</p>
+</li>
+</ul>
+</li>
+<li><p><code>-t</code> 或 <code>--text</code></p>
+<ul>
+<li><p>显示 PNG 文件中的文本信息（例如 tEXt、zTXt chunk 信息）。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -t image.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>-c</code> 或 <code>--checksum</code></p>
+<ul>
+<li><p>检查 PNG 文件的 CRC 校验和是否正确。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -c image.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>-q</code> 或 <code>--quiet</code></p>
+<ul>
+<li><p>只输出基本信息，不显示额外的详细内容或错误信息。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -q image.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>-o</code> 或 <code>--outdir</code></p>
+<ul>
+<li><p>设置输出目录，常用于批量处理图片文件时。</p>
+</li>
+<li><p>示例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -o output_dir image.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="常见输出说明"><a href="#常见输出说明" class="headerlink" title="常见输出说明"></a><strong>常见输出说明</strong></h3><p>运行 <code>pngcheck -v image.png</code> 时，输出将包含以下内容：</p>
+<ul>
+<li>文件的基本信息：<ul>
+<li>文件的版本、大小等。</li>
+</ul>
+</li>
+<li>每个 chunk 的详细信息：<ul>
+<li>每个 chunk 的类型（如 <code>IHDR</code>、<code>PLTE</code>、<code>tEXt</code> 等）。</li>
+<li>每个 chunk 的长度。</li>
+<li>每个 chunk 的校验和是否正确。</li>
+<li>如果 chunk 是文本类型（如 <code>tEXt</code> 或 <code>zTXt</code>），会显示文本内容。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h3><ol>
+<li><p>检查文件并查看详细信息：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -v your-image.png</span><br></pre></td></tr></table></figure>
+
+<p> 输出将会显示文件的各个 chunk，包括 <code>IHDR</code>（头部信息）、<code>IDAT</code>（图像数据）、<code>IEND</code>（结束）等。</p>
+</li>
+<li><p>查看文本信息（tEXt 和 zTXt）：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -t your-image.png</span><br></pre></td></tr></table></figure>
+
+<p> 输出将显示文件中的文本信息。</p>
+</li>
+<li><p>检查 PNG 文件的完整性：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pngcheck -c your-image.png</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="mdadm的用法"><a href="#mdadm的用法" class="headerlink" title="mdadm的用法"></a>mdadm的用法</h2><h3 id="mdadm-常见选项及作用"><a href="#mdadm-常见选项及作用" class="headerlink" title="mdadm 常见选项及作用"></a><code>mdadm</code> 常见选项及作用</h3><ol>
+<li><p><strong><code>--create</code></strong><br> 用于创建一个新的 RAID 阵列。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sda /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p> 创建一个 RAID 1 阵列，包含两个设备 <code>/dev/sda</code> 和 <code>/dev/sdb</code>。</p>
+</li>
+<li><p><strong><code>--assemble</code></strong><br> 用于组装现有的 RAID 阵列，恢复已经存在的 RAID 阵列。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --assemble /dev/md0 /dev/sda /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p> 组装一个 RAID 阵列 <code>/dev/md0</code>，其成员为 <code>/dev/sda</code> 和 <code>/dev/sdb</code>。</p>
+</li>
+<li><p><strong><code>--stop</code></strong><br> 停止一个 RAID 阵列，解除 RAID 阵列的活动状态。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --stop /dev/md0</span><br></pre></td></tr></table></figure>
+
+<p> 停止并卸载 RAID 阵列 <code>/dev/md0</code>。</p>
+</li>
+<li><p><strong><code>--add</code></strong><br> 向现有的 RAID 阵列添加一个新的磁盘。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --add /dev/md0 /dev/sdc</span><br></pre></td></tr></table></figure>
+
+<p> 向阵列 <code>/dev/md0</code> 添加磁盘 <code>/dev/sdc</code>。</p>
+</li>
+<li><p><strong><code>--remove</code></strong><br> 从 RAID 阵列中移除一个磁盘。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --remove /dev/md0 /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p> 从阵列 <code>/dev/md0</code> 中移除磁盘 <code>/dev/sdb</code>。</p>
+</li>
+<li><p><strong><code>--fail</code></strong><br> 将 RAID 阵列中的一个磁盘标记为故障。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --fail /dev/md0 /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p> 将磁盘 <code>/dev/sdb</code> 标记为故障。</p>
+</li>
+<li><p><strong><code>--grow</code></strong><br> 动态调整 RAID 阵列的大小或增加磁盘。可以增加 RAID 阵列的设备数量或改变 RAID 类型。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --grow /dev/md0 --raid-devices=3</span><br></pre></td></tr></table></figure>
+
+<p> 增加阵列 <code>/dev/md0</code> 的设备数量到 3。</p>
+</li>
+<li><p><strong><code>--monitor</code></strong><br> 启动对 RAID 阵列的监控，通常会定期检查阵列状态并发送通知。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --monitor /dev/md0</span><br></pre></td></tr></table></figure>
+
+<p> 启动对 RAID 阵列 <code>/dev/md0</code> 的监控。</p>
+</li>
+<li><p><strong><code>--detail</code></strong><br> 查看一个阵列的详细状态信息，包括成员磁盘、同步状态、阵列级别等。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --detail /dev/md0</span><br></pre></td></tr></table></figure>
+
+<p> 显示 RAID 阵列 <code>/dev/md0</code> 的详细信息。</p>
+</li>
+<li><p><strong><code>--backup</code></strong><br> 备份 RAID 阵列的元数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --backup /dev/md0 &gt; backup.txt</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>/dev/md0</code> 阵列的元数据备份到 <code>backup.txt</code> 文件中。</p>
+</li>
+<li><p><strong><code>--zero-superblock</code></strong><br> 清除磁盘上的 RAID 元数据（superblock），使该磁盘不再属于任何 RAID 阵列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --zero-superblock /dev/sda</span><br></pre></td></tr></table></figure>
+
+<p>删除磁盘 <code>/dev/sda</code> 上的 RAID 元数据。</p>
+</li>
+<li><p><strong><code>--scan</code></strong><br> 扫描系统中的所有 RAID 阵列，并显示它们的状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --scan</span><br></pre></td></tr></table></figure>
+
+<p>自动扫描并显示所有已配置的 RAID 阵列。</p>
+</li>
+<li><p><strong><code>--config</code></strong><br> 用于指定一个自定义的配置文件，通常用来加载 <code>mdadm</code> 的配置文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --config=/etc/mdadm.conf --assemble /dev/md0</span><br></pre></td></tr></table></figure>
+
+<p>使用指定的配置文件来组装 RAID 阵列。</p>
+</li>
+</ol>
+<p>14.<code>--examine</code></p>
+<p>​	用于检查一个或一列RAID文件的属性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm --examine /dev/loop1 /dev/loop2 /dev/loop3 /dev/loop4 /dev/loop5</span><br></pre></td></tr></table></figure>
+
+<h2 id="ImageMagick的用法"><a href="#ImageMagick的用法" class="headerlink" title="ImageMagick的用法"></a>ImageMagick的用法</h2><h3 id="基本命令介绍"><a href="#基本命令介绍" class="headerlink" title="基本命令介绍"></a>基本命令介绍</h3><ol>
+<li><p><strong>创建图像</strong></p>
+<p> 使用 <code>magick</code> 命令加上特定标识符来创建一个新图像文件。例如，创建一个名为 logo.gif 的空白 GIF 图像文件：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick logo: logo.gif</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>获取图像信息</strong></p>
+<p> 使用 <code>identify</code> 命令来获取有关图像的信息，如尺寸、格式等：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick identify logo.gif</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>转换图像格式</strong></p>
+<p> 使用 <code>convert</code> 命令将一种格式的图像转换为另一种格式。例如，将 PNG 文件转换为 ICO 格式图标：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick convert macaw.png -resize 256x256 macaw.ico</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>SVG 转 PNG 并设置透明背景</strong></p>
+<p> 将 SVG 文件转换为 PNG 格式，并确保背景是透明的</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick -background none FFmpeg.svg FFmpeg.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>批量处理图像</strong></p>
+<p> 使用 <code>mogrify</code> 命令对多个图像执行相同的操作。例如，将指定目录下的所有 PNG 图像调整大小并转换为 ICO 文件：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick mogrify -path &quot;output/path&quot; -format ico -resize 256x256 &quot;*.png&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>添加边框或效果</strong></p>
+<p> 给图像添加边框或者应用其他效果。例如，给图片添加红色边框：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick input.jpg -bordercolor red -border 10 output.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>调整大小</strong></p>
+<p> 调整图像大小到特定宽度和高度。例如，将图像调整为 800x600 像素：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick input.jpg -resize 800x600 output.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>旋转图像</strong></p>
+<p> 指定角度来旋转图像。例如，顺时针旋转 90 度：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick input.jpg -rotate 90 output.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>合并图像</strong></p>
+<p> 使用 <code>-append</code> 或 <code>+append</code> 来垂直或水平拼接多张图像。例如，垂直拼接两张图像：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick image1.jpg image2.jpg -append combined.jpg</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="StegSlove的用法"><a href="#StegSlove的用法" class="headerlink" title="StegSlove的用法"></a>StegSlove的用法</h2><p>主要讲解一下Analyse的各个选项</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File Format:文件格式</span><br><span class="line">Data Extract:数据提取</span><br><span class="line">Steregram Solve:立体试图 </span><br><span class="line">Frame Browser:帧浏览器</span><br><span class="line">Image Combiner:拼图 </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>文件格式：<ul>
+<li>就是看图片文件的具体信息的，这个大部分工具都可以做到（这里不细讲）</li>
+</ul>
+</li>
+<li>数据提取：<ul>
+<li>左边主要是RGBA（Alpha是透明度）的颜色通道</li>
+<li>R的数字越大，则代表红色亮度越高；R的数字越小，则代表红色亮度越低。G，B同理。R的亮度各有256个级别，GB同理。即从0到255，合计为256个。从数字0到255的逐渐增高，我们人眼观察到的就是亮度越来越大，红色、绿色或蓝色越来越亮。然而256是2的8次方 所以你会看见上图的0~7， 一共8个通道。</li>
+<li>alpha的值为0就是全透明，alpha 的值为 255 则表示不透明</li>
+<li>右半部分就是Extra By(额外的)和Bit Order（位顺序）和Bit Plane Order（位平面的顺序）</li>
+<li>Row横向隐写，column纵向隐写</li>
+<li>MSB最高位隐写，LSB最低位隐写</li>
+<li>RGB&#x2F;RGBA顺序：按颜色通道顺序提取（如先R通道的所有位，再G通道，最后B通道）。</li>
+</ul>
+</li>
+<li>立体试图：<ul>
+<li>可以左右控制偏移</li>
+</ul>
+</li>
+<li>帧浏览器：<ul>
+<li>主要是对GIF之类的动图进行分解</li>
+</ul>
+</li>
+<li>拼图：<ul>
+<li>可以把两个图片进行XOR（通常用于生成反相图像或混合图像）、OR（常用于高亮显示某些区域，或者合成不同图像的部分区域）、AND（通常用于图像的遮罩操作，保留某些区域并将其他区域设为透明或黑色）等操作，以便于发现两张类似图片中隐含的信息</li>
+</ul>
+</li>
+</ol>
+<h2 id="Misc题小技巧"><a href="#Misc题小技巧" class="headerlink" title="Misc题小技巧"></a>Misc题小技巧</h2><p>每个比赛都会给他的flag格式可以先转换格式前半段的十六进制和二进制 ，在拿到奇怪的字符串时或有规律的节奏时，可以先行比对</p>
+<ul>
+<li>例如：<ul>
+<li><code>ctfshow&#123;</code>的十六进制是<code>63 74 66 73 68 6f 77 7b</code>或<code>63746673686f777b</code>或<code>63h74667368h6F777B</code></li>
+<li>ctfshow{的二进制是<code>01100011 01110100 01100110 01110011 01101000 01101111 01110111 01111011</code></li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io">yyssh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io/posts/57b6e4e.html">https://0xyyssh.github.io/posts/57b6e4e.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0xyyssh.github.io" target="_blank">yyssh's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/misc/">misc</a><a class="post-meta__tags" href="/tags/WP/">WP</a></div><div class="post-share"><div class="social-share" data-image="/coverimages/default_bg9.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/fbaff1b6.html" title="python学习"><img class="cover" src="/coverimages/default_bg14.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">python学习</div></div><div class="info-2"><div class="info-item-1">Python学习input输入&#x3D;&#x3D;python对缩进有着严格的要求，这里的print和input都是顶格写&#x3D;&#x3D; 123456789101112#input()内的作用和print（）一样，都是打印，但是如果这样操作，输入不会换行name=input(&quot;What is your name ?&quot;)num=input(&quot;What is your number ?&quot;)print(type(num))#input输入数据都是字符串类型int(num)print(num)#练习 欢迎登录小程序user_name=input()user_type=input()print(&quot;您好：%s,您是尊贵的：%s用户，欢迎您的光临。&quot;%(user_name,user_type))  1234567What is your name ?123	#他会让你输入一些数据，123是我输入的数据What is your number ?123&lt;class &#x27;str&#x27;&gt;12312312...</div></div></div></a><a class="pagination-related" href="/posts/8087d2e8.html" title="CTFshow_web_WP"><img class="cover" src="/coverimages/default_bg22.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CTFshow_web_WP</div></div><div class="info-2"><div class="info-item-1">CTFshow-Web-WP工具不是万能的Web入门信息收集web-11开发者开发不仔细,注释留在了前端界面,通过检查界面源代码发现漏洞和flag,得到的flag可能是编码之前的,所以需要进行base64解码或者其他方式解码  web-212前端进行限制,无法查看页面源代码或者检查,通过view-source:url可以查看源代码 通过不断刷新进行F12检查也可以开启代码检查,然后禁用JavaScript  web-31通过BP抓包,respond返回请求携带信息泄露（flag）  web-4&#x3D;&#x3D;#如果是有明显的网站架构，可以优先扫描robots文件&#x3D;&#x3D; 1网页搜索引擎爬取网站的robots(.txt)文件,所以网站robots(.txt)文件也会信息泄露(flag)  web-51phps文件泄露,若目录扫描到,通常用于提供给用户（访问者）直接通过Web浏览器查看php代码的内容。因为用户无法直接通过Web浏览器“看到”php文件的内容,所以需要用phps文件代替。用户访问phps文件就能看到对应的php文件的源码。其中可能有flag  ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/a691451b.html" title="2025ISCC区域赛Misc-WP"><img class="cover" src="/coverimages/default_bg20.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">2025ISCC区域赛Misc-WP</div></div><div class="info-2"><div class="info-item-1">ISCC2025区域赛Misc-WP比赛感受ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩 Misc+返校之路下载附件之后是两个文件  第一个是伪加密，用高级一点的解压工具可以直接解压，没有的话，就丢进随波逐流里面一把梭 第一个压缩包打开之后是一个提示  第二个压缩包其实硬爆破也能出来，就是耗时间，这里直接用掩码爆破快一点，掩码就是提示的bfs???  这里用工具ARCHPR,拿到第二个压缩包密码bfsCXC 第二个压缩包打开是三张图片 1.jpg:朝阳站A 3.jpg:北京地铁线路图 查看图片描述   提示路上换乘站数 picture2.png:魏公村站 用zsteg获取到密文flag  四个等号，明显就是base32加密 KIYGI6STIZFHGZCXMM6Q&#x3D;&#x3D;&#x3D;&#x3D; base32解密：  R0dzSFJs...</div></div></div></a><a class="pagination-related" href="/posts/9cd054c0.html" title="2025ISCC区域赛Web-WP"><img class="cover" src="/coverimages/default_bg10.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">2025ISCC区域赛Web-WP</div></div><div class="info-2"><div class="info-item-1">2025ISCC区域赛Web-WP比赛感受个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托 Web+基本功打开网址，是一段题目提示  重点在于这个用户代理身上（修改传输的UA）  只能一个一个尝试，最后在GaoJiGongChengShiFoYeGe(高级工程师佛耶戈)，拿到路由（Q2rN6h3YkZB9fL5j2WmX.php）  路由打开之后是一段需要绕过的源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;?phpshow_source(__FILE...</div></div></div></a><a class="pagination-related" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP"><img class="cover" src="/coverimages/default_bg2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-24</div><div class="info-item-2">2025蓝桥杯全国总决赛部分WP</div></div><div class="info-2"><div class="info-item-1">2025蓝桥杯全国总决赛部分WPxxtea下载附件打开是cyberchef的一个加密步骤（当时半决也有一个差不多的题）  按F12拿到输出  1234567800000000 9e 45 02 82 ea 25 d2 62 0d 06 e7 b4 5f dc 62 bd |.E...%.b...._.b.|00000010 39 68 47 26 54 50 9e 26 4c 86 06 2e 2b af 3b 8b |9hG&amp;TP.&amp;L...+.;.|00000020 7c e4 99 0d ad 12 e2 7e 46 c9 00 29 a6 ea 1f b0 ||......~F..)....|00000030 ae c1 da 30 f3 98 94 82 33 fd 99 d3 d3 b9 a0 12 |...0....3.......|00000040 d9 de a5 d2 0e 95 f3 a5 bb f2 f9 91 b2 a3 c2 94 |................|00000050 b1 1c b7 eb 87 65 d7 0e 0c...</div></div></div></a><a class="pagination-related" href="/posts/8dc02fc6.html" title="第二届陇剑杯初赛学习WP"><img class="cover" src="/coverimages/default_bg19.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-04</div><div class="info-item-2">第二届陇剑杯初赛学习WP</div></div><div class="info-2"><div class="info-item-1">第二届陇剑杯初赛学习WPhard_web题目1开放端口： 服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口，则答案为80,81,82,83)   首先确定哪一个ip为服务器ip  服务器ip具有一下特征  打开 会话列表，按字节数排序，找到流量最大的IP对。大概率包含服务器。 对流量最大的IP对应用 端口过滤器（如tcp.port == 80），确认服务器身份。 回到会话列表，按数据包数量排序，找到包数量异常多但数据量可能不大的IP，它很可能是攻击者。 对该可疑IP的通信 Follow TCP Stream，查看内容确认是否为攻击行为。 必要时使用 错误过滤器（http.response.code &gt;= 400）辅助验证。   这里我们直接使用端口过滤tcp.port == 80     可以看到服务器的ip应该为192.168.162.180  当服务器对应的端口打开时，会进行三次握手阶段     所以我们知道服务器监听一个端口的时候会给客户端返回一个 SYN=1,ACK=1的包，筛选这个流量即可    这里我们...</div></div></div></a><a class="pagination-related" href="/posts/8087d2e8.html" title="CTFshow_web_WP"><img class="cover" src="/coverimages/default_bg22.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">CTFshow_web_WP</div></div><div class="info-2"><div class="info-item-1">CTFshow-Web-WP工具不是万能的Web入门信息收集web-11开发者开发不仔细,注释留在了前端界面,通过检查界面源代码发现漏洞和flag,得到的flag可能是编码之前的,所以需要进行base64解码或者其他方式解码  web-212前端进行限制,无法查看页面源代码或者检查,通过view-source:url可以查看源代码 通过不断刷新进行F12检查也可以开启代码检查,然后禁用JavaScript  web-31通过BP抓包,respond返回请求携带信息泄露（flag）  web-4&#x3D;&#x3D;#如果是有明显的网站架构，可以优先扫描robots文件&#x3D;&#x3D; 1网页搜索引擎爬取网站的robots(.txt)文件,所以网站robots(.txt)文件也会信息泄露(flag)  web-51phps文件泄露,若目录扫描到,通常用于提供给用户（访问者）直接通过Web浏览器查看php代码的内容。因为用户无法直接通过Web浏览器“看到”php文件的内容,所以需要用phps文件代替。用户访问phps文件就能看到对应的php文件的源码。其中可能有flag  ...</div></div></div></a><a class="pagination-related" href="/posts/6213db3a.html" title="知攻善防WP"><img class="cover" src="/coverimages/default_bg12.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-04</div><div class="info-item-2">知攻善防WP</div></div><div class="info-2"><div class="info-item-1">Webweb渗透1前景需要：小李在值守的过程中，发现有CPU占用飙升，出于胆子小，就立刻将服务器关机，这是他的服务器系统，请你找出以下内容，并作为通关条件： 1.攻击者的shell密码2.攻击者的IP地址3.攻击者的隐藏账户名称4.攻击者挖矿程序的矿池域名 用户：administrator密码Zgsf@admin.com 第一个要找到shell密码，那我们首先就要找到shell，两种办法 第一个直接用工具扫网站根目录（小皮面板打开） 第二个手动分析日志文件   工具:D盾、河马    phpstud的yapache2的日志文件在C:\phpstudy_pro\Extensions\Apache2.4.39\logs 手动分析access.log.1708905600，发现明显木马痕迹     可以看到木马在网站根目录下的&#x2F;content&#x2F;plugins&#x2F;tips&#x2F; 打开木马文件进行分析 123456789101112131415161718192021222324252627&lt;?php@error_reporting(0);sessi...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">yyssh</div><div class="author-info-description">我要成web高手</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0xYyssh"><i class="fab fa-github"></i><span>call me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CTFshow-MiscWp"><span class="toc-number">1.</span> <span class="toc-text">CTFshow_MiscWp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%9B%BA%E5%AE%9A%E6%80%9D%E7%BB%B4%EF%BC%8C%E5%A4%9A%E6%89%BE%E6%89%BE%E6%84%8F%E6%83%B3%E4%B8%8D%E5%88%B0%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">1.1.</span> <span class="toc-text">不要固定思维，多找找意想不到的地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc%E5%85%A5%E9%97%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Misc入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-01"><span class="toc-number">1.2.1.</span> <span class="toc-text">Misc-01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-02"><span class="toc-number">1.2.2.</span> <span class="toc-text">Misc-02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-03"><span class="toc-number">1.2.3.</span> <span class="toc-text">Misc-03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-04"><span class="toc-number">1.2.4.</span> <span class="toc-text">Misc-04</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%9B%BE%E7%89%87%E5%A4%B4%E5%92%8C%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">常见图片头和压缩包格式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-05-06-07-09-15"><span class="toc-number">1.2.5.</span> <span class="toc-text">Misc-05&#x2F;06&#x2F;07&#x2F;09&#x2F;15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-08"><span class="toc-number">1.2.6.</span> <span class="toc-text">Misc-08</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dd%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">dd命令基本语法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-10"><span class="toc-number">1.2.7.</span> <span class="toc-text">Misc-10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-11"><span class="toc-number">1.2.8.</span> <span class="toc-text">Misc-11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-12"><span class="toc-number">1.2.9.</span> <span class="toc-text">Misc-12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-13"><span class="toc-number">1.2.10.</span> <span class="toc-text">Misc-13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-14"><span class="toc-number">1.2.11.</span> <span class="toc-text">Misc-14</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-16"><span class="toc-number">1.2.12.</span> <span class="toc-text">Misc-16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-17"><span class="toc-number">1.2.13.</span> <span class="toc-text">Misc-17</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-18"><span class="toc-number">1.2.14.</span> <span class="toc-text">Misc-18</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-19"><span class="toc-number">1.2.15.</span> <span class="toc-text">Misc-19</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-20"><span class="toc-number">1.2.16.</span> <span class="toc-text">Misc-20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-21"><span class="toc-number">1.2.17.</span> <span class="toc-text">Misc-21</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-22"><span class="toc-number">1.2.18.</span> <span class="toc-text">Misc-22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-23"><span class="toc-number">1.2.19.</span> <span class="toc-text">Misc-23</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-24"><span class="toc-number">1.2.20.</span> <span class="toc-text">Misc-24</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%AE%BD%E9%AB%98%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F-%E5%8F%AA%E5%AF%B9%E6%9C%AA%E8%A2%AB%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E9%80%82%E7%94%A8%EF%BC%8Cbmp-%EF%BC%9A"><span class="toc-number">1.2.20.1.</span> <span class="toc-text">图片宽高计算公式(只对未被压缩的图片格式适用，bmp)：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-25-26"><span class="toc-number">1.2.21.</span> <span class="toc-text">Misc-25&#x2F;26</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#png%E5%9B%BE%E7%89%87%E7%9A%84%E7%BB%93%E6%9E%84%E8%AE%B2%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%AE%BD%E9%AB%98%E9%AA%8C%E8%AF%81"><span class="toc-number">1.2.21.1.</span> <span class="toc-text">png图片的结构讲解以及宽高验证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#PNG%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-number">1.2.21.1.1.</span> <span class="toc-text">PNG文件的结构：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#png%E5%9B%BE%E7%89%87%E7%9A%84CRC%E6%A0%A1%E9%AA%8C%EF%BC%9A"><span class="toc-number">1.2.21.1.2.</span> <span class="toc-text">png图片的CRC校验：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-27"><span class="toc-number">1.2.22.</span> <span class="toc-text">Misc-27</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-28"><span class="toc-number">1.2.23.</span> <span class="toc-text">Misc-28</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-29"><span class="toc-number">1.2.24.</span> <span class="toc-text">Misc_29</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-30"><span class="toc-number">1.2.25.</span> <span class="toc-text">Misc_30</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-31"><span class="toc-number">1.2.26.</span> <span class="toc-text">Misc_31</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-32-33"><span class="toc-number">1.2.27.</span> <span class="toc-text">Misc_32&#x2F;33</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-34"><span class="toc-number">1.2.28.</span> <span class="toc-text">Misc_34</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-35"><span class="toc-number">1.2.29.</span> <span class="toc-text">Misc_35</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-36"><span class="toc-number">1.2.30.</span> <span class="toc-text">Misc_36</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%AE%BD%E9%AB%98%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.30.1.</span> <span class="toc-text">常见图片格式的宽高存储方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-37"><span class="toc-number">1.2.31.</span> <span class="toc-text">Misc_37</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-38"><span class="toc-number">1.2.32.</span> <span class="toc-text">Misc_38</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#png%E5%9B%BE%E7%89%87%E7%9A%84%E5%8A%A8%E7%94%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.32.1.</span> <span class="toc-text">png图片的动画结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-39"><span class="toc-number">1.2.33.</span> <span class="toc-text">Misc_39</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-40"><span class="toc-number">1.2.34.</span> <span class="toc-text">Misc_40</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-41-%E6%84%9A%E4%BA%BA%E8%8A%82%E7%89%B9%E5%88%AB%E7%AF%87"><span class="toc-number">1.2.35.</span> <span class="toc-text">Misc_41(愚人节特别篇)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-42"><span class="toc-number">1.2.36.</span> <span class="toc-text">Misc_42</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-43"><span class="toc-number">1.2.37.</span> <span class="toc-text">Misc_43</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-44"><span class="toc-number">1.2.38.</span> <span class="toc-text">Misc_44</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-45"><span class="toc-number">1.2.39.</span> <span class="toc-text">Misc_45</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-46"><span class="toc-number">1.2.40.</span> <span class="toc-text">Misc_46</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-47"><span class="toc-number">1.2.41.</span> <span class="toc-text">Misc_47</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#apng%E7%9A%84fctl%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.41.1.</span> <span class="toc-text">apng的fctl结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-48"><span class="toc-number">1.2.42.</span> <span class="toc-text">Misc_48</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-49"><span class="toc-number">1.2.43.</span> <span class="toc-text">Misc_49</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-50"><span class="toc-number">1.2.44.</span> <span class="toc-text">Misc_50</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-53"><span class="toc-number">1.2.45.</span> <span class="toc-text">Misc_53</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-54"><span class="toc-number">1.2.46.</span> <span class="toc-text">Misc_54</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-55"><span class="toc-number">1.2.47.</span> <span class="toc-text">Misc_55</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc-56"><span class="toc-number">1.2.48.</span> <span class="toc-text">Misc_56</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zsteg%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">zsteg的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zsteg-%E5%B8%B8%E8%A7%81%E9%80%89%E9%A1%B9%E5%8F%8A%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">zsteg 常见选项及用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-verbose"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">-v, --verbose</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-extract"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">-E, --extract</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#e-method"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">-e, --method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#o-output"><span class="toc-number">1.3.1.4.</span> <span class="toc-text">-o, --output</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#l-list"><span class="toc-number">1.3.1.5.</span> <span class="toc-text">-l, --list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-all"><span class="toc-number">1.3.1.6.</span> <span class="toc-text">-a, --all</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#i-interactive"><span class="toc-number">1.3.1.7.</span> <span class="toc-text">-i, --interactive</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#p-png"><span class="toc-number">1.3.1.8.</span> <span class="toc-text">-p, --png</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-color"><span class="toc-number">1.3.1.9.</span> <span class="toc-text">-C, --color</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#f-force"><span class="toc-number">1.3.1.10.</span> <span class="toc-text">-f, --force</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#password"><span class="toc-number">1.3.1.11.</span> <span class="toc-text">--password</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">实例用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-1%EF%BC%9A%E5%88%86%E6%9E%90-PNG-%E6%96%87%E4%BB%B6%E5%B9%B6%E6%8F%90%E5%8F%96%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">示例 1：分析 PNG 文件并提取隐藏数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-2%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%9C%80%E4%B8%8D%E9%87%8D%E8%A6%81%E4%BD%8D%EF%BC%88LSB%EF%BC%89%E5%88%86%E6%9E%90%E5%9B%BE%E5%83%8F"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">示例 2：使用最不重要位（LSB）分析图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-3%EF%BC%9A%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E6%94%AF%E6%8C%81%E7%9A%84%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">示例 3：列出所有支持的隐写分析方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-4%EF%BC%9A%E4%BB%A5%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90%E5%9B%BE%E5%83%8F"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">示例 4：以交互模式分析图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">一般用法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ExifTool%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">ExifTool的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ExifTool-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">ExifTool 的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%80%89%E9%A1%B9%E5%92%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">常见选项和标签</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pngcheck%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">pngcheck的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.5.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9%E8%AF%B4%E6%98%8E"><span class="toc-number">1.5.2.</span> <span class="toc-text">常用选项说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BE%93%E5%87%BA%E8%AF%B4%E6%98%8E"><span class="toc-number">1.5.3.</span> <span class="toc-text">常见输出说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.5.4.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mdadm%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">mdadm的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mdadm-%E5%B8%B8%E8%A7%81%E9%80%89%E9%A1%B9%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">1.6.1.</span> <span class="toc-text">mdadm 常见选项及作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ImageMagick%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.7.</span> <span class="toc-text">ImageMagick的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.7.1.</span> <span class="toc-text">基本命令介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StegSlove%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.8.</span> <span class="toc-text">StegSlove的用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc%E9%A2%98%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">1.9.</span> <span class="toc-text">Misc题小技巧</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/6213db3a.html" title="知攻善防WP"><img src="/coverimages/default_bg12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="知攻善防WP"/></a><div class="content"><a class="title" href="/posts/6213db3a.html" title="知攻善防WP">知攻善防WP</a><time datetime="2026-01-04T08:27:09.000Z" title="发表于 2026-01-04 16:27:09">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/143a4fd3.html" title="blogLearn"><img src="/coverimages/default_bg21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="blogLearn"/></a><div class="content"><a class="title" href="/posts/143a4fd3.html" title="blogLearn">blogLearn</a><time datetime="2026-01-04T03:46:15.000Z" title="发表于 2026-01-04 11:46:15">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d071fe4b.html" title="hexoLearn"><img src="/coverimages/default_bg22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexoLearn"/></a><div class="content"><a class="title" href="/posts/d071fe4b.html" title="hexoLearn">hexoLearn</a><time datetime="2026-01-04T03:15:49.000Z" title="发表于 2026-01-04 11:15:49">2026-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8dc02fc6.html" title="第二届陇剑杯初赛学习WP"><img src="/coverimages/default_bg19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第二届陇剑杯初赛学习WP"/></a><div class="content"><a class="title" href="/posts/8dc02fc6.html" title="第二届陇剑杯初赛学习WP">第二届陇剑杯初赛学习WP</a><time datetime="2025-09-04T10:24:24.000Z" title="发表于 2025-09-04 18:24:24">2025-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP"><img src="/coverimages/default_bg2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025蓝桥杯全国总决赛部分WP"/></a><div class="content"><a class="title" href="/posts/7d288577.html" title="2025蓝桥杯全国总决赛部分WP">2025蓝桥杯全国总决赛部分WP</a><time datetime="2025-06-24T09:53:00.000Z" title="发表于 2025-06-24 17:53:00">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/top6.jpg);"><div id="footer-wrap"><div id="footer-left"><div class="footer-title"><span>yyssh's blog | </span><span class="footer-copyright">&copy;2025 - 2026 <i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i> By yyssh</span></div><div class="wordcount"></div><span>yyssh 已经写了 61.3k 字，</span><span>写到西游记第29回，女儿国国王递婚书，唐僧选择断更，摆烂啊</span></div><div id="footer-right"><div class="footer-totop"><i class="fas fa-chevron-up" onclick="btf.scrollToDest(0, 500)"></i></div><div class="footer-info"><span class="footer-runtime"></span><span class="footer-by"></span></div><div class="footer-service"><a target="_blank" href="https://hexo.io/zh-cn/"><img alt="hexo" src="/shieldImages/hexo.jpg"/></a><a target="_blank" href="https://github.com/0xYyssh"><img alt="github" src="/shieldImages/github.jpg"/></a><a target="_blank" href="https://www.bilibili.com/video/BV12om2YTEgW/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=f2e427ac71efa3412ac58124c4df9be1"><img alt="github" src="/shieldImages/web.jpg"/></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/foot.js" async></script><script async data-pjax src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg19.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-09-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/8dc02fc6.html&quot;);" href="javascript:void(0);" alt="">第二届陇剑杯初赛学习WP</a><div class="blog-slider__text">个人对第二届陇剑杯的复现学习WP笔记</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg12.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2026-01-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/6213db3a.html&quot;);" href="javascript:void(0);" alt="">知攻善防WP</a><div class="blog-slider__text">对知攻善防靶场的一些复现笔记，不喜勿喷！</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg2.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" onclick="window.open(&quot;posts/7d288577.html&quot;);" href="javascript:void(0);" alt="">2025蓝桥杯全国总决赛部分WP</a><div class="blog-slider__text">蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg10.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/9cd054c0.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Web-WP</a><div class="blog-slider__text">个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg20.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/a691451b.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Misc-WP</a><div class="blog-slider__text">ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩</div></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

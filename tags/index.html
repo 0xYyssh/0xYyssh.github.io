@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>御赐黄签 | yyssh's blog</title><meta name="author" content="yyssh"><meta name="copyright" content="yyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="御赐黄签">
+<meta property="og:url" content="https://0xyyssh.github.io/tags/index.html">
+<meta property="og:site_name" content="yyssh&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0xyyssh.github.io/images/avatar.jpg">
+<meta property="article:published_time" content="2026-01-04T05:35:00.000Z">
+<meta property="article:modified_time" content="2026-01-18T10:40:28.991Z">
+<meta property="article:author" content="yyssh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0xyyssh.github.io/images/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="https://0xyyssh.github.io/tags/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '御赐黄签',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/index_layout.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/swiper.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="loading_img"></div></div></div><script>window.paceOptions = {
+  restartOnPushState: false
+}
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  //- pace进度条结束后再关闭loading
+  Pace.on('done', preloader.endLoading)
+
+  btf.addGlobalFn('pjaxSend', () => {
+      Pace.restart()
+      if (false){
+          preloader.initLoading()
+      }
+  }, 'pace_restart')
+})()</script><div class="bg-animation" id="web_bg" style="background-color: #FCFCF7;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div></div></div><div class="page type-tags" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yyssh's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">御赐黄签</h1></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="page-title">御赐黄签</div><div class="tag-cloud-list text-center"><a href="/tags/misc/" style="font-size: 1.3em; background-color: rgb(105, 53, 99);">misc<sup>2</sup></a><a href="/tags/WP/" style="font-size: 1.5em; background-color: rgb(148, 52, 50);">WP<sup>7</sup></a><a href="/tags/ctf%E6%AF%94%E8%B5%9B/" style="font-size: 1.4em; background-color: rgb(106, 96, 116);">ctf比赛<sup>3</sup></a><a href="/tags/web/" style="font-size: 1.3em; background-color: rgb(50, 50, 78);">web<sup>2</sup></a><a href="/tags/hexo-butterfly/" style="font-size: 1.3em; background-color: rgb(189, 50, 57);">hexo-butterfly<sup>2</sup></a><a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.2em; background-color: rgb(172, 78, 50);">应急响应<sup>1</sup></a><a href="/tags/java/" style="font-size: 1.2em; background-color: rgb(97, 82, 50);">java<sup>1</sup></a><a href="/tags/python/" style="font-size: 1.2em; background-color: rgb(50, 71, 50);">python<sup>1</sup></a></div></div></main><footer id="footer" style="background-image: url(/images/top6.jpg);"><div id="footer-wrap"><div id="footer-left"><div class="footer-title"><span>yyssh's blog | </span><span class="footer-copyright">&copy;2025 - 2026 <i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i> By yyssh</span></div><div class="wordcount"></div><span>yyssh 已经写了 61.3k 字，</span><span>写到西游记第29回，女儿国国王递婚书，唐僧选择断更，摆烂啊</span></div><div id="footer-right"><div class="footer-totop"><i class="fas fa-chevron-up" onclick="btf.scrollToDest(0, 500)"></i></div><div class="footer-info"><span class="footer-runtime"></span><span class="footer-by"></span></div><div class="footer-service"><a target="_blank" href="https://hexo.io/zh-cn/"><img alt="hexo" src="/shieldImages/hexo.jpg"/></a><a target="_blank" href="https://github.com/0xYyssh"><img alt="github" src="/shieldImages/github.jpg"/></a><a target="_blank" href="https://www.bilibili.com/video/BV12om2YTEgW/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=f2e427ac71efa3412ac58124c4df9be1"><img alt="github" src="/shieldImages/web.jpg"/></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/foot.js" async></script><script async data-pjax src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg19.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-09-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/8dc02fc6.html&quot;);" href="javascript:void(0);" alt="">第二届陇剑杯初赛学习WP</a><div class="blog-slider__text">个人对第二届陇剑杯的复现学习WP笔记</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg12.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2026-01-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/6213db3a.html&quot;);" href="javascript:void(0);" alt="">知攻善防WP</a><div class="blog-slider__text">对知攻善防靶场的一些复现笔记，不喜勿喷！</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg2.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" onclick="window.open(&quot;posts/7d288577.html&quot;);" href="javascript:void(0);" alt="">2025蓝桥杯全国总决赛部分WP</a><div class="blog-slider__text">蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg10.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/9cd054c0.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Web-WP</a><div class="blog-slider__text">个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverimages/default_bg20.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/a691451b.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Misc-WP</a><div class="blog-slider__text">ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩</div></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
