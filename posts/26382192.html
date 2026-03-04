@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>云服务器网站部署 | yyssh's blog</title><meta name="author" content="yyssh"><meta name="copyright" content="yyssh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网站搭建前言  本来是top10知识复习与巩固的，结果复习到了xss，之前一直没有搞服务器，每次都是网上搜索解决的，干脆就长期买断一个服务器吧。这样就写了这篇文章。 Ubuntu服务器安装  由于是云服务，压根就没有安装系统这一步，这我也就直接跳过了  大学生嫖一个三大云厂商服务器 我个人选择的是ubuntu22.04，无他，centos不更新了，最开始我也是学的centos的，但是后面慢慢转到了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云服务器网站部署">
+<meta property="og:url" content="https://0xyyssh.github.io/posts/26382192.html">
+<meta property="og:site_name" content="yyssh&#39;s blog">
+<meta property="og:description" content="网站搭建前言  本来是top10知识复习与巩固的，结果复习到了xss，之前一直没有搞服务器，每次都是网上搜索解决的，干脆就长期买断一个服务器吧。这样就写了这篇文章。 Ubuntu服务器安装  由于是云服务，压根就没有安装系统这一步，这我也就直接跳过了  大学生嫖一个三大云厂商服务器 我个人选择的是ubuntu22.04，无他，centos不更新了，最开始我也是学的centos的，但是后面慢慢转到了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://0xyyssh.github.io/coverImages/default_bg13.jpg">
+<meta property="article:published_time" content="2026-03-04T12:05:15.000Z">
+<meta property="article:modified_time" content="2026-03-04T12:14:10.588Z">
+<meta property="article:author" content="yyssh">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0xyyssh.github.io/coverImages/default_bg13.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "云服务器网站部署",
+  "url": "https://0xyyssh.github.io/posts/26382192.html",
+  "image": "https://0xyyssh.github.io/coverImages/default_bg13.jpg",
+  "datePublished": "2026-03-04T12:05:15.000Z",
+  "dateModified": "2026-03-04T12:14:10.588Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "yyssh",
+      "url": "https://0xyyssh.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/firewall.png"><link rel="canonical" href="https://0xyyssh.github.io/posts/26382192.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":280,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '云服务器网站部署',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/index_layout.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/swiper.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="loading_img"></div></div></div><script>window.paceOptions = {
+  restartOnPushState: false
+}
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  //- pace进度条结束后再关闭loading
+  Pace.on('done', preloader.endLoading)
+
+  btf.addGlobalFn('pjaxSend', () => {
+      Pace.restart()
+      if (false){
+          preloader.initLoading()
+      }
+  }, 'pace_restart')
+})()</script><div class="bg-animation" id="web_bg" style="background-color: #FCFCF7;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/coverImages/default_bg13.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">yyssh's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">云服务器网站部署</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 上朝听政</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 史记存档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-book"></i><span> 翰林书院</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-bookmark"></i><span> 御赐黄签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 诸侯会盟</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">云服务器网站部署</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-04T12:05:15.000Z" title="发表于 2026-03-04 20:05:15">2026-03-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-04T12:14:10.588Z" title="更新于 2026-03-04 20:14:10">2026-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91/">网站开发</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="网站搭建"><a href="#网站搭建" class="headerlink" title="网站搭建"></a>网站搭建</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  本来是top10知识复习与巩固的，结果复习到了xss，之前一直没有搞服务器，每次都是网上搜索解决的，干脆就长期买断一个服务器吧。这样就写了这篇文章。</p>
+<h2 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h2><h3 id="服务器安装"><a href="#服务器安装" class="headerlink" title="服务器安装"></a>服务器安装</h3><p>  由于是云服务，压根就没有安装系统这一步，这我也就直接跳过了</p>
+<ol>
+<li>大学生嫖一个三大云厂商服务器</li>
+<li>我个人选择的是ubuntu22.04，无他，centos不更新了，最开始我也是学的centos的，但是后面慢慢转到了ubuntu</li>
+</ol>
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>  既然上了公网，这里就不推荐root执行，以及root远程登录了，怎么说也是学安全的，总不能一直使用root登录吧（我们导师每次看到我虚拟机的root账户都要蛐蛐我）。</p>
+<ol>
+<li>首先使用aliyun自带的web远程登录（这里就是root登录，而且是免密的）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -m -s /bin/bash  -G <span class="built_in">sudo</span> -c <span class="string">&quot;ssh access&quot;</span> username </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我这里就是创建了家目录，以及指定了登录shell，写了一个注释，分配了sudo权限</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-c, --comment COMMENT</code></td>
+<td align="left">添加注释，通常用于填写用户全名或描述信息</td>
+</tr>
+<tr>
+<td align="left"><code>-d, --home HOME_DIR</code></td>
+<td align="left">指定用户的主目录路径</td>
+</tr>
+<tr>
+<td align="left"><code>-m, --create-home</code></td>
+<td align="left">如果主目录不存在，则自动创建主目录</td>
+</tr>
+<tr>
+<td align="left"><code>-M</code></td>
+<td align="left">不创建用户的主目录</td>
+</tr>
+<tr>
+<td align="left"><code>-D, --defaults</code></td>
+<td align="left">显示或修改默认的 useradd 配置</td>
+</tr>
+<tr>
+<td align="left"><code>-e, --expiredate EXPIRE_DATE</code></td>
+<td align="left">设置账户的过期日期，格式为 YYYY-MM-DD</td>
+</tr>
+<tr>
+<td align="left"><code>-f, --inactive INACTIVE</code></td>
+<td align="left">设置密码过期后，账户被禁用前的天数</td>
+</tr>
+<tr>
+<td align="left"><code>-g, --gid GROUP</code></td>
+<td align="left">指定用户的主要组（组名或 GID）</td>
+</tr>
+<tr>
+<td align="left"><code>-G, --groups GROUPS</code></td>
+<td align="left">指定用户所属的附加组列表，多个组用逗号分隔</td>
+</tr>
+<tr>
+<td align="left"><code>-k, --skel SKEL_DIR</code></td>
+<td align="left">指定骨架目录，用于复制文件到用户主目录（需配合 -m 使用）</td>
+</tr>
+<tr>
+<td align="left"><code>-r, --system</code></td>
+<td align="left">创建系统账户</td>
+</tr>
+<tr>
+<td align="left"><code>-s, --shell SHELL</code></td>
+<td align="left">指定用户的登录 shell</td>
+</tr>
+<tr>
+<td align="left"><code>-u, --uid UID</code></td>
+<td align="left">指定用户的 UID（用户 ID）</td>
+</tr>
+<tr>
+<td align="left"><code>-U, --user-group</code></td>
+<td align="left">创建与用户名同名的组，并将其作为用户的主要组</td>
+</tr>
+</tbody></table>
+<h2 id="允许用户ssh密码登录"><a href="#允许用户ssh密码登录" class="headerlink" title="允许用户ssh密码登录"></a>允许用户ssh密码登录</h2><p>  aliyun的云服务器默认是禁止ssh密码登录的，你用xshell连接服务器，密码选项是无法选择的，只能用公钥和密码登录（虽然这样更安全，但真不符合我的习惯，我的这小云服务器还有高级hei客来打吗？那正好我学习学习技术）</p>
+<ol>
+<li><p>给上一节创建的用户设置密码</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换到创建的username，然后编辑&#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将PasswordAuthentication改为yes即可，保存退出</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PasswordAuthentication</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart ssh</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>  安装apache2也可以进行网站服务，但是我这里选择nginx，因为nginx要小一点（符合我这2核2g的小云服务器）</p>
+<ol>
+<li>安装nginx</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y nginx</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置为开机自启</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> nginx</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重启nginx服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>开启aliyun80端口安全组，访问网站（有下面图片就完成了）</li>
+</ol>
+<p><img src="/posts/26382192/images/image-20260304110936080.png" alt="image-20260304110936080"></p>
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>  我这个服务器主要是写题，所以主流语言还是php7.4.3</p>
+<ol>
+<li><p>添加第三方仓库，获取apt软件源</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> add-apt-repository ppa:ondrej/php -y</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装php7.4.3，以及一系列插件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y php7.4 php7.4-fpm php7.4-mysql php7.4-curl php7.4-gd php7.4-mbstring php7.4-xml php7.4-zip php7.4-bcmath php7.4-json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>php-fpm: PHP 进程管理器，Nginx 必须配合它使用</li>
+<li>php-mysql: 让 PHP 能连接数据库</li>
+<li>php-curl, php-gd, php-mbstring, php-xml, php-zip: 网站常用功能支持(根据后缀，应该也能知道是支持一系列格式的)<ul>
+<li>gd：处理图片，curl：抓取流量，mbstring：处理其他编码，xml：处理xml文档，zip：处理解压缩</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>将php-fpm设为开机自启，并且重启该服务</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> php7.4-fpm</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart php7.4-fpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份配置文件，并进行修改</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak</span><br><span class="line"><span class="built_in">sudo</span> vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找到如下代码块（将注释掉取消掉，php-cgi的注释保留）</p>
+<p> <img src="/posts/26382192/images/image-20260304114244908.png" alt="image-20260304114244908"></p>
+<p> 检测nginx语法是否有问题</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -t</span><br></pre></td></tr></table></figure>
+
+<p> 重新加载nginx</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl reload nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写一个info探针，测试是否部署成功</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /var/www/html/phpinfo.php</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件中写入</span></span><br><span class="line">&lt;?php phpinfo()?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问网站，后接uri:phpinfo.php</p>
+<p> <img src="/posts/26382192/images/image-20260304114511942.png" alt="image-20260304114511942"></p>
+</li>
+</ol>
+<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ethnicitybeta/article/details/154019493?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-8-154019493-blog-130644812.235%5Ev43%5Epc_blog_bottom_relevance_base2&spm=1001.2101.3001.4242.5&utm_relevant_index=10">Ubuntu 22.04 安装 MySQL 5.7 完整指南_ubuntu22.04安装mysql5.7-CSDN博客</a></p>
+<p>  现在mysql的通用版本是8以上，我这里是做题环境，所以用mysql5.7</p>
+<ol>
+<li><p>清除现有的mysql安装</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止 MySQL 服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl stop mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载现有 MySQL 包</span></span><br><span class="line"><span class="built_in">sudo</span> apt purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除配置文件和数据</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">rm</span> -rf /etc/mysql /var/lib/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理自动安装的依赖</span></span><br><span class="line"><span class="built_in">sudo</span> apt autoremove</span><br><span class="line"><span class="built_in">sudo</span> apt autoclean</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载mysql5.7.42</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://downloads.mysql.com/archives/get/p/23/file/mysql-server_5.7.42-1ubuntu18.04_amd64.deb-bundle.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压包</span></span><br><span class="line">tar -xvf mysql-server_5.7.42-1ubuntu18.04_amd64.deb-bundle.tar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>个人推荐move到opt下面，并且创建一个目录mysql</p>
+</li>
+<li><p>安装依赖</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install libaio1 libmecab2 libtinfo5 -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一键安装脚本</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;开始安装 MySQL 5.7...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按正确顺序安装 MySQL 包</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;1. 安装 mysql-common...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i mysql-common_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;2. 安装 libmysqlclient20...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i libmysqlclient20_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;3. 安装 libmysqlclient-dev...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i libmysqlclient-dev_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;4. 安装 libmysqld-dev...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i libmysqld-dev_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;5. 安装 mysql-community-client...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i mysql-community-client_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;6. 安装 mysql-client...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i mysql-client_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;7. 安装 mysql-community-server...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i mysql-community-server_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;8. 安装 mysql-server...&quot;</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i mysql-server_5.7.42-1ubuntu18.04_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;MySQL 5.7 安装完成！&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加执行权限，并执行</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x install_mysql.sh</span><br><span class="line"><span class="built_in">sudo</span> ./install_mysql.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化配置（这个脚本是你安装完成之后就有的，不用找在哪）</p>
+</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<p>  <code>VALIDATE PASSWORD COMPONENT can be used to test passwords...</code></p>
+<ul>
+<li>输入：<code>n</code> (否)，我这小机器就不设置复杂的密码校验了</li>
+</ul>
+<p>  <code>Change the password for root ?</code></p>
+<ul>
+<li>输入：<code>Y</code> (是)</li>
+</ul>
+<p>  <code>Remove anonymous users?</code></p>
+<ul>
+<li>输入：<code>Y</code> (是)</li>
+</ul>
+<p>  <code>Disallow root login remotely?</code></p>
+<ul>
+<li>输入：<code>Y</code> (是) ，为了安全，禁止 root 远程连接，我们稍后会创建专用用户。</li>
+</ul>
+<p>  <code>Remove test database and access to it?</code></p>
+<ul>
+<li>输入：<code>Y</code> (是)</li>
+</ul>
+<p>  <code>Reload privilege tables now?</code></p>
+<ul>
+<li>输入：<code>Y</code> (是）</li>
+</ul>
+<ol start="8">
+<li><p>2g内存的性能优化，以及改编码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<p> 修改下面信息，没有就加上</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">mysqld</span>]</span><br><span class="line"><span class="string">bind-address</span> <span class="string">=</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"><span class="string">character-set-server</span> <span class="string">=</span> <span class="string">utf8mb4</span></span><br><span class="line"><span class="string">collation-server</span> <span class="string">=</span> <span class="string">utf8mb4_unicode_ci</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2G 内存核心优化</span></span><br><span class="line"><span class="string">innodb_buffer_pool_size</span> <span class="string">=</span> <span class="string">256M</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志大小：减小日志文件以节省磁盘和内存映射</span></span><br><span class="line"><span class="string">innodb_log_file_size</span> <span class="string">=</span> <span class="string">32M</span></span><br><span class="line"><span class="string">innodb_log_buffer_size</span> <span class="string">=</span> <span class="string">8M</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接数限制：小网站不需要太多并发连接，减少每个连接的内存开销</span></span><br><span class="line"><span class="string">max_connections</span> <span class="string">=</span> <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭性能模式 (Performance Schema)</span></span><br><span class="line"><span class="string">performance_schema</span> <span class="string">=</span> <span class="string">OFF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 临时表大小限制</span></span><br><span class="line"><span class="string">tmp_table_size</span> <span class="string">=</span> <span class="string">32M</span></span><br><span class="line"><span class="string">max_heap_table_size</span> <span class="string">=</span> <span class="string">32M</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置为开机自启，并且重启该服务</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> mysql</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试是否成功连接</p>
+<ol>
+<li><p>登录mysql</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建测试数据库(一次输入)</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 1. 创建数据库 (例如叫 mywebsite)</span><br><span class="line">CREATE DATABASE mywebsite CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</span><br><span class="line"></span><br><span class="line">-- 2. MySQL 5.7 推荐使用 mysql_native_password 认证插件，兼容性最好</span><br><span class="line">CREATE USER &#x27;webuser&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;yourpassword&#x27;;</span><br><span class="line"></span><br><span class="line">-- 3. 授予该用户对特定数据库的所有权限</span><br><span class="line">GRANT ALL PRIVILEGES ON mywebsite.* TO &#x27;webuser&#x27;@&#x27;localhost&#x27;;</span><br><span class="line"></span><br><span class="line">-- 4. 刷新权限</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"></span><br><span class="line">-- 5. 退出</span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建测试文件&#x2F;var&#x2F;www&#x2F;html&#x2F;db_test.php</p>
+</li>
+<li><p>写入下面内容</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>;</span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;webuser&quot;</span>;</span><br><span class="line"><span class="variable">$password</span> = <span class="string">&quot;yourpassword&quot;</span>; <span class="comment">// 替换为你刚才设置的密码</span></span><br><span class="line"><span class="variable">$dbname</span> = <span class="string">&quot;mywebsite&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="keyword">new</span> <span class="title function_ invoke__">mysqli</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$dbname</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查连接</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$conn</span>-&gt;connect_error) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span> . <span class="variable">$conn</span>-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;成功连接到 MySQL 5.7! 当前数据库版本信息：&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取服务器版本</span></span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;SELECT VERSION() as version&quot;</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;MySQL Version: &quot;</span> . <span class="variable">$row</span>[<span class="string">&quot;version&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <img src="/posts/26382192/images/image-20260304133141608.png" alt="image-20260304133141608"></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="linux的phpstudy"><a href="#linux的phpstudy" class="headerlink" title="linux的phpstudy"></a>linux的phpstudy</h2><p>  这个其实可以一键配置lnmp或者lamp环境，但是我这小服务器，我就直接手动配置的lnmp</p>
+<p>这个配置很简单，首先有一个纯净的ubuntu，去phpstudy的官网，用脚本一键下载即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.xp.cn/download">小皮面板安装脚本下载 - 一键部署 Linux 网站环境 | 支持 CentOS&#x2F;Ubuntu&#x2F;Debian</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> wget -O install.sh https://dl.xp.cn/dl/xp/install.sh &amp;&amp; <span class="built_in">sudo</span> bash install.sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="/posts/26382192/images/image-20260304195932144.png" alt="image-20260304195932144"></p>
+<h2 id="TODO1Panel"><a href="#TODO1Panel" class="headerlink" title="TODO1Panel"></a>TODO1Panel</h2><h2 id="TODObaota"><a href="#TODObaota" class="headerlink" title="TODObaota"></a>TODObaota</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io">yyssh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://0xyyssh.github.io/posts/26382192.html">https://0xyyssh.github.io/posts/26382192.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://0xyyssh.github.io" target="_blank">yyssh's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web/">web</a><a class="post-meta__tags" href="/tags/ubuntu/">ubuntu</a><a class="post-meta__tags" href="/tags/php/">php</a><a class="post-meta__tags" href="/tags/mysql/">mysql</a><a class="post-meta__tags" href="/tags/nginx/">nginx</a></div><div class="post-share"><div class="social-share" data-image="/coverImages/default_bg13.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css" media="print" onload="this.media='all'"><script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/530fceb2.html" title="sql注入"><img class="cover" src="/coverImages/default_bg.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">sql注入</div></div><div class="info-2"><div class="info-item-1">sql注入前言  之前的sql注入笔记写得太垃圾了，自己都看不懂，现在正好放假，重新再整理一篇，随便回顾一下，至于为什么不用sqlmap一把梭，既然是笔记了，全部都粘sqlmap一把梭的截图也不好吧，当然最后我会写一下sqlmap的用法的 什么是sql注入  SQL注入（SQL Injection）是一种常见的网络安全攻击技术，攻击者通过在Web应用程序的输入字段中插入恶意的SQL代码，欺骗数据库服务器执行非授权的SQL查询命令。   由于数据库系统的架构和SQL语法存在差异，SQL注入手法也因数据库类型而不同：例如MySQL中常用--或#注释，Oracle则使用--并依赖双竖杠||拼接字符串；Access数据库需要借助IIF()函数进行盲注判断；而在Redis这类键值数据库的注入则截然不同——攻击者主要利用未授权访问或通过EVAL命令执行Lua脚本，或通过CONFIG SET修改持久化路径来写入Webshell，其本质是利用了NoSQL的指令注入而非传统的SQL语法注入。   当然由于mysql数据库的开源，以及便捷性，我们还是主要讨论mysql数据库的sql注入方法 sql注...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/2f610211.html" title="反弹shell"><img class="cover" src="/coverImages/default_bg4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-21</div><div class="info-item-2">反弹shell</div></div><div class="info-2"><div class="info-item-1">反弹shell什么是shellShell 俗称壳（用来区别于核），是指“为使用者提供操作界面”的软件（命令解析器）。它类似于DOS下的command.com和后来的cmd.exe。它接收用户命令，然后调用相应的应用程序。简单说用户通过壳（shell）访问操作系统内核的服务，也就是由壳到内核，执行系统命令。 用户-&gt;外围程序（shell）-&gt;内核-&gt;硬件 什么是反弹shell反弹shell（reverse shell），就是控制端监听在某TCP&#x2F;UDP端口，被控端发起请求到该端口，并将其命令行的输入输出转到控制端。reverse shell与telnet，ssh等标准shell对应，本质上是网络概念的客户端与服务端的角色反转。 为什么要反弹shell通常用于被控端因防火墙受限、权限不足、端口被占用等情形。 举例：假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面、web服务、ssh、telnet等等都是正向连接。那么什么情况下正向连接不能用了呢？有如下...</div></div></div></a><a class="pagination-related" href="/posts/9cd054c0.html" title="2025ISCC区域赛Web-WP"><img class="cover" src="/coverImages/default_bg3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">2025ISCC区域赛Web-WP</div></div><div class="info-2"><div class="info-item-1">2025ISCC区域赛Web-WP比赛感受个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托 Web+基本功打开网址，是一段题目提示  重点在于这个用户代理身上（修改传输的UA）  只能一个一个尝试，最后在GaoJiGongChengShiFoYeGe(高级工程师佛耶戈)，拿到路由（Q2rN6h3YkZB9fL5j2WmX.php）  路由打开之后是一段需要绕过的源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;?phpshow_source(__FILE...</div></div></div></a><a class="pagination-related" href="/posts/56cf3280.html" title="javaWeb"><img class="cover" src="/coverImages/default_bg11.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-20</div><div class="info-item-2">javaWeb</div></div><div class="info-2"><div class="info-item-1">javaWebtomcat导入idea  添加成功tomcat之后，再将模块改为web模块  然后选择导入web框架即可  idea2024.1 配置Servlet踩坑idea没有自动识别java源码目录，maven的pom.xml，url的web目录，全部都要自己导入   java源码目录识别    web目录识别    maven的pom.xml导入     tomcat运行与修改 安装目录下解压下载的tomcat包，点击bin&#x2F;start.bat脚本 命令行中文乱码修改安装目录下的conf&#x2F;logging.properties文件  这4个编码修改成与命令行一样的编码就行了，中国的win11命令行默认是gbk 方法一：把上面四个编码改成GBK 方法二：修改命令行的编码为UTF-8 设置里面的更改国家和地区  选择管理语言设置  重启之后命令行的编码就是UTF-8了  tomcat网页启动端口修改还是安装目录下的conf&#x2F;server.xml  修改8080端口为9999  启动成功如下：  servlet基本概念  Servlet是运行在Web...</div></div></div></a><a class="pagination-related" href="/posts/530fceb2.html" title="sql注入"><img class="cover" src="/coverImages/default_bg.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-02</div><div class="info-item-2">sql注入</div></div><div class="info-2"><div class="info-item-1">sql注入前言  之前的sql注入笔记写得太垃圾了，自己都看不懂，现在正好放假，重新再整理一篇，随便回顾一下，至于为什么不用sqlmap一把梭，既然是笔记了，全部都粘sqlmap一把梭的截图也不好吧，当然最后我会写一下sqlmap的用法的 什么是sql注入  SQL注入（SQL Injection）是一种常见的网络安全攻击技术，攻击者通过在Web应用程序的输入字段中插入恶意的SQL代码，欺骗数据库服务器执行非授权的SQL查询命令。   由于数据库系统的架构和SQL语法存在差异，SQL注入手法也因数据库类型而不同：例如MySQL中常用--或#注释，Oracle则使用--并依赖双竖杠||拼接字符串；Access数据库需要借助IIF()函数进行盲注判断；而在Redis这类键值数据库的注入则截然不同——攻击者主要利用未授权访问或通过EVAL命令执行Lua脚本，或通过CONFIG SET修改持久化路径来写入Webshell，其本质是利用了NoSQL的指令注入而非传统的SQL语法注入。   当然由于mysql数据库的开源，以及便捷性，我们还是主要讨论mysql数据库的sql注入方法 sql注...</div></div></div></a><a class="pagination-related" href="/posts/8087d2e8.html" title="CTFshow_web_WP"><img class="cover" src="/coverImages/default_bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">CTFshow_web_WP</div></div><div class="info-2"><div class="info-item-1">CTFshow-Web-WP工具不是万能的Web入门信息收集web-11开发者开发不仔细,注释留在了前端界面,通过检查界面源代码发现漏洞和flag,得到的flag可能是编码之前的,所以需要进行base64解码或者其他方式解码  web-212前端进行限制,无法查看页面源代码或者检查,通过view-source:url可以查看源代码 通过不断刷新进行F12检查也可以开启代码检查,然后禁用JavaScript  web-31通过BP抓包,respond返回请求携带信息泄露（flag）  web-4&#x3D;&#x3D;#如果是有明显的网站架构，可以优先扫描robots文件&#x3D;&#x3D; 1网页搜索引擎爬取网站的robots(.txt)文件,所以网站robots(.txt)文件也会信息泄露(flag)  web-51phps文件泄露,若目录扫描到,通常用于提供给用户（访问者）直接通过Web浏览器查看php代码的内容。因为用户无法直接通过Web浏览器“看到”php文件的内容,所以需要用phps文件代替。用户访问phps文件就能看到对应的php文件的源码。其中可能有flag  ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">yyssh</div><div class="author-info-description">我要成为web糕手</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/0xYyssh"><i class="fab fa-github"></i><span>call me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">网站搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu"><span class="toc-number">1.2.</span> <span class="toc-text">Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">服务器安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-number">1.3.</span> <span class="toc-text">添加用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%81%E8%AE%B8%E7%94%A8%E6%88%B7ssh%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">1.4.</span> <span class="toc-text">允许用户ssh密码登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx"><span class="toc-number">1.5.</span> <span class="toc-text">nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php"><span class="toc-number">1.6.</span> <span class="toc-text">php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql"><span class="toc-number">1.7.</span> <span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E7%9A%84phpstudy"><span class="toc-number">1.8.</span> <span class="toc-text">linux的phpstudy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO1Panel"><span class="toc-number">1.9.</span> <span class="toc-text">TODO1Panel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODObaota"><span class="toc-number">1.10.</span> <span class="toc-text">TODObaota</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/26382192.html" title="云服务器网站部署"><img src="/coverImages/default_bg13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云服务器网站部署"/></a><div class="content"><a class="title" href="/posts/26382192.html" title="云服务器网站部署">云服务器网站部署</a><time datetime="2026-03-04T12:05:15.000Z" title="发表于 2026-03-04 20:05:15">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/530fceb2.html" title="sql注入"><img src="/coverImages/default_bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sql注入"/></a><div class="content"><a class="title" href="/posts/530fceb2.html" title="sql注入">sql注入</a><time datetime="2026-03-02T14:17:11.000Z" title="发表于 2026-03-02 22:17:11">2026-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/e13e1390.html" title="sqlmap手册"><img src="/coverImages/default_bg8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sqlmap手册"/></a><div class="content"><a class="title" href="/posts/e13e1390.html" title="sqlmap手册">sqlmap手册</a><time datetime="2026-02-08T09:00:23.000Z" title="发表于 2026-02-08 17:00:23">2026-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f3e52bb3.html" title="dirsearch手册"><img src="/coverImages/default_bg20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dirsearch手册"/></a><div class="content"><a class="title" href="/posts/f3e52bb3.html" title="dirsearch手册">dirsearch手册</a><time datetime="2026-01-22T18:09:34.000Z" title="发表于 2026-01-23 02:09:34">2026-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2f57a694.html" title="正则表达式"><img src="/coverImages/default_bg10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="正则表达式"/></a><div class="content"><a class="title" href="/posts/2f57a694.html" title="正则表达式">正则表达式</a><time datetime="2026-01-21T10:29:05.000Z" title="发表于 2026-01-21 18:29:05">2026-01-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/top6.jpg);"><div id="footer-wrap"><div id="footer-left"><div class="footer-title"><span>yyssh's blog | </span><span class="footer-copyright">&copy;2025 - 2026 <i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i> By yyssh</span></div><div class="wordcount"></div><span>yyssh 已经写了 138.5k 字，</span><span>写到西游记第52回，返回换真经，通天河老鼋问寿数…我又答不上，掉水里了，摆烂啊</span></div><div id="footer-right"><div class="footer-totop"><i class="fas fa-chevron-up" onclick="btf.scrollToDest(0, 500)"></i></div><div class="footer-info"><span class="footer-runtime"></span><span class="footer-by"></span></div><div class="footer-service"><a target="_blank" href="https://hexo.io/zh-cn/"><img alt="hexo" src="/shieldImages/hexo.jpg"/></a><a target="_blank" href="https://github.com/0xYyssh"><img alt="github" src="/shieldImages/github.jpg"/></a><a target="_blank" href="https://www.bilibili.com/video/BV12om2YTEgW/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=f2e427ac71efa3412ac58124c4df9be1"><img alt="github" src="/shieldImages/web.jpg"/></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/foot.js" async></script><script async data-pjax src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="background:url(coverImages/default_bg7.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2026-01-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/6213db3a.html&quot;);" href="javascript:void(0);" alt="">知攻善防WP</a><div class="blog-slider__text">对知攻善防靶场的一些复现笔记，不喜勿喷！</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverImages/default_bg22.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-09-04</span><a class="blog-slider__title" onclick="window.open(&quot;posts/8dc02fc6.html&quot;);" href="javascript:void(0);" alt="">第二届陇剑杯初赛学习WP</a><div class="blog-slider__text">个人对第二届陇剑杯的复现学习WP笔记</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverImages/default_bg11.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" onclick="window.open(&quot;posts/7d288577.html&quot;);" href="javascript:void(0);" alt="">2025蓝桥杯全国总决赛部分WP</a><div class="blog-slider__text">蓝桥杯还是臭名昭著啊，把它的手伸到网安圈子里了，但是我们学校什么奖都认，老师要求没办法，（吐槽一下，蓝桥杯省赛和国赛都要分别交钱，，，，，真是垃圾比赛啊，别的网安比赛都是有奖金的，这垃圾比赛还特么收两次钱，，，）比赛的题目就是i春秋给出的题，只能说是入门题吧（应急题连应急环境都给不出来一个，，，，）（因为作者比较菜，都能写5道，其他的网安比赛作者就只能签到），反正就是给学校打的比赛，就当练练手吧</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverImages/default_bg3.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/9cd054c0.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Web-WP</a><div class="blog-slider__text">个人感觉ISCC（以前比赛没打过，不予评价）这次比赛完全没有web的特征，区域赛5个题，每一个题开始都要misc解密（哪吒吃藕联想到food传参，我是真想不到，这题最后也是misc汉字解密），就是群里人说的（Misc套一个Web前端就是Web题了？？？），Web考点考得也不是主要的，十八铜人阵考的ssti，前面要一大段的misc解密，ShallowSeek的web考点是一个ajax头（尼克杨问号脸？？？），只能说ISCC这次举办的web题就是依托</div></div></div><div class="blog-slider__item swiper-slide" style="background:url(coverImages/default_bg15.jpg);border-radius:12px;opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><div class="blog-slider__content"><span class="blog-slider__code">2025-05-19</span><a class="blog-slider__title" onclick="window.open(&quot;posts/a691451b.html&quot;);" href="javascript:void(0);" alt="">2025ISCC区域赛Misc-WP</a><div class="blog-slider__text">ISCC出的misc题倒是各个方面都涉及到了（所以这就是你misc题套web前端出web题的理由吗？），图片隐写，音频隐写，内存取证，多多少少都考了一些，就是最近很多misc都考流量分析去了，ISCC没有出这方面的题（感觉是没有攻防经验啊，所以web出的依托），总的来说中规中矩</div></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper-lyx/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
