@@ -1,0 +1,42 @@
+.swiper-button-prev,
+.swiper-button-next {
+  background-image: none !important;
+  /* 去掉swiper.min.css中按钮的背景图片 */
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: var(--june) !important;
+  /* 箭头的颜色 */
+}
+
+@media screen and (min-width: 768px) {
+  #swiper_container {
+    height: 270px !important
+  }
+
+  .blog-slider__title {
+    font-size: 1.8rem;
+    text-align: center
+  }
+
+  .blog-slider__content>* {
+    margin: 5px !important;
+    /* 设置子元素的外边距为 5px */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #swiper_container {
+    height: 12rem !important
+  }
+
+  .blog-slider__title {
+    font-size: 1.3rem;
+    text-align: center
+  }
+
+  .blog-slider__text {
+    display: none
+  }
+}

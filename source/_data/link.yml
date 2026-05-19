@@ -1,0 +1,13 @@
+- class_name: 王侯藩国  
+  flink_style: volantis  
+  link_list:  
+    - name: lplum  
+      link: https://blog.csdn.net/lplum_?spm=1000.2115.3001.5343  
+      avatar: /images/lplum.jpg  
+      descr: 队内的pwn手,压力怪
+      siteshot: /images/lplum_siteshot.jpg
+    - name: was1ed  
+      link: https://www.cnblogs.com/was1ed 
+      avatar: /images/was1ed.jpg  
+      descr: 队内的web手,网安之星
+      siteshot: /images/was1ed_siteshot.jpg

@@ -1,0 +1,67 @@
+.swiper-button-prev,
+.swiper-button-next {
+  background-image: none !important;
+  /* 去掉swiper.min.css中按钮的背景图片 */
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: var(--june) !important;
+  /* 箭头的颜色 */
+}
+
+@media screen and (min-width: 768px) {
+  #swiper_container {
+    height: 270px !important
+  }
+
+  .blog-slider__title {
+    font-size: 1.8rem;
+    text-align: center
+  }
+
+  .blog-slider__content>* {
+    margin: 5px !important;
+    /* 设置子元素的外边距为 5px */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #swiper_container {
+    height: 12rem !important
+  }
+
+  .blog-slider__title {
+    font-size: 1.3rem;
+    text-align: center
+  }
+
+  .blog-slider__text {
+    display: none
+  }
+}
+
+/* =================================================
+ * 大屏：让轮播图像小屏一样，占一整行（两列）
+ * 只追加，不覆盖原有规则
+ * ================================================= */
+
+@media screen and (min-width: 768px) {
+
+  /* 只命中“包含 swiper 的那张卡片” */
+  #recent-posts>.recent-post-item:has(#swiper_container) {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+
+    /* 兼容 Butterfly masonry 定位 */
+    position: relative !important;
+    transform: none !important;
+  }
+
+  /* swiper 自身撑满 */
+  #recent-posts>.recent-post-item:has(#swiper_container) #swiper_container,
+  #recent-posts>.recent-post-item:has(#swiper_container) .blog-slider {
+    width: 100% !important;
+  }
+}
