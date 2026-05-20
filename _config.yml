@@ -102,3 +102,43 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  - type: git
+    repo: https://github.com/0xYyssh/0xYyssh.github.io.git  
+    branch: master  
+    message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"  
+  - type: cjh_bing_url_submitter  
+  
+hexo_submit_urls_to_search_engine:
+  # 提交策略配置
+  submit_condition: count
+  count: 20  # 每次提交最新20条链接
+  period: 600  # 10分钟内的更新
+  
+  # 平台开关（推荐配置） 0为关闭，1为开启
+  google: 0    # 启用Google提交
+  bing: 1      # 启用Bing提交
+  baidu: 0     # 默认关闭百度提交
+  
+  # 路径配置
+  txt_path: ./auto_submit_urls.txt ## 文本文档名， 需要推送的链接会保存在此文本文档里
+  replace: 1   # 启用URL替换
+  find_what: http://
+  replace_with: https://  # 强制HTTPS
+  
+  # 百度配置（需要时开启）
+  # baidu_host: https://yourdomain.com
+  # baidu_token: ${BAIDU_TOKEN}  # 推荐使用环境变量
+  
+  # 必应配置（推荐启用IndexNow）
+  bing_host: https://0xyyssh.github.io/
+  bing_token: 62a5ca052e674cfc89a8e9908a9abd52
+  bing_enable_indexnow: true # 是否用 indexNow 提交链接给必应: true (Yes) | false (No). 只有 2.1.1 及之后的版本才可以开启这个功能。
+  
+  # Google配置（需服务账号密钥）
+  # google_host: https://yourdomain.com
+  # google_key_file: ./google-service-account.json 存放google key的json文件，放于网站根目录（与hexo _config.yml文件位置相同），请不要把json文件内容直接发布在公众仓库里!
+  # google_proxy: 0  #  向谷歌提交网址所使用的系统 http 代理，代理配置示例：http://127.0.0.1:8080  ，填 0 不使用
