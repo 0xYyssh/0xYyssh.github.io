@@ -5670,7 +5670,7 @@ maxWidth1200()
   height: 240px;
   position: relative;
   top: -130px;
-  background: url("/images/loading2.gif") 100% 100% no-repeat;
+  background: url("https://pub-c7a36cc277904187819f929dfda71e44.r2.dev/images/loading2.gif") 100% 100% no-repeat;
 }
 #loading-box.loaded .loading-left-bg {
   -webkit-transition: all 0.5s;
